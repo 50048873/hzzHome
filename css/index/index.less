@@ -1,0 +1,200 @@
+@import '../common/variable.less';
+@import '../common/tool.less';
+
+.row-1 {
+	.col-md-3, .col-md-5, .col-md-4 {
+		min-height: 570px;
+	}
+}
+
+.row-1-2 {
+	position: relative;
+	&:after {
+		content: '';
+		position: absolute;
+		right: 15px;
+		bottom: 36px;
+		left: 15px;
+		height: 1px;
+		background-color: #cdcdcb;
+	}
+}
+
+.h2 {
+	font-size: 18px;
+	font-weight: bold;
+	color: @gray-1;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #cdcdcb;
+}
+
+.h3 {
+	font-size: 16px;
+	color: @blue-1;
+	font-weight: bold;
+	margin-top: 10px;
+	margin-bottom: 15px;
+}
+
+.progressWrap-1 {
+	padding-left: 0;
+	.progress {
+		border: 1px solid #0a70b9;
+		background: white;
+		box-shadow: none;
+		height: 32px;
+		position: relative;
+		margin-bottom: 22px;
+	}
+
+	.progress-bar {
+		.linear-gradient(left, #45c1ec, #29abe1);
+		box-shadow: none;
+		line-height: 32px;
+		text-align: left;
+	}
+
+	.progress-text-desc, .progress-text-percent {
+		color: @blue-1;
+		font-size: 16px;
+	}
+
+	.progress-text-desc {
+		position: absolute;
+		top: -1px;
+		right: 4em;
+		left: 1em;
+		white-space: nowrap;
+		overflow: hidden;
+	    text-overflow: ellipsis;
+	}
+
+	.progress-text-percent {
+		position: absolute;
+		top: -1px;
+		right: 5px;
+	}
+}
+
+.progressWrap-2 {
+	padding-left: 0;
+	.progress {
+		.linear-gradient(left, #45c1ec, #29abe1);
+		box-shadow: none;
+		height: 32px;
+		line-height: 32px;
+		margin-bottom: 22px;
+		text-indent: 1em;
+	}
+
+	.progress-text-desc {
+		white-space: nowrap;
+		overflow: hidden;
+	    text-overflow: ellipsis;
+	    color: white;
+	}
+}
+
+.table {
+	margin-top: 30px;
+	color: @blue-1;
+	text-align: center;
+	tbody {
+		tr {
+			td {
+				//padding: 10px 3em;
+				font-size: 16px;
+			}
+		}
+	}
+}
+
+.bottomWrap {
+	height: 20px;
+	background-color: #e1e1e1; 
+}
+
+.highcharts-container {
+	overflow: visible!important;
+}
+
+.circleDesc {
+	text-align: center;
+	b {
+		display: block;
+	}
+}
+
+.wellRate {
+	float: right;
+	margin-top: 15px;
+	margin-right: 15px;
+	.wellRate-colorClassify {
+		span {
+			float: left;
+			width: 72px;
+			height: 16px;
+			&:after {
+				position: absolute;
+				margin-top: -1.5em;
+				color: @blue-1;
+			}
+		}
+		span:nth-child(1) {
+			background-color: #e3f2fb;
+			&:after {
+				content: '0%';
+			}
+		}
+		span:nth-child(2) {
+			background-color: #a9dfff;
+			&:after {
+				content: '20%';
+			}
+		}
+		span:nth-child(3) {
+			background-color: #70cbff;
+			&:after {
+				content: '40%';
+			}
+		}
+		span:nth-child(4) {
+			background-color: #28adf7;
+			&:after {
+				content: '60%';
+			}
+		}
+		span:nth-child(5) {
+			background-color: #0889d1;
+			&:after {
+				content: '80%';
+			}
+		}
+		span:nth-child(6) {
+			background-color: #0068a5;
+			&:after {
+				content: '100%';
+			}
+		}
+	}
+	.wellRate-title {
+		float: right;
+		color: @blue-1;
+		font-weight: bold;
+	}
+}
+
+#oSvg {
+	width: 100%;
+	height: 100%;
+	margin-top: 50px;
+	padding: 0 15px;
+	 > g > path {
+		cursor: pointer;
+		transition: all 0.2s;
+	}
+	> g > path:hover {
+		transform-origin: center;
+		transform: scale(1.2);
+	}
+}

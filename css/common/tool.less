@@ -1,0 +1,42 @@
+/* 全局工具类 */
+
+@import 'variable.less';
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: ' ';
+    display: table;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+.fr {
+	float: right;
+}
+
+.p-r-0 {
+	padding-right: 0;
+}
+
+.p-l-0 {
+	padding-left: 0;
+}
+
+.border-b-1 {
+	border-bottom: 1px solid #cdcdcb;
+}
+
+.linear-gradient(@direction: top, @start: #fff, @end: #f0f0f0, @ie9: #eee) { 
+	background-image: -ms-linear-gradient(@direction, @start, @end);
+	background-image: -moz-linear-gradient(@direction , @start, @end);
+	background-image: -webkit-linear-gradient(@direction, @start, @end);
+	background-image: -o-linear-gradient(@direction , @start, @end);
+	background-image: linear-gradient(@direction, @start, @end);
+	background-color: @ie9;
+}
