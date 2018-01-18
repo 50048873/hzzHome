@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="css/index/index.css">
 </head>
 <body>
-	<div class="container-fluid" id="container">
+	<div class="container-fluid" id="container" v-cloak>
 		<div class="row row-1">
 			<div class="col-md-3">
 		  		<h2 class="h2">主要任务</h2>
@@ -17,33 +17,33 @@
 		  		<ul class="progressWrap-1">
 		  			<li>
 		  				<div class="progress">
-						  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 17.5%;">
-						    <span class="progress-text-desc">年用水控制在28.8亿立方米</span>
-						    <span class="progress-text-percent">17.5%</span>
+						  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
+						    <span class="progress-text-desc">建立镇级以上河长制体系</span>
+						    <span class="progress-text-percent">100%</span>
 						  </div>
 						</div>
 		  			</li>
 		  			<li>
 		  				<div class="progress">
-						  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 17.5%;">
-						    <span class="progress-text-desc">年用水控制在28.8亿立方米</span>
-						    <span class="progress-text-percent">17.5%</span>
+						  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
+						    <span class="progress-text-desc">全区全面推行河长制</span>
+						    <span class="progress-text-percent">100%</span>
 						  </div>
 						</div>
 		  			</li>
 		  			<li>
 		  				<div class="progress">
-						  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 17.5%;">
-						    <span class="progress-text-desc">年用水控制在28.8亿立方米</span>
-						    <span class="progress-text-percent">17.5%</span>
+						  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
+						    <span class="progress-text-desc">所有一级干流树立河长制工作牌</span>
+						    <span class="progress-text-percent">100%</span>
 						  </div>
 						</div>
 		  			</li>
 		  			<li>
 		  				<div class="progress">
-						  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 17.5%;">
-						    <span class="progress-text-desc">年用水控制在28.8亿立方米</span>
-						    <span class="progress-text-percent">17.5%</span>
+						  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
+						    <span class="progress-text-desc">河长制民众微信公众号的建立</span>
+						    <span class="progress-text-percent">100%</span>
 						  </div>
 						</div>
 		  			</li>
@@ -52,38 +52,39 @@
 				<ul class="progressWrap-2">
 		  			<li>
 		  				<div class="progress">
-						  <span class="progress-text-desc">年用水控制在28.8亿立方米</span>
+						  <span class="progress-text-desc">建成区全面消除劣V类水体</span>
 						</div>
 		  			</li>
 		  			<li>
 		  				<div class="progress">
-						  <span class="progress-text-desc">年用水控制在28.8亿立方米</span>
+						  <span class="progress-text-desc">地表水体达到或优于III类达到75%</span>
 						</div>
 		  			</li>
 		  			<li>
 		  				<div class="progress">
-						  <span class="progress-text-desc">年用水控制在28.8亿立方米</span>
+						  <span class="progress-text-desc">饮用水源地达到或优于II类达到100%</span>
+						</div>
+		  			</li>
+		  			<li>
+		  				<div class="progress">
+						  <span class="progress-text-desc">年用水量控制在5.8亿立方米</span>
 						</div>
 		  			</li>
 		  		</ul>
 			</div>
 			<div class="col-md-5 row-1-2">
 				<h2 class="h2">分区域水质达标率</h2>
-				<div class="row">
-					<div class="col-md-12">
-						<div id="fqyszdbl" style="min-height: 395px;"></div>
-						<div class="wellRate">
-							<div class="wellRate-colorClassify clearfix">
-								<span></span>
-								<span></span>
-								<span></span>
-								<span></span>
-								<span></span>
-								<span></span>
-							</div>
-							<h6 class="wellRate-title">水质达标率</h6>
-						</div>
+				<div class="areaMap" id="fqyszdbl"></div>
+				<div class="wellRate">
+					<div class="wellRate-colorClassify clearfix">
+						<span></span>
+						<span></span>
+						<span></span>
+						<span></span>
+						<span></span>
+						<span></span>
 					</div>
+					<h6 class="wellRate-title">水质达标率</h6>
 				</div>
 			</div>
 			<div class="col-md-4">
@@ -103,17 +104,30 @@
 					<span>巡河完成率</span>
 					<span class="fr">事件处理率</span>
 				</h2>
-				<div class="row">
-					<div class="col-md-6 p-r-0">
-						<div id="xhwzl" style="height:250px;"></div>
+				<!-- <div class="row">
+					<div class="col-md-5 p-r-0">
+						<div id="xhwcl" style="height:250px;"></div>
 					</div>
-					<div class="col-md-6 p-l-0" style="margin-left: -10px;">
+					<div class="col-md-2">
+						<ul style="margin-top: 12px; text-align: center; height: 202px;display: flex;flex-direction: column;flex-wrap: wrap;align-content: space-between;line-height: 1;float: left;">
+							<li v-for="item in categories" style="flex:1">{{item}}</li>
+						</ul>
+					</div>
+					<div class="col-md-5 p-l-0" style="margin-left: -10px;">
+						<div id="sjcll" style="height:250px;"></div>
+					</div>
+				</div> -->
+				<div class="row">
+					<div class="col-md-6 p-r-0" style="width: 55%">
+						<div id="xhwcl" style="height:250px;"></div>
+					</div>
+					<div class="col-md-6 p-l-0" style="width: 45%; margin-left: -10px;">
 						<div id="sjcll" style="height:250px;"></div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="row">
+		<div class="row row-2">
 			<div class="col-md-3">
 				<h2 class="h2">机构人员组成</h2>
 				<table class="table table-bordered">
@@ -156,22 +170,31 @@
 
 	<script src="static/jquery-1.8.3/jquery-1.8.3.min.js"></script>
 	<script src="static/vue/vue-2.5.13.js"></script>
+	<script src="js/config.js"></script>
 	<script src="js/highcharts.js"></script>
 	<script src="js/mixin.js"></script>
 	<script>
 		jQuery(function($) {
 			new Vue({ 
 				el: '#container',
-				mixins: [HZZ.hzzkhqk, HZZ.xmjdtj, HZZ.xhwzl, HZZ.sjcll, HZZ.szdblbhqs, HZZ.gztstj, HZZ.fqyszdbl],
+				data: function() {
+					return { 
+						categories: ['龙潭街道', '栖霞街道', '燕子矶街道', '马群街道', '迈皋桥街道', '八卦洲街道', '仙林街道', '西岗街道', '尧化街道']
+					}
+				},
+				mixins: [HZZ.hzzkhqk, HZZ.xmjdtj, HZZ.xhwcl, HZZ.sjcll, HZZ.szdblbhqs, HZZ.gztstj, HZZ.fqyszdbl],
 				created: function() { 
 					this.$nextTick(function() { 
-						this.hzzkhqk('hzzkhqk');
-						this.xmjdtj('xmjdtj');
-						this.gztstj('gztstj');
-						this.xhwzl('xhwzl');
-						this.sjcll('sjcll');
-						this.szdblbhqs('szdblbhqs');
-						this.fqyszdbl('fqyszdbl');
+						this.fqyszdbl({					// 分区域水质达标率
+							id: 'fqyszdbl',
+							url: 'svg/xx.svg'
+						});
+						this.xmjdtj('xmjdtj');			// 项目进度统计
+						this.gztstj('gztstj');			// 公众投诉统计
+						this.xhwcl('xhwcl');			// 巡河完成率	
+						this.sjcll('sjcll');			// 事件处理率
+						this.szdblbhqs('szdblbhqs');	// 水质达标率变化趋势
+						this.hzzkhqk('hzzkhqk');		// 河长制考核情况
 					});
 				}
 			});
