@@ -426,8 +426,8 @@ HZZ.hzzkhqk = {
 			            borderWidth: 0,
 			            dataLabels: {
 			                enabled: true,
-			                format: '{point.y:.1f}',
-			                inside: true
+			                format: '{point.y:.1f}'/*,
+			                inside: true*/
 			            }
 			        }
 			    },
@@ -441,39 +441,39 @@ HZZ.hzzkhqk = {
 			        colorByPoint: true,
 			        data: [{
 			            name: '龙潭',
-			            y: 56.33,
+			            y: 82,
 			            color:"#29abe1"
 			        }, {
 			            name: '栖霞',
-			            y: 24.03,
+			            y: 98,
 			            color:"#29abe1"
 			        }, {
 			            name: '燕子矶',
-			            y: 10.38,
+			            y: 78,
 			            color:"#29abe1"
 			        }, {
 			            name: '马群',
-			            y: 4.77,
+			            y: 96,
 			            color:"#29abe1"
 			        }, {
 			            name: '迈皋桥',
-			            y: 0.91,
+			            y: 93,
 			            color:"#29abe1"
 			        }, {
 			            name: '八卦洲',
-			            y: 2,
+			            y: 89,
 			            color:"#29abe1"
 			        }, {
 			            name: '仙林',
-			            y: 20,
+			            y: 97,
 			            color:"#29abe1"
 			        }, {
 			            name: '西岗',
-			            y: 20,
+			            y: 66,
 			            color:"#29abe1"
 			        }, {
 			            name: '尧化',
-			            y: 20,
+			            y: 79,
 			            color:"#29abe1"
 			        }]
 			    }]
