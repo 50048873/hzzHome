@@ -15,74 +15,30 @@
 		  		<h2 class="h2">主要任务</h2>
 		  		<h3 class="h3">年度任务</h3>
 		  		<ul class="progressWrap-1">
-		  			<li>
+		  			<li v-for="item in yearTaskData">
 		  				<div class="progress">
-						  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
-						    <span class="progress-text-desc">建立镇级以上河长制体系</span>
-						    <span class="progress-text-percent">100%</span>
-						  </div>
-						</div>
-		  			</li>
-		  			<li>
-		  				<div class="progress">
-						  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
-						    <span class="progress-text-desc">全区全面推行河长制</span>
-						    <span class="progress-text-percent">100%</span>
-						  </div>
-						</div>
-		  			</li>
-		  			<li>
-		  				<div class="progress">
-						  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
-						    <span class="progress-text-desc">所有一级干流树立河长制工作牌</span>
-						    <span class="progress-text-percent">100%</span>
-						  </div>
-						</div>
-		  			</li>
-		  			<li>
-		  				<div class="progress">
-						  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
-						    <span class="progress-text-desc">河长制民众微信公众号的建立</span>
-						    <span class="progress-text-percent">100%</span>
+						  <div class="progress-bar" role="progressbar" :aria-valuenow="item.percent" aria-valuemin="0" aria-valuemax="100" :style="{width: item.percent}">
+						    <span class="progress-text-desc">{{item.name}}</span>
+						    <span class="progress-text-percent">{{item.percent}}</span>
 						  </div>
 						</div>
 		  			</li>
 		  		</ul>
 				<h3 class="h3">到2020年度任务</h3>
 				<ul class="progressWrap-2">
-		  			<li>
+		  			<li v-for="item in totalTaskData">
 		  				<div class="progress">
-						  <span class="progress-text-desc">建成区全面消除劣V类水体</span>
-						</div>
-		  			</li>
-		  			<li>
-		  				<div class="progress">
-						  <span class="progress-text-desc">地表水体达到或优于III类达到75%</span>
-						</div>
-		  			</li>
-		  			<li>
-		  				<div class="progress">
-						  <span class="progress-text-desc">饮用水源地达到或优于II类达到100%</span>
-						</div>
-		  			</li>
-		  			<li>
-		  				<div class="progress">
-						  <span class="progress-text-desc">年用水量控制在5.8亿立方米</span>
+						  <span class="progress-text-desc">{{item.name}}</span>
 						</div>
 		  			</li>
 		  		</ul>
 			</div>
 			<div class="col-md-5 row-1-2">
 				<h2 class="h2">分区域水质达标率</h2>
-				<div class="areaMap" id="fqyszdbl"></div>
+				<div class="svgMap" id="fqyszdbl"></div>
 				<div class="wellRate">
 					<div class="wellRate-colorClassify clearfix">
-						<span></span>
-						<span></span>
-						<span></span>
-						<span></span>
-						<span></span>
-						<span></span>
+						<span v-for="item in colorGrade" :style="{backgroundColor: item.color}" @mouseenter="showRelative($event, item.color)" @mouseleave="hideRelative($event, item.color)"><i>{{item.percent}}</i></span>
 					</div>
 					<h6 class="wellRate-title">水质达标率</h6>
 				</div>
@@ -104,11 +60,11 @@
 					<span>巡河完成率</span>
 					<span class="fr">事件处理率</span>
 				</h2>
-				<div class="row" style="position: relative;left:6px;">
-					<div class="col-md-6 p-rl-0" style="width: 55%">
+				<div class="row">
+					<div class="col-md-6 p-rl-0" style="width: 55%; padding-left: 5px;">
 						<div id="xhwcl" style="height:250px;"></div>
 					</div>
-					<div class="col-md-6 p-rl-0" style="width: 45%; margin-left: -10px;">
+					<div class="col-md-6 p-rl-0" style="width: 45%; padding-right: 5px;">
 						<div id="sjcll" style="height:250px;"></div>
 					</div>
 				</div>
@@ -119,36 +75,20 @@
 				<h2 class="h2">机构人员组成</h2>
 				<table class="table table-bordered">
 					<tbody>
-				  		<tr>
-				  			<td>区级河长</td>
-				  			<td>24人</td>
-				  		</tr>
-				  		<tr>
-				  			<td>街道河长</td>
-				  			<td>77人</td>
-				  		</tr>
-				  		<tr>
-				  			<td>社区河长</td>
-				  			<td>229人</td>
-				  		</tr>
-				  		<tr>
-				  			<td>巡查员</td>
-				  			<td>192人</td>
-				  		</tr>
-				  		<tr>
-				  			<td>监督员</td>
-				  			<td>148人</td>
+				  		<tr v-for="item in jgryzcData">
+				  			<td>{{item.name}}</td>
+				  			<td>{{item.count}}人</td>
 				  		</tr>
 					</tbody>
 				</table>
 			</div>
 			<div class="col-md-5">
 				<h2 class="h2">水质达标率变化趋势</h2>
-				<div id="szdblbhqs" style="height: 280px;"></div>
+				<div id="szdblbhqs" style="height: 280px;margin-right: -10px;margin-left: -10px;"></div>
 			</div>
 			<div class="col-md-4">
 				<h2 class="h2">河长制考核情况</h2>
-				<div id="hzzkhqk" style="height: 280px;"></div>
+				<div id="hzzkhqk" style="height: 280px;margin-right: -10px;margin-left: -10px;"></div>
 			</div>
 		</div>
 	</div>
@@ -157,8 +97,9 @@
 
 	<script src="static/jquery-1.8.3/jquery-1.8.3.min.js"></script>
 	<script src="static/vue/vue-2.5.13.js"></script>
-	<script src="js/config.js"></script>
 	<script src="js/highcharts.js"></script>
+	<script src="js/config.js"></script>
+	<script src="js/api.js"></script>
 	<script src="js/mixin.js"></script>
 	<script>
 		jQuery(function($) {
@@ -166,23 +107,88 @@
 				el: '#container',
 				data: function() {
 					return { 
-						categories: ['龙潭街道', '栖霞街道', '燕子矶街道', '马群街道', '迈皋桥街道', '八卦洲街道', '仙林街道', '西岗街道', '尧化街道']
+						colorGrade: HZZ.colorGrade,	// 颜色分类
+						categoriesData: [],			// 街道分类
+						yearTaskData: [],			// 年度任务
+						totalTaskData: [],			// 到2020年度任务
+						fqyszdblData: [],			// 分区域水质达标率
+						xmjdtjData: [],				// 项目进度统计
+						gztstjData: [],				// 公众投诉统计
+						xhwclData: [],				// 巡河完成率
+						sjcllData: [],				// 事件处理率
+						jgryzcData: [],				// 机构人员组成
+						szdblbhqsData: [],			// 水质达标率变化趋势
+						hzzkhqkData: []				// 河长制考核情况
 					}
 				},
 				mixins: [HZZ.hzzkhqk, HZZ.xmjdtj, HZZ.xhwcl, HZZ.sjcll, HZZ.szdblbhqs, HZZ.gztstj, HZZ.fqyszdbl],
-				created: function() { 
-					this.$nextTick(function() { 
-						this.fqyszdbl({					// 分区域水质达标率
-							id: 'fqyszdbl',
-							url: 'svg/xx.svg'
+				methods: { 
+					getData: function() { 
+						var _this = this;
+						HZZ.api.getData()
+							.then(function(res) {
+								if (HZZ.api.result === res.result) { 
+									_this.categoriesData = res.categories;
+									_this.yearTaskData = res.yearTask;
+									_this.totalTaskData = res.totalTask;
+									_this.fqyszdblData = res.fqyszdbl;
+									_this.xmjdtjData = res.xmjdtj;
+									_this.gztstjData = res.gztstj;
+									_this.xhwclData = res.xhwcl;
+									_this.sjcllData = res.sjcll;
+									_this.jgryzcData = res.jgryzc;
+									_this.szdblbhqsData = res.szdblbhqs;
+									_this.hzzkhqkData = res.hzzkhqk;
+
+									_this.renderChart();					
+								} else {
+									console.log(res);
+								}
+							}, function(err) {
+								console.log(err);
+							});
+					},
+					renderChart: function() {				// 渲染图表
+						var _this = this;
+						this.$nextTick(function() { 
+							_this.fqyszdbl({				// 分区域水质达标率
+								id: 'fqyszdbl',
+								url: 'svg/xx.svg'
+							});
+							_this.xmjdtj('xmjdtj');			// 项目进度统计
+							_this.gztstj('gztstj');			// 公众投诉统计
+							_this.xhwcl('xhwcl');			// 巡河完成率	
+							_this.sjcll('sjcll');			// 事件处理率
+							_this.szdblbhqs('szdblbhqs');	// 水质达标率变化趋势
+							_this.hzzkhqk('hzzkhqk');		// 河长制考核情况
 						});
-						this.xmjdtj('xmjdtj');			// 项目进度统计
-						this.gztstj('gztstj');			// 公众投诉统计
-						this.xhwcl('xhwcl');			// 巡河完成率	
-						this.sjcll('sjcll');			// 事件处理率
-						this.szdblbhqs('szdblbhqs');	// 水质达标率变化趋势
-						this.hzzkhqk('hzzkhqk');		// 河长制考核情况
-					});
+					},
+					showRelative: function(event, color) {
+						var $span = $(event.target);
+						var $svg = $(this.svgMap);
+						var $checked = $svg.find('path[fill="' + color + '"]');
+						$span.siblings().css('border', 'none');
+						$svg.find('path').attr({
+							'stroke': '#37A8DB',
+							'stroke-width': '1'
+						});
+						$svg.append($checked.parent());
+						$span.css('border', '1px solid red');
+						$checked.attr({
+							'stroke': 'red',
+							'stroke-width': '2'
+						});
+					},
+					hideRelative: function() {
+						$('.wellRate-colorClassify span').css('border', 'none');
+						$(this.svgMap).find('path').attr({
+							'stroke': '#37A8DB',
+							'stroke-width': '1'
+						});
+					}
+				},
+				created: function() { 
+					this.getData();
 				}
 			});
 		});
