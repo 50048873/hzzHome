@@ -1,0 +1,115 @@
+{
+	"result": 1,
+	"typeData": [{
+		"value": "投诉问题处理",
+		"label": "投诉问题处理"
+	}, {
+		"value": "咨询",
+		"label": "咨询"
+	}, {
+		"value": "建议",
+		"label": "建议"
+	}],
+	"tableData": [
+		{
+			"fileNum": "环城河交办[2018]1号",
+			"department": "市水利局",
+			"type": "投诉问题处理",
+			"content": "环城河A河段放养彩鲤",
+			"contacts": "王伟伟",
+			"startDate": "2018-01-13",
+			"endDate": "2018-01-18",
+			"progress": "处理中"
+		},
+		{
+			"fileNum": "环城河交办[2018]2号",
+			"department": "市水利局",
+			"type": "咨询",
+			"content": "环城河A河段放养彩鲤",
+			"contacts": "王伟伟",
+			"startDate": "2018-01-14",
+			"endDate": "2018-01-16",
+			"progress": "处理中"
+		},
+		{
+			"fileNum": "环城河交办[2018]3号",
+			"department": "市水利局",
+			"type": "建议",
+			"content": "环城河A河段放养彩鲤",
+			"contacts": "王伟伟",
+			"startDate": "2018-01-15",
+			"endDate": "2018-01-20",
+			"progress": "处理中"
+		},
+		{
+			"fileNum": "环城河交办[2018]4号",
+			"department": "市水利局",
+			"type": "投诉问题处理",
+			"content": "环城河A河段放养彩鲤",
+			"contacts": "王伟伟",
+			"startDate": "2018-01-16",
+			"endDate": "2018-01-25",
+			"progress": "处理中"
+		},
+		{
+			"fileNum": "环城河交办[2018]5号",
+			"department": "市水利局",
+			"type": "咨询",
+			"content": "环城河A河段放养彩鲤",
+			"contacts": "王伟伟",
+			"startDate": "2018-01-17",
+			"endDate": "2018-01-17",
+			"progress": "处理中"
+		},
+		{
+			"fileNum": "环城河交办[2018]6号",
+			"department": "市水利局",
+			"type": "建议",
+			"content": "环城河A河段放养彩鲤",
+			"contacts": "王伟伟",
+			"startDate": "2018-01-18",
+			"endDate": "2018-01-19",
+			"progress": "处理中"
+		},
+		{
+			"fileNum": "环城河交办[2018]7号",
+			"department": "市水利局",
+			"type": "投诉问题处理",
+			"content": "环城河A河段放养彩鲤",
+			"contacts": "王伟伟",
+			"startDate": "2018-01-13",
+			"endDate": "2018-01-21",
+			"progress": "处理中"
+		},
+		{
+			"fileNum": "环城河交办[2018]8号",
+			"department": "市水利局",
+			"type": "投诉问题处理",
+			"content": "环城河A河段放养彩鲤",
+			"contacts": "王伟伟",
+			"startDate": "2018-01-19",
+			"endDate": "2018-01-26",
+			"progress": "处理中"
+		},
+		{
+			"fileNum": "环城河交办[2018]9号",
+			"department": "市水利局",
+			"type": "投诉问题处理",
+			"content": "环城河A河段放养彩鲤",
+			"contacts": "王伟伟",
+			"startDate": "2018-01-13",
+			"endDate": "2018-01-19",
+			"progress": "处理中"
+		},
+		{
+			"fileNum": "环城河交办[2018]10号",
+			"department": "市水利局",
+			"type": "建议",
+			"content": "环城河A河段放养彩鲤",
+			"contacts": "王伟伟",
+			"startDate": "2018-01-14",
+			"endDate": "2018-01-20",
+			"progress": "处理中"
+		}
+	]
+}

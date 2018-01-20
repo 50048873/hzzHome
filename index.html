@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>首页</title>
 	<link rel="stylesheet" href="static/bootstrap-3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/element-theme/element-theme-darkred.css">
 	<link rel="stylesheet" href="css/common/common.css">
 	<link rel="stylesheet" href="css/index/index.css">
 </head>
@@ -97,6 +98,7 @@
 
 	<script src="static/jquery-1.8.3/jquery-1.8.3.min.js"></script>
 	<script src="static/vue/vue-2.5.13.js"></script>
+	<script src="static/element-ui/lib/index.js"></script>
 	<script src="js/highcharts.js"></script>
 	<script src="js/config.js"></script>
 	<script src="js/api.js"></script>
@@ -125,7 +127,7 @@
 				methods: { 
 					getData: function() { 
 						var _this = this;
-						HZZ.api.getData()
+						HZZ.api.getHomeData()
 							.then(function(res) {
 								if (HZZ.api.result === res.result) { 
 									_this.categoriesData = res.categories;
@@ -141,11 +143,9 @@
 									_this.hzzkhqkData = res.hzzkhqk;
 
 									_this.renderChart();					
-								} else {
-									console.log(res);
 								}
 							}, function(err) {
-								console.log(err);
+								HZZ.apiErrorMessage.bind(_this, err)();
 							});
 					},
 					renderChart: function() {				// 渲染图表
@@ -173,9 +173,9 @@
 							'stroke-width': '1'
 						});
 						$svg.append($checked.parent());
-						$span.css('border', '1px solid red');
+						$span.css('border', '1px solid #960000');
 						$checked.attr({
-							'stroke': 'red',
+							'stroke': '#960000',
 							'stroke-width': '2'
 						});
 					},

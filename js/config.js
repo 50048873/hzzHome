@@ -32,3 +32,10 @@ HZZ.colorGrade = [
 		percent: '100%'
 	}
 ];
+
+HZZ.pagination = {
+	currentPage: 1,						// 当前页
+	pageSizeSelection: [5,10,20,40],	// 分页下拉选择框
+	pageSize: 5,						// 每页大小
+	total: 100							// 总记录条数
+}
