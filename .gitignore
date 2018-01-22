@@ -6,5 +6,6 @@
 
 /颜色集
 /static/hzy
-/static/element-ui
+/static/element-ui/*
+/static/element-ui/!lib
 /static/Highcharts-6.0.4
