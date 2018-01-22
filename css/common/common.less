@@ -3,5 +3,83 @@
 //核心
 @import "variable.less";				//变量
 @import "myreset.less";					//自定reset
-@import "tool.less";					//常用工具类（所有项目都可能用到） 
-@import "public.less";					//常用工具类（所有页面共用） 
+@import "tool.less";					//常用工具类（所有项目都可能用到）   
+
+
+[v-cloak] {
+	display: none;
+}
+
+.apiErrorMessage .el-icon-close {
+	top: 20px;
+}
+
+.el-date-picker {
+	z-index: 20000000!important;
+}
+
+.hzz-form-1 {
+	@gray: #efefef;
+	@color: #606266;
+	display: none;
+	padding: 15px 30px;
+	color: @color;
+	font-size: 12px;
+	h2 {
+		text-align: center;
+		color: red;
+		line-height: 1.5;
+		font-weight: bold;
+		font-size: 14px;
+	}
+	h6 {
+		padding-bottom: 10px;
+		line-height: 1.5;
+		text-align: center;
+		border-bottom: 1px solid @gray;
+		font-size: 12px;
+	}
+	table {
+		width: 100%;
+		padding: 6px 0;
+		border-bottom: 1px solid @gray;
+		tbody {
+			tr {
+				td {
+					line-height: 2;
+					vertical-align: top;
+					&:nth-child(odd) {
+						width: 5em;
+						text-align: right;
+						white-space: nowrap;
+					}
+					&:nth-child(2), &:nth-child(4) {
+						padding-left: 0.5em;
+					}
+				}
+			}
+		}
+	}
+	.el-form {
+		padding: 15px 0;
+		.el-form-item__label {
+			font-size: 12px;
+			text-align: left;
+		}
+		.el-input__inner::placeholder {
+		    font-size: 12px;
+		}
+		.el-form-item--small.el-form-item {
+		    margin-bottom: 15px;
+		}
+		.el-form-item__label {
+		    padding-right: 0;
+		}
+		.el-form-item--small .el-form-item__content {
+		    margin-left: 5em!important;
+		}
+	}
+	.hzz-form-button {
+		text-align: right;
+	}
+} 

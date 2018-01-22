@@ -2,261 +2,272 @@
 @import '../common/tool.less';
 
 .row-1 {
-	//height: 60%;
+    //height: 60%;
 }
 
 .row-2 {
-	//height: 40%;
+    //height: 40%;
 }
 
 .row-1, .row-2 { 
-	> div {
-		padding-right: 20px;
-		padding-left: 20px;
-	}
+    > div {
+        padding-right: 20px;
+        padding-left: 20px;
+    }
 } 
 
 .row-1 > div {
-	height: 570px;
+    height: 570px;
 } 
 
 /* .row-1 {
-	> .col-md-3 {
-		width: 20%;
-	} 
+    > .col-md-3 {
+        width: 20%;
+    } 
 
-	> .col-md-5 {
-		width: 40%;
-	} 
+    > .col-md-5 {
+        width: 40%;
+    } 
 
-	> .col-md-4 {
-		width: 40%;
-	} 
+    > .col-md-4 {
+        width: 40%;
+    } 
 } */
 
 .row-1-2 {
-	position: relative;
-	/* display: flex;
-	flex-direction: column;
-	flex-wrap: wrap;
-	align-content: space-between;
-	> .row {
-		flex: 1;
-	} */
-	&:after {
-		content: '';
-		position: absolute;
-		right: 15px;
-		bottom: 36px;
-		left: 15px;
-		height: 1px;
-		background-color: #cdcdcb;
-	}
+    position: relative;
+    /* display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: space-between;
+    > .row {
+        flex: 1;
+    } */
+    &:after {
+        content: '';
+        position: absolute;
+        right: 15px;
+        bottom: 36px;
+        left: 15px;
+        height: 1px;
+        background-color: #cdcdcb;
+    }
 }
 
 .h2 {
-	font-size: 18px;
-	font-weight: bold;
-	color: @gray-1;
-	padding-bottom: 10px;
-	border-bottom: 1px solid #cdcdcb;
+    font-size: 18px;
+    font-weight: bold;
+    color: @gray-1;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #cdcdcb;
 }
 
 .h3 {
-	font-size: 16px;
-	color: @blue-1;
-	font-weight: bold;
-	margin-top: 10px;
-	margin-bottom: 15px;
+    font-size: 16px;
+    color: @color-primary;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 15px;
 }
 
 .progressWrap-1 {
-	padding-left: 0;
-	.progress {
-		border: 1px solid #0a70b9;
-		background: white;
-		box-shadow: none;
-		height: 32px;
-		position: relative;
-		margin-bottom: 22px;
-	}
+    padding-left: 0;
+    .progress {
+        border: 1px solid #0a70b9;
+        background: white;
+        box-shadow: none;
+        height: 32px;
+        position: relative;
+        margin-bottom: 22px;
+    }
 
-	.progress-bar {
-		.linear-gradient(left, #45c1ec, #29abe1);
-		box-shadow: none;
-		line-height: 32px;
-		text-align: left;
-	}
+    .progress-bar {
+        .linear-gradient(left, #45c1ec, #29abe1);
+        box-shadow: none;
+        line-height: 32px;
+        text-align: left;
+    }
 
-	.progress-text-desc, .progress-text-percent {
-		color: @blue-1;
-		font-size: 16px;
-	}
+    .progress-text-desc, .progress-text-percent {
+        color: @color-primary;
+        font-size: 16px;
+    }
 
-	.progress-text-desc {
-		position: absolute;
-		top: -1px;
-		right: 4em;
-		left: 1em;
-		white-space: nowrap;
-		overflow: hidden;
-	    text-overflow: ellipsis;
-	}
+    .progress-text-desc {
+        position: absolute;
+        top: -1px;
+        right: 4em;
+        left: 1em;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 
-	.progress-text-percent {
-		position: absolute;
-		top: -1px;
-		right: 5px;
-	}
+    .progress-text-percent {
+        position: absolute;
+        top: -1px;
+        right: 5px;
+    }
 }
 
 .progressWrap-2 {
-	padding-left: 0;
-	.progress {
-		.linear-gradient(left, #45c1ec, #29abe1);
-		box-shadow: none;
-		height: 32px;
-		line-height: 32px;
-		margin-bottom: 22px;
-		text-indent: 1em;
-	}
+    padding-left: 0;
+    .progress {
+        .linear-gradient(left, #45c1ec, #29abe1);
+        box-shadow: none;
+        height: 32px;
+        line-height: 32px;
+        margin-bottom: 22px;
+        text-indent: 1em;
+    }
 
-	.progress-text-desc {
-		white-space: nowrap;
-		overflow: hidden;
-	    text-overflow: ellipsis;
-	    color: white;
-	}
+    .progress-text-desc {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: white;
+    }
 }
 
 .table {
-	margin-top: 30px;
-	color: @blue-1;
-	text-align: center;
-	tbody {
-		tr {
-			td {
-				//padding: 10px 3em;
-				font-size: 16px;
-			}
-		}
-	}
+    margin-top: 30px;
+    color: @color-primary;
+    text-align: center;
+    tbody {
+        tr {
+            td {
+                //padding: 10px 3em;
+                font-size: 16px;
+            }
+        }
+    }
 }
 
 .bottomWrap {
-	height: 20px;
-	background-color: #e1e1e1; 
+    height: 20px;
+    background-color: #e1e1e1; 
 }
 
 .highcharts-container {
-	overflow: visible!important;
+    overflow: visible!important;
 }
 
 .circleDesc {
-	text-align: center;
-	b {
-		display: block;
-	}
+    text-align: center;
+    b {
+        display: block;
+    }
 }
 
 .circleDesc-kg { 
-	position: relative; 
-	top: 5px; 
-	left: -20px;
+    position: relative; 
+    top: 5px; 
+    left: -20px;
 }
 
 .circleDesc-dj { 
-	position: relative; 
-	left: 15px;
+    position: relative; 
+    left: 15px;
 }
 
 .circleDesc-dp { 
-	position: relative; 
-	left: 15px;
+    position: relative; 
+    left: 15px;
 }
 
 @media all and (max-width: 1440px) {
-	.circleDesc-shlj {
-		margin: -42px 0 0 -26px;
-	}
+    .circleDesc-shlj {
+        margin: -42px 0 0 -26px;
+    }
 }
 
 @media all and (max-width: 1366px) {
-	.circleDesc-shlj {
-		margin: -50px 0 0 -32px;
-	}
+    .circleDesc-shlj {
+        margin: -50px 0 0 -32px;
+    }
 }
 
 @media all and (max-width: 1440px) {
-	.circleDesc-wspf {
-		position: relative; 
-		top: -15px; 
-		left: 0;
-	}
+    .circleDesc-wspf {
+        position: relative; 
+        top: -15px; 
+        left: 0;
+    }
 }
 
 @media all and (max-width: 1366px) {
-	.circleDesc-wspf {
-		position: relative; 
-		top: -15px; 
-		left: 8px;
-	}
+    .circleDesc-wspf {
+        position: relative; 
+        top: -15px; 
+        left: 8px;
+    }
 }
 
 .wellRate {
-	position: absolute;
-	right: 40px;
+    position: absolute;
+    right: 40px;
     bottom: 40px;
     z-index: 1;
-	.wellRate-colorClassify {
-		span {
-			float: left;
-			width: 72px;
-			height: 16px;
-			cursor: pointer;
-			i {
-				display: block;
-				margin-top: -1.5em;
-				font-style: normal;
-				color: @blue-1;
-			}
-		}
-	}
-	.wellRate-title {
-		float: right;
-		color: @blue-1;
-		font-weight: bold;
-	}
+    .wellRate-colorClassify {
+        span {
+            float: left;
+            width: 72px;
+            height: 16px;
+            cursor: pointer;
+            i {
+                display: block;
+                margin-top: -1.5em;
+                font-style: normal;
+                color: @color-primary;
+            }
+            &.ON {
+                border: 1px solid #960000;
+            }
+        }
+    }
+    .wellRate-title {
+        float: right;
+        color: @color-primary;
+        font-weight: bold;
+    }
 }
 
 .svgMap {
-	width: 100%;
-	padding: 0 15px;
-	margin-top: 30px;
-	svg {
-		width: 100%;
-		height: 100%;
-	}
-	g {
-		display: block;
-		cursor: pointer;
-		transition: all 0.2s;
-	}
-	g:hover {
-		-moz-transform-origin: 50% 50%;
-		-webkit-transform-origin:50% 50%;
-		-ms-transform-origin:50% 50%;
-		transform-origin: 50% 50%;
-		transform-box: fill-box;
-		-moz-transform: scale(1.2);
-		-webkit-transform: scale(1.2);
-		-ms-transform: scale(1.2);
-		transform: scale(1.2, 1.2);
-	}
+    width: 100%;
+    padding: 0 15px;
+    margin-top: 30px;
+    svg {
+        width: 100%;
+        height: 100%;
+    }
+    g {
+        display: block;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+    g:hover {
+        -moz-transform-origin: 50% 50%;
+        -webkit-transform-origin:50% 50%;
+        -ms-transform-origin:50% 50%;
+        transform-origin: 50% 50%;
+        transform-box: fill-box;
+        -moz-transform: scale(1.2);
+        -webkit-transform: scale(1.2);
+        -ms-transform: scale(1.2);
+        transform: scale(1.2, 1.2);
+    }
+    path {
+        stroke: #37A8DB;
+        stroke-width: 1;
+        &.ON {
+            stroke: #960000;
+            stroke-width: 2;
+        }
+    }
 }
 
 svg {
-	text {
-		font-weight: normal!important;
-	}
+    text {
+        font-weight: normal!important;
+    }
 }

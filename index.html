@@ -1,197 +1,187 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>首页</title>
-	<link rel="stylesheet" href="static/bootstrap-3.3.7/css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/element-theme/element-theme-darkred.css">
-	<link rel="stylesheet" href="css/common/common.css">
-	<link rel="stylesheet" href="css/index/index.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>首页</title>
+    <link rel="stylesheet" href="static/bootstrap-3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/element-theme/element-theme-darkred.css">
+    <link rel="stylesheet" href="css/common/common.css">
+    <link rel="stylesheet" href="css/index/index.css">
 </head>
 <body>
-	<div class="container-fluid" id="container" v-cloak>
-		<div class="row row-1">
-			<div class="col-md-3">
-		  		<h2 class="h2">主要任务</h2>
-		  		<h3 class="h3">年度任务</h3>
-		  		<ul class="progressWrap-1">
-		  			<li v-for="item in yearTaskData">
-		  				<div class="progress">
-						  <div class="progress-bar" role="progressbar" :aria-valuenow="item.percent" aria-valuemin="0" aria-valuemax="100" :style="{width: item.percent}">
-						    <span class="progress-text-desc">{{item.name}}</span>
-						    <span class="progress-text-percent">{{item.percent}}</span>
-						  </div>
-						</div>
-		  			</li>
-		  		</ul>
-				<h3 class="h3">到2020年度任务</h3>
-				<ul class="progressWrap-2">
-		  			<li v-for="item in totalTaskData">
-		  				<div class="progress">
-						  <span class="progress-text-desc">{{item.name}}</span>
-						</div>
-		  			</li>
-		  		</ul>
-			</div>
-			<div class="col-md-5 row-1-2">
-				<h2 class="h2">分区域水质达标率</h2>
-				<div class="svgMap" id="fqyszdbl"></div>
-				<div class="wellRate">
-					<div class="wellRate-colorClassify clearfix">
-						<span v-for="item in colorGrade" :style="{backgroundColor: item.color}" @mouseenter="showRelative($event, item.color)" @mouseleave="hideRelative($event, item.color)"><i>{{item.percent}}</i></span>
-					</div>
-					<h6 class="wellRate-title">水质达标率</h6>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<h2 class="h2">
-					<span>项目进度统计</span>
-					<span class="fr">公众投诉统计</span>
-				</h2>
-				<div class="row">
-					<div class="col-md-6">
-						<div id="xmjdtj" style="height:200px;"></div>
-					</div>
-					<div class="col-md-6">
-						<div id="gztstj" style="height:200px;"></div>
-					</div>
-				</div>
-				<h2 class="h2">
-					<span>巡河完成率</span>
-					<span class="fr">事件处理率</span>
-				</h2>
-				<div class="row">
-					<div class="col-md-6 p-rl-0" style="width: 55%; padding-left: 5px;">
-						<div id="xhwcl" style="height:250px;"></div>
-					</div>
-					<div class="col-md-6 p-rl-0" style="width: 45%; padding-right: 5px;">
-						<div id="sjcll" style="height:250px;"></div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row row-2">
-			<div class="col-md-3">
-				<h2 class="h2">机构人员组成</h2>
-				<table class="table table-bordered">
-					<tbody>
-				  		<tr v-for="item in jgryzcData">
-				  			<td>{{item.name}}</td>
-				  			<td>{{item.count}}人</td>
-				  		</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="col-md-5">
-				<h2 class="h2">水质达标率变化趋势</h2>
-				<div id="szdblbhqs" style="height: 280px;margin-right: -10px;margin-left: -10px;"></div>
-			</div>
-			<div class="col-md-4">
-				<h2 class="h2">河长制考核情况</h2>
-				<div id="hzzkhqk" style="height: 280px;margin-right: -10px;margin-left: -10px;"></div>
-			</div>
-		</div>
-	</div>
+    <div class="container-fluid" id="container" v-cloak>
+        <div class="row row-1">
+            <div class="col-md-3">
+                <h2 class="h2">主要任务</h2>
+                <h3 class="h3">年度任务</h3>
+                <ul class="progressWrap-1">
+                    <li v-for="item in yearTaskData">
+                        <div class="progress">
+                          <div class="progress-bar" role="progressbar" :aria-valuenow="item.percent" aria-valuemin="0" aria-valuemax="100" :style="{width: item.percent}">
+                            <span class="progress-text-desc">{{item.name}}</span>
+                            <span class="progress-text-percent">{{item.percent}}</span>
+                          </div>
+                        </div>
+                    </li>
+                </ul>
+                <h3 class="h3">到2020年度任务</h3>
+                <ul class="progressWrap-2">
+                    <li v-for="item in totalTaskData">
+                        <div class="progress">
+                          <span class="progress-text-desc">{{item.name}}</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-5 row-1-2">
+                <h2 class="h2">分区域水质达标率</h2>
+                <div class="svgMap" id="fqyszdbl"></div>
+                <div class="wellRate">
+                    <div class="wellRate-colorClassify clearfix">
+                        <span v-for="item in colorGrade" :style="{backgroundColor: item.COLOR}" @mouseenter="showRelative($event, item.COLOR)" @mouseleave="hideRelative($event, item.COLOR)"><i>{{item.PERCENT}}</i></span>
+                    </div>
+                    <h6 class="wellRate-title">水质达标率</h6>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <h2 class="h2">
+                    <span>项目进度统计</span>
+                    <span class="fr">公众投诉统计</span>
+                </h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div id="xmjdtj" style="height:200px;"></div>
+                    </div>
+                    <div class="col-md-6">
+                        <div id="gztstj" style="height:200px;"></div>
+                    </div>
+                </div>
+                <h2 class="h2">
+                    <span>巡河完成率</span>
+                    <span class="fr">事件处理率</span>
+                </h2>
+                <div class="row">
+                    <div class="col-md-6 p-rl-0" style="width: 55%; padding-left: 5px;">
+                        <div id="xhwcl" style="height:250px;"></div>
+                    </div>
+                    <div class="col-md-6 p-rl-0" style="width: 45%; padding-right: 5px;">
+                        <div id="sjcll" style="height:250px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row row-2">
+            <div class="col-md-3">
+                <h2 class="h2">机构人员组成</h2>
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr v-for="item in jgryzcData">
+                            <td>{{item.name}}</td>
+                            <td>{{item.count}}人</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-5">
+                <h2 class="h2">水质达标率变化趋势</h2>
+                <div id="szdblbhqs" style="height: 280px;margin-right: -10px;margin-left: -10px;"></div>
+            </div>
+            <div class="col-md-4">
+                <h2 class="h2">河长制考核情况</h2>
+                <div id="hzzkhqk" style="height: 280px;margin-right: -10px;margin-left: -10px;"></div>
+            </div>
+        </div>
+    </div>
 
-	<div class="bottomWrap"></div>
+    <div class="bottomWrap"></div>
 
-	<script src="static/jquery-1.8.3/jquery-1.8.3.min.js"></script>
-	<script src="static/vue/vue-2.5.13.js"></script>
-	<script src="static/element-ui/lib/index.js"></script>
-	<script src="js/highcharts.js"></script>
-	<script src="js/config.js"></script>
-	<script src="js/api.js"></script>
-	<script src="js/mixin.js"></script>
-	<script>
-		jQuery(function($) {
-			new Vue({ 
-				el: '#container',
-				data: function() {
-					return { 
-						colorGrade: HZZ.colorGrade,	// 颜色分类
-						categoriesData: [],			// 街道分类
-						yearTaskData: [],			// 年度任务
-						totalTaskData: [],			// 到2020年度任务
-						fqyszdblData: [],			// 分区域水质达标率
-						xmjdtjData: [],				// 项目进度统计
-						gztstjData: [],				// 公众投诉统计
-						xhwclData: [],				// 巡河完成率
-						sjcllData: [],				// 事件处理率
-						jgryzcData: [],				// 机构人员组成
-						szdblbhqsData: [],			// 水质达标率变化趋势
-						hzzkhqkData: []				// 河长制考核情况
-					}
-				},
-				mixins: [HZZ.hzzkhqk, HZZ.xmjdtj, HZZ.xhwcl, HZZ.sjcll, HZZ.szdblbhqs, HZZ.gztstj, HZZ.fqyszdbl],
-				methods: { 
-					getData: function() { 
-						var _this = this;
-						HZZ.api.getHomeData()
-							.then(function(res) {
-								if (HZZ.api.result === res.result) { 
-									_this.categoriesData = res.categories;
-									_this.yearTaskData = res.yearTask;
-									_this.totalTaskData = res.totalTask;
-									_this.fqyszdblData = res.fqyszdbl;
-									_this.xmjdtjData = res.xmjdtj;
-									_this.gztstjData = res.gztstj;
-									_this.xhwclData = res.xhwcl;
-									_this.sjcllData = res.sjcll;
-									_this.jgryzcData = res.jgryzc;
-									_this.szdblbhqsData = res.szdblbhqs;
-									_this.hzzkhqkData = res.hzzkhqk;
+    <script src="static/jquery-1.8.3/jquery-1.8.3.min.js"></script>
+    <script src="static/vue/vue-2.5.13.min.js"></script>
+    <script src="static/element-ui/lib/index.js"></script>
+    <script src="js/highcharts.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/mixin.js"></script>
+    <script>
+        new Vue({ 
+            el: '#container',
+            data: function() {
+                return { 
+                    colorGrade: HZZ.config.colorGrade,  // 颜色分类
+                    categoriesData: [],         // 街道分类
+                    yearTaskData: [],           // 年度任务
+                    totalTaskData: [],          // 到2020年度任务
+                    fqyszdblData: [],           // 分区域水质达标率
+                    xmjdtjData: [],             // 项目进度统计
+                    gztstjData: [],             // 公众投诉统计
+                    xhwclData: [],              // 巡河完成率
+                    sjcllData: [],              // 事件处理率
+                    jgryzcData: [],             // 机构人员组成
+                    szdblbhqsData: [],          // 水质达标率变化趋势
+                    hzzkhqkData: []             // 河长制考核情况
+                }
+            },
+            mixins: [HZZ.hzzkhqk, HZZ.xmjdtj, HZZ.xhwcl, HZZ.sjcll, HZZ.szdblbhqs, HZZ.gztstj, HZZ.fqyszdbl],
+            methods: { 
+                getData: function() {   // 获取首页数据
+                    var _this = this;
+                    HZZ.api.getHomeData()
+                        .then(function(res) {
+                            if (HZZ.api.result === res.result) { 
+                                _this.categoriesData = res.categories;
+                                _this.yearTaskData = res.yearTask;
+                                _this.totalTaskData = res.totalTask;
+                                _this.fqyszdblData = res.fqyszdbl;
+                                _this.xmjdtjData = res.xmjdtj;
+                                _this.gztstjData = res.gztstj;
+                                _this.xhwclData = res.xhwcl;
+                                _this.sjcllData = res.sjcll;
+                                _this.jgryzcData = res.jgryzc;
+                                _this.szdblbhqsData = res.szdblbhqs;
+                                _this.hzzkhqkData = res.hzzkhqk;
 
-									_this.renderChart();					
-								}
-							}, function(err) {
-								HZZ.apiErrorMessage.bind(_this, err)();
-							});
-					},
-					renderChart: function() {				// 渲染图表
-						var _this = this;
-						this.$nextTick(function() { 
-							_this.fqyszdbl({				// 分区域水质达标率
-								id: 'fqyszdbl',
-								url: 'svg/xx.svg'
-							});
-							_this.xmjdtj('xmjdtj');			// 项目进度统计
-							_this.gztstj('gztstj');			// 公众投诉统计
-							_this.xhwcl('xhwcl');			// 巡河完成率	
-							_this.sjcll('sjcll');			// 事件处理率
-							_this.szdblbhqs('szdblbhqs');	// 水质达标率变化趋势
-							_this.hzzkhqk('hzzkhqk');		// 河长制考核情况
-						});
-					},
-					showRelative: function(event, color) {
-						var $span = $(event.target);
-						var $svg = $(this.svgMap);
-						var $checked = $svg.find('path[fill="' + color + '"]');
-						$span.siblings().css('border', 'none');
-						$svg.find('path').attr({
-							'stroke': '#37A8DB',
-							'stroke-width': '1'
-						});
-						$svg.append($checked.parent());
-						$span.css('border', '1px solid #960000');
-						$checked.attr({
-							'stroke': '#960000',
-							'stroke-width': '2'
-						});
-					},
-					hideRelative: function() {
-						$('.wellRate-colorClassify span').css('border', 'none');
-						$(this.svgMap).find('path').attr({
-							'stroke': '#37A8DB',
-							'stroke-width': '1'
-						});
-					}
-				},
-				created: function() { 
-					this.getData();
-				}
-			});
-		});
-	</script>
+                                _this.renderChart();                    
+                            }
+                        }, function(err) {
+                            $.error(err.responseText);
+                        });
+                },
+                renderChart: function() {               // 渲染图表
+                    var _this = this;
+                    this.$nextTick(function() { 
+                        _this.fqyszdbl({                // 分区域水质达标率
+                            id: 'fqyszdbl',
+                            url: 'svg/xx.svg'
+                        });
+                        _this.xmjdtj('xmjdtj');         // 项目进度统计
+                        _this.gztstj('gztstj');         // 公众投诉统计
+                        _this.xhwcl('xhwcl');           // 巡河完成率    
+                        _this.sjcll('sjcll');           // 事件处理率
+                        _this.szdblbhqs('szdblbhqs');   // 水质达标率变化趋势
+                        _this.hzzkhqk('hzzkhqk');       // 河长制考核情况
+                    });
+                },
+                showRelative: function(event, color) {  // 当鼠标移入分区域水质达标率某个色块时，高亮对应地图块
+                    var $span = $(event.target);
+                    var $svg = $(this.svgMap);
+                    var $checked = $svg.find('path[fill="' + color + '"]');
+                    $svg.append($checked.parent());
+                    $span.addClass(HZZ.config.interactionCssClassname.ON);
+                    $checked.attr('class', HZZ.config.interactionCssClassname.ON);
+                },
+                hideRelative: function(event, color) {  // 当鼠标移出分区域水质达标率某个色块时，移除高亮
+                    var $span = $(event.target);
+                    var $svg = $(this.svgMap);
+                    var $checked = $svg.find('path[fill="' + color + '"]');
+                    $span.removeClass(HZZ.config.interactionCssClassname.ON);
+                    $checked.removeAttr('class');
+                }
+            },
+            created: function() { 
+                this.getData();
+            }
+        });
+    </script>
 </body>
 </html>
