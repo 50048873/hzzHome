@@ -35,8 +35,8 @@ HZZ.api = function() {
             var currentPage = params.currentPage,
                 pageSize = params.pageSize,
                 questionType = params.questionType,
-                startDate = params.startDate,
-                endDate = params.endDate;
+                assignedTime = params.assignedTime,
+                rectificationPeriod = params.rectificationPeriod;
             return $.ajax({
                 url: 'json/dcdb-dbsx.json'
             }).then(function(res) {
@@ -46,14 +46,15 @@ HZZ.api = function() {
                         return item.type === questionType
                     });
                 }
-                if (startDate) { 
+                if (assignedTime) { 
                     tableData = tableData.filter(function(item) {
-                        return new Date(item.startDate) >= startDate;
+                        return new Date(item.assignedTime) >= assignedTime;
                     });
                 }
-                if (endDate) { 
+                
+                if (rectificationPeriod) { 
                     tableData = tableData.filter(function(item) {
-                        return new Date(item.endDate) <= endDate;
+                        return new Date(item.rectificationPeriod) <= rectificationPeriod;
                     });
                 }
                 res = { 
