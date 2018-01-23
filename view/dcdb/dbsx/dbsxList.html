@@ -25,11 +25,11 @@
                             </el-form-item>
                             <el-form-item label="活动时间">
                                 <el-col :span="11">
-                                    <el-date-picker type="date" placeholder="选择日期" v-model="formSearch.startDate" style="width: 100%;"></el-date-picker>
+                                    <el-date-picker type="date" placeholder="选择日期" v-model="formSearch.assignedTime" style="width: 100%;"></el-date-picker>
                                 </el-col>
                                 <el-col class="text-c" :span="2">-</el-col>
                                 <el-col :span="11">
-                                    <el-date-picker type="date" placeholder="选择日期" v-model="formSearch.endDate" style="width: 100%;"></el-date-picker>
+                                    <el-date-picker type="date" placeholder="选择日期" v-model="formSearch.rectificationPeriod" style="width: 100%;"></el-date-picker>
                                 </el-col>
                             </el-form-item>
                             <el-form-item>
@@ -63,11 +63,11 @@
                                 label="联系人">
                             </el-table-column>
                             <el-table-column
-                                prop="startDate"
+                                prop="assignedTime"
                                 label="交办时间">
                             </el-table-column>
                             <el-table-column
-                                prop="endDate"
+                                prop="rectificationPeriod"
                                 label="整改期限">
                             </el-table-column>
                             <el-table-column
@@ -97,71 +97,6 @@
                             layout="total, sizes, prev, pager, next, jumper"
                             :total="total">
                         </el-pagination>
-                        <div class="hzz-form-theme1" id="form-1">
-                            <h2>环城河河长制领导小组办公室文件</h2>
-                            <h6>{{rowData.fileNum}}</h6>
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td>责任单位：</td>
-                                        <td>{{rowData.department}}</td>
-                                        <td>交办类型：</td>
-                                        <td>{{rowData.type}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>交办内容：</td>
-                                        <td colspan="3">{{rowData.content}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>交办要求：</td>
-                                        <td colspan="3">{{rowData.demand}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>交办时间：</td>
-                                        <td>{{rowData.startDate}}</td>
-                                        <td>整改期限：</td>
-                                        <td>{{rowData.endDate}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>联系人：</td>
-                                        <td>{{rowData.contacts}}</td>
-                                        <td>联系电话：</td>
-                                        <td>{{rowData.telephone}}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <el-form ref="form" :model="form1" label-width="5em">
-                              <el-form-item label="完成时间：">
-                                <el-col :span="12">
-                                  <el-date-picker type="date" placeholder="选择日期" v-model="form1.endDate" style="width: 100%;"></el-date-picker>
-                                </el-col>
-                              </el-form-item>
-                              <el-form-item label="反馈意见：">
-                                <el-input type="textarea" v-model="form1.feedback"></el-input>
-                              </el-form-item>
-                              <el-form-item label="整改情况：">
-                                <el-input type="textarea" v-model="form1.condition"></el-input>
-                              </el-form-item>
-                              <el-form-item label="上传附件：">
-                                <el-upload
-                                  class="upload-demo"
-                                  action="https://jsonplaceholder.typicode.com/posts/"
-                                  :on-preview="handlePreview"
-                                  :on-remove="handleRemove"
-                                  :before-remove="beforeRemove"
-                                  multiple
-                                  :limit="3"
-                                  :on-exceed="handleExceed"
-                                  :file-list="fileList">
-                                  <el-button size="small" type="primary" icon="el-icon-upload">选择文件</el-button>
-                                </el-upload>
-                              </el-form-item>
-                              <div class="hzz-form-button">
-                                <el-button type="primary" @click="onSubmit1">提交</el-button>
-                                <el-button @click="close">取消</el-button>
-                              </div>
-                            </el-form>
-                        </div>
                     </el-tab-pane>
                     <el-tab-pane label="巡查事件" name="2">巡查事件</el-tab-pane>
                     <el-tab-pane label="公众投诉" name="3">公众投诉</el-tab-pane>
@@ -181,15 +116,14 @@
                 el: '#list',
                 data: function() {
                     return {
-                        /* 列表数据开始 */
                         activeName: '1',    // tabs标签高亮
 
                         typeData: [],       // 问题类型
 
                         formSearch: {             // 表单
                             questionType: '',
-                            startDate: '',
-                            endDate: ''
+                            assignedTime: '',
+                            rectificationPeriod: ''
                         },
 
                         tableData: [],      //表格
@@ -198,18 +132,7 @@
                         currentPage: HZZ.config.pagination.CURRENT_PAGE, // 当前页
                         pageSizeSelection: HZZ.config.pagination.PAGESIZE_SELECTION,
                         pageSize: HZZ.config.pagination.PAGESIZE, // 每页大小
-                        total: HZZ.config.pagination.TOTAL, // 总记录条数
-                        /* 列表数据结束 */
-
-                        rowData: {},     // 表格行数据
-
-                        fileList: [],
-
-                        form1: {
-                            endDate: '',
-                            feedback: '',
-                            condition: ''
-                        }
+                        total: HZZ.config.pagination.TOTAL // 总记录条数
                     }
                 },
                 methods: {
@@ -230,8 +153,8 @@
                             currentPage: this.currentPage,
                             pageSize: this.pageSize,
                             questionType: this.formSearch.questionType,
-                            startDate: this.formSearch.startDate,
-                            endDate: this.formSearch.endDate
+                            assignedTime: this.formSearch.assignedTime,
+                            rectificationPeriod: this.formSearch.rectificationPeriod
                         };
                         HZZ.api.get_dcdb_dbsx_tableData(params)
                             .then(function(res) {
@@ -257,41 +180,34 @@
                     search: function(val) { // 搜索
                         this.getTableData();    
                     },
-                    handleEdit: function(index, row) {  // 点击表格操作按钮弹出layer对话框
-                        console.log(index, row);
-                        var _this = this;
-                        this.rowData = row;
-                        this.$nextTick(function() {
-                            _this.layerIndex = top.layer.open({
-                                title: '<i class="layui-layer-titleDecoration"></i>' + row.fileNum,
-                                type: 1,
-                                //skin: 'demo-class',
-                                area: '600px', //宽
-                                //offset: ['100px', '50px'],
-                                content: $('#form-1')/*,
-                                btn: ['提交', '取消']*/
-                            });
-                        });
-                    },
-                    onSubmit1: function() {  // 提交督办反馈操作弹出表单
-                        this.close();
-                        console.log('submit!');
-                    },
-                    handleRemove(file, fileList) {
-                        console.log(file, fileList);
-                    },
-                    handlePreview(file) {
-                        console.log(file);
-                    },
-                    handleExceed(files, fileList) {
-                        this.$message.warning(`当前限制选择 3 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
-                    },
-                    beforeRemove(file, fileList) {
-                        return this.$confirm(`确定移除 ${ file.name }？`);
-                    },
-                    close: function() { // 关闭layer弹窗
-                        top.layer.close(this.layerIndex);
-                    }
+                    handleEdit: function(index, row) {  // 点击表格操作按钮弹出layer对话框（此方案体验好）
+                        var _this = this,
+                            cache = HZZ.cache,
+                            URLs = HZZ.config.URLs,
+                            util = HZZ.util;
+
+                        cache.dbsxRow = row;    // 缓存行数据
+
+                        util.loadHtml(URLs.baseUrl + URLs.fileUrls.dbsxInfo);   // 通过iframe加载页面
+                    }/*,
+                    handleEdit2: function(index, row) {  // 点击表格操作按钮弹出layer对话框
+                        var cache = HZZ.cache,
+                            URLs = HZZ.config.URLs;
+                        cache.dbsxRow = row;    // 缓存行数据
+
+                        layer.open({
+                            type: 2,
+                            title: null,
+                            area: ['100%', '100%'],
+                            anim: -1,
+                            shade: 0,
+                            closeBtn: 0,
+                            content: URLs.baseUrl + URLs.fileUrls.dbsxInfo, 
+                            success: function(layero, index){
+                                layero.css('background-color', 'transparent');
+                            }
+                        }); 
+                    }*/
                 },
                 created: function () {
                     this.getTableData();

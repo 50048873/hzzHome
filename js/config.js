@@ -2,6 +2,7 @@ if (!HZZ) {
     var HZZ = {};
 }
 
+// 配置项
 HZZ.config = function(){
     var baseUrl = (function() { // 获取baseUrl
         var location = window.location;
@@ -16,7 +17,10 @@ HZZ.config = function(){
             ON: 'ON'
         },
         URLs: {
-            baseUrl: baseUrl
+            baseUrl: baseUrl,
+            fileUrls: {
+                dbsxInfo: 'view/dcdb/dbsx/dbsxInfo.html'
+            }
         },
         colors: {
             COLOR_PRIMARY: '#25408f'
@@ -56,6 +60,7 @@ HZZ.config = function(){
     }
 }();
 
+// 工具方法
 HZZ.util = {
     loadLayerHZZTheme: function() { // 全局配置layer主题
         layer.config({
@@ -66,10 +71,28 @@ HZZ.util = {
     setHeadBase: function() {   // 设置html页面头部base元素
         var baseUrl = HZZ.config.URLs.baseUrl;
         $('head title').after('<base href="' + baseUrl + '" />');
+    },
+    loadHtml: function(href) {
+        var topHZZ = top.HZZ;
+        topHZZ.$iFrame = $('<iframe class="hzz-iframe" src="' + href + '"></iframe>');
+        $(top.document).find('body').append(topHZZ.$iFrame);
+    },
+    removeHtml: function() {
+        var topHZZ = top.HZZ;
+        topHZZ.$iFrame && topHZZ.$iFrame.remove();
     }
-}
+};
+
+// 数据缓存区
+HZZ.cache = {
+    getData: function(key) {
+        if (arguments.length === 1) { 
+            return data = this[key];
+        }
+        return this;
+    }
+};
 
 if (typeof Object.freeze === 'function') {
     Object.freeze(HZZ.config);
-    Object.freeze(HZZ.util);
 }
