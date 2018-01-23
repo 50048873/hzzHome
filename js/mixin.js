@@ -2,7 +2,7 @@ if (!HZZ) {
     var HZZ = {};
 }
 
-HZZ.fqyszdbl = {
+HZZ.mixin = {
     methods: { 
         /*
          *  obj: { 
@@ -46,12 +46,7 @@ HZZ.fqyszdbl = {
             }, function(err) {
                 console.log(err)
             });
-        }
-    }
-};
-
-HZZ.xmjdtj = {
-    methods: { 
+        },
         xmjdtj: function(id) {
             var _this = this;
             var chart = null;
@@ -103,12 +98,7 @@ HZZ.xmjdtj = {
                 });
                 chart = c;
             });
-        }
-    }
-};
-
-HZZ.gztstj = {
-    methods: { 
+        },
         gztstj: function(id) {
             var chart = null;
             var _this = this;
@@ -161,12 +151,7 @@ HZZ.gztstj = {
                 });
                 chart = c;
             });
-        }
-    }
-};
-
-HZZ.xhwcl = {
-    methods: { 
+        },
         xhwcl: function(id) {
             var _this = this;
             Highcharts.chart(id, {
@@ -225,12 +210,7 @@ HZZ.xhwcl = {
                 },
                 series: _this.xhwclData.series
             });
-        }
-    }
-};
-
-HZZ.sjcll = {
-    methods: { 
+        },
         sjcll: function(id) {
             var _this = this;
             Highcharts.chart(id, {
@@ -276,12 +256,7 @@ HZZ.sjcll = {
                 },
                 series: _this.sjcllData.series
             });
-        }
-    }
-};
-
-HZZ.szdblbhqs = {
-    methods: { 
+        },
         szdblbhqs: function(id) {
             var _this = this;
             Highcharts.setOptions({
@@ -350,12 +325,7 @@ HZZ.szdblbhqs = {
                     }]
                 }
             });
-        }
-    }
-};
-
-HZZ.hzzkhqk = {
-    methods: { 
+        },
         hzzkhqk: function(id) {
             var _this = this;
             Highcharts.chart(id, {

@@ -122,7 +122,7 @@
                     hzzkhqkData: []             // 河长制考核情况
                 }
             },
-            mixins: [HZZ.hzzkhqk, HZZ.xmjdtj, HZZ.xhwcl, HZZ.sjcll, HZZ.szdblbhqs, HZZ.gztstj, HZZ.fqyszdbl],
+            mixins: [HZZ.mixin],
             methods: { 
                 getData: function() {   // 获取首页数据
                     var _this = this;
@@ -165,17 +165,17 @@
                 showRelative: function(event, color) {  // 当鼠标移入分区域水质达标率某个色块时，高亮对应地图块
                     var $span = $(event.target);
                     var $svg = $(this.svgMap);
-                    var $checked = $svg.find('path[fill="' + color + '"]');
-                    $svg.append($checked.parent());
+                    this.$checked = $svg.find('path[fill="' + color + '"]');
+                    $svg.append(this.$checked.parent());
                     $span.addClass(HZZ.config.interactionCssClassname.ON);
-                    $checked.attr('class', HZZ.config.interactionCssClassname.ON);
+                    this.$checked.attr('class', HZZ.config.interactionCssClassname.ON);
                 },
                 hideRelative: function(event, color) {  // 当鼠标移出分区域水质达标率某个色块时，移除高亮
                     var $span = $(event.target);
                     var $svg = $(this.svgMap);
-                    var $checked = $svg.find('path[fill="' + color + '"]');
                     $span.removeClass(HZZ.config.interactionCssClassname.ON);
-                    $checked.removeAttr('class');
+                    this.$checked.removeAttr('class');
+                    this.$checked = null;
                 }
             },
             created: function() { 

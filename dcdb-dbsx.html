@@ -12,9 +12,9 @@
         <div id="list" v-cloak>
             <el-tabs v-model="activeName" @tab-click="handleClick">
                     <el-tab-pane label="督办反馈" name="1">
-                        <el-form :inline="true" :model="form" class="demo-form-inline">
+                        <el-form :inline="true" :model="formSearch" class="demo-form-inline">
                             <el-form-item label="问题类型">
-                                <el-select v-model="form.questionType" placeholder="请选择">
+                                <el-select v-model="formSearch.questionType" placeholder="请选择" clearable>
                                     <el-option
                                         v-for="item in typeData"
                                         :key="item.value"
@@ -25,11 +25,11 @@
                             </el-form-item>
                             <el-form-item label="活动时间">
                                 <el-col :span="11">
-                                    <el-date-picker type="date" placeholder="选择日期" v-model="form.startDate" style="width: 100%;"></el-date-picker>
+                                    <el-date-picker type="date" placeholder="选择日期" v-model="formSearch.startDate" style="width: 100%;"></el-date-picker>
                                 </el-col>
                                 <el-col class="text-c" :span="2">-</el-col>
                                 <el-col :span="11">
-                                    <el-date-picker type="date" placeholder="选择日期" v-model="form.endDate" style="width: 100%;"></el-date-picker>
+                                    <el-date-picker type="date" placeholder="选择日期" v-model="formSearch.endDate" style="width: 100%;"></el-date-picker>
                                 </el-col>
                             </el-form-item>
                             <el-form-item>
@@ -97,7 +97,7 @@
                             layout="total, sizes, prev, pager, next, jumper"
                             :total="total">
                         </el-pagination>
-                        <div class="hzz-form-1" id="hzz-form-1">
+                        <div class="hzz-form-theme1" id="form-1">
                             <h2>环城河河长制领导小组办公室文件</h2>
                             <h6>{{rowData.fileNum}}</h6>
                             <table>
@@ -133,14 +133,14 @@
                             <el-form ref="form" :model="form1" label-width="5em">
                               <el-form-item label="完成时间：">
                                 <el-col :span="12">
-                                  <el-date-picker type="date" placeholder="选择日期" v-model="form.endDate" style="width: 100%;"></el-date-picker>
+                                  <el-date-picker type="date" placeholder="选择日期" v-model="form1.endDate" style="width: 100%;"></el-date-picker>
                                 </el-col>
                               </el-form-item>
                               <el-form-item label="反馈意见：">
-                                <el-input type="textarea" v-model="form.feedback"></el-input>
+                                <el-input type="textarea" v-model="form1.feedback"></el-input>
                               </el-form-item>
                               <el-form-item label="整改情况：">
-                                <el-input type="textarea" v-model="form.condition"></el-input>
+                                <el-input type="textarea" v-model="form1.condition"></el-input>
                               </el-form-item>
                               <el-form-item label="上传附件：">
                                 <el-upload
@@ -181,11 +181,12 @@
                 el: '#list',
                 data: function() {
                     return {
+                        /* 列表数据开始 */
                         activeName: '1',    // tabs标签高亮
 
                         typeData: [],       // 问题类型
 
-                        form: {             // 表单
+                        formSearch: {             // 表单
                             questionType: '',
                             startDate: '',
                             endDate: ''
@@ -198,6 +199,7 @@
                         pageSizeSelection: HZZ.config.pagination.PAGESIZE_SELECTION,
                         pageSize: HZZ.config.pagination.PAGESIZE, // 每页大小
                         total: HZZ.config.pagination.TOTAL, // 总记录条数
+                        /* 列表数据结束 */
 
                         rowData: {},     // 表格行数据
 
@@ -227,9 +229,9 @@
                         var params = {
                             currentPage: this.currentPage,
                             pageSize: this.pageSize,
-                            questionType: this.form.questionType,
-                            startDate: this.form.startDate,
-                            endDate: this.form.endDate
+                            questionType: this.formSearch.questionType,
+                            startDate: this.formSearch.startDate,
+                            endDate: this.formSearch.endDate
                         };
                         HZZ.api.get_dcdb_dbsx_tableData(params)
                             .then(function(res) {
@@ -266,7 +268,7 @@
                                 //skin: 'demo-class',
                                 area: '600px', //宽
                                 //offset: ['100px', '50px'],
-                                content: $('#hzz-form-1')/*,
+                                content: $('#form-1')/*,
                                 btn: ['提交', '取消']*/
                             });
                         });
