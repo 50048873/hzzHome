@@ -5,10 +5,10 @@ if (!HZZ) {
 HZZ.config = function(){
     var baseUrl = (function() { // 获取baseUrl
         var location = window.location;
-        var contextPath = location.pathname.split("/");
-        contextPath.pop();
-        contextPath = contextPath.join('/');
-        return location.origin + contextPath;
+        //var contextPath = location.pathname.split("/");
+        //contextPath.pop();
+        //contextPath = contextPath.join('/');
+        return location.origin + '/5ds/hzzHome/';
     })();
 
     return {
@@ -57,12 +57,15 @@ HZZ.config = function(){
 }();
 
 HZZ.util = {
-    loadLayerHZZTheme: function() {
-        // 全局配置layer主题
+    loadLayerHZZTheme: function() { // 全局配置layer主题
         layer.config({
           extend: '../../../../css/layer-myskin/layer-hzz.css', //加载新皮肤
           skin: 'layer-ext-hzz' //一旦设定，所有弹层风格都采用此主题。
         });
+    },
+    setHeadBase: function() {   // 设置html页面头部base元素
+        var baseUrl = HZZ.config.URLs.baseUrl;
+        $('head title').after('<base href="' + baseUrl + '" />');
     }
 }
 

@@ -382,3 +382,7 @@ HZZ.mixin = {
         }
     }
 };
+
+if (typeof Object.freeze === 'function') {
+    Object.freeze(HZZ.mixin);
+}

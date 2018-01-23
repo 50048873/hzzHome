@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>待办事项</title>
+        <link rel="stylesheet" href="../../../css/element-theme/element-theme-darkred.css">
+        <link rel="stylesheet" href="../../../css/common/common.css">
+        <link rel="stylesheet" href="../../../css/dcdb-dbsx/dcdb-dbsx.css">
+    </head>
+    <body>
+        <div id="list" v-cloak>
+            <el-tabs v-model="activeName" @tab-click="handleClick">
+                    <el-tab-pane label="督办反馈" name="1">
+                        <el-form :inline="true" :model="formSearch" class="demo-form-inline">
+                            <el-form-item label="问题类型">
+                                <el-select v-model="formSearch.questionType" placeholder="请选择" clearable>
+                                    <el-option
+                                        v-for="item in typeData"
+                                        :key="item.value"
+                                        :label="item.label"
+                                        :value="item.value">
+                                    </el-option>
+                                </el-select>
+                            </el-form-item>
+                            <el-form-item label="活动时间">
+                                <el-col :span="11">
+                                    <el-date-picker type="date" placeholder="选择日期" v-model="formSearch.startDate" style="width: 100%;"></el-date-picker>
+                                </el-col>
+                                <el-col class="text-c" :span="2">-</el-col>
+                                <el-col :span="11">
+                                    <el-date-picker type="date" placeholder="选择日期" v-model="formSearch.endDate" style="width: 100%;"></el-date-picker>
+                                </el-col>
+                            </el-form-item>
+                            <el-form-item>
+                                <el-button type="primary" @click="search">查询</el-button>
+                            </el-form-item>
+                        </el-form>
+                        <el-table
+                            :data="tableData"
+                            border
+                            style="width: 100%">
+                            <el-table-column
+                                prop="fileNum"
+                                label="文件号"
+                                width="180">
+                            </el-table-column>
+                            <el-table-column
+                                prop="department"
+                                label="责任单位"
+                                width="180">
+                            </el-table-column>
+                            <el-table-column
+                                prop="type"
+                                label="交办类型">
+                            </el-table-column>
+                            <el-table-column
+                                prop="content"
+                                label="交办内容">
+                            </el-table-column>
+                            <el-table-column
+                                prop="contacts"
+                                label="联系人">
+                            </el-table-column>
+                            <el-table-column
+                                prop="startDate"
+                                label="交办时间">
+                            </el-table-column>
+                            <el-table-column
+                                prop="endDate"
+                                label="整改期限">
+                            </el-table-column>
+                            <el-table-column
+                                prop="progress"
+                                label="进度">
+                            </el-table-column>
+                            <el-table-column
+                                label="操作">
+                                <template slot-scope="scope">
+                                    <el-button
+                                        type="primary"
+                                        size="mini"
+                                        @click="handleEdit(scope.$index, scope.row)"
+                                        icon="el-icon-edit">编辑
+                                    </el-button>
+                                </template>
+                            </el-table-column>
+                        </el-table>
+                        <el-pagination
+                            class="m-t-15"
+                            @size-change="handleSizeChange"
+                            @current-change="handleCurrentChange"
+                            background
+                            :current-page="currentPage"
+                            :page-sizes="pageSizeSelection"
+                            :page-size="pageSize"
+                            layout="total, sizes, prev, pager, next, jumper"
+                            :total="total">
+                        </el-pagination>
+                        <div class="hzz-form-theme1" id="form-1">
+                            <h2>环城河河长制领导小组办公室文件</h2>
+                            <h6>{{rowData.fileNum}}</h6>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>责任单位：</td>
+                                        <td>{{rowData.department}}</td>
+                                        <td>交办类型：</td>
+                                        <td>{{rowData.type}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>交办内容：</td>
+                                        <td colspan="3">{{rowData.content}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>交办要求：</td>
+                                        <td colspan="3">{{rowData.demand}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>交办时间：</td>
+                                        <td>{{rowData.startDate}}</td>
+                                        <td>整改期限：</td>
+                                        <td>{{rowData.endDate}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>联系人：</td>
+                                        <td>{{rowData.contacts}}</td>
+                                        <td>联系电话：</td>
+                                        <td>{{rowData.telephone}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <el-form ref="form" :model="form1" label-width="5em">
+                              <el-form-item label="完成时间：">
+                                <el-col :span="12">
+                                  <el-date-picker type="date" placeholder="选择日期" v-model="form1.endDate" style="width: 100%;"></el-date-picker>
+                                </el-col>
+                              </el-form-item>
+                              <el-form-item label="反馈意见：">
+                                <el-input type="textarea" v-model="form1.feedback"></el-input>
+                              </el-form-item>
+                              <el-form-item label="整改情况：">
+                                <el-input type="textarea" v-model="form1.condition"></el-input>
+                              </el-form-item>
+                              <el-form-item label="上传附件：">
+                                <el-upload
+                                  class="upload-demo"
+                                  action="https://jsonplaceholder.typicode.com/posts/"
+                                  :on-preview="handlePreview"
+                                  :on-remove="handleRemove"
+                                  :before-remove="beforeRemove"
+                                  multiple
+                                  :limit="3"
+                                  :on-exceed="handleExceed"
+                                  :file-list="fileList">
+                                  <el-button size="small" type="primary" icon="el-icon-upload">选择文件</el-button>
+                                </el-upload>
+                              </el-form-item>
+                              <div class="hzz-form-button">
+                                <el-button type="primary" @click="onSubmit1">提交</el-button>
+                                <el-button @click="close">取消</el-button>
+                              </div>
+                            </el-form>
+                        </div>
+                    </el-tab-pane>
+                    <el-tab-pane label="巡查事件" name="2">巡查事件</el-tab-pane>
+                    <el-tab-pane label="公众投诉" name="3">公众投诉</el-tab-pane>
+                    <el-tab-pane label="重点项目" name="4">重点项目</el-tab-pane>
+            </el-tabs>
+        </div>
+
+        <script src="../../../static/jquery-1.8.3/jquery-1.8.3.min.js"></script>
+        <script src="../../../static/vue/vue-2.5.13.js"></script>
+        <script src="../../../static/element-ui/lib/index.js"></script>
+        <script src="../../../static/layer-v3.1.1/layer/layer.js"></script>
+        <script src="../../../js/config.js"></script>
+        <script src="../../../js/api.js"></script>
+        <script src="../../../js/common.js"></script>
+        <script>
+            new Vue({
+                el: '#list',
+                data: function() {
+                    return {
+                        /* 列表数据开始 */
+                        activeName: '1',    // tabs标签高亮
+
+                        typeData: [],       // 问题类型
+
+                        formSearch: {             // 表单
+                            questionType: '',
+                            startDate: '',
+                            endDate: ''
+                        },
+
+                        tableData: [],      //表格
+
+                        // 分页
+                        currentPage: HZZ.config.pagination.CURRENT_PAGE, // 当前页
+                        pageSizeSelection: HZZ.config.pagination.PAGESIZE_SELECTION,
+                        pageSize: HZZ.config.pagination.PAGESIZE, // 每页大小
+                        total: HZZ.config.pagination.TOTAL, // 总记录条数
+                        /* 列表数据结束 */
+
+                        rowData: {},     // 表格行数据
+
+                        fileList: [],
+
+                        form1: {
+                            endDate: '',
+                            feedback: '',
+                            condition: ''
+                        }
+                    }
+                },
+                methods: {
+                    getTypeData: function() {   // 获取类型数据
+                        var _this = this;
+                        HZZ.api.get_dcdb_dbsx_typeData()
+                            .then(function(res) {
+                                if (HZZ.api.result === res.result) { 
+                                    _this.typeData = res.typeData;  
+                                }
+                            }, function(err) {
+                                $.error(err.responseText);
+                            });
+                    },
+                    getTableData: function() {  // 获取表格数据
+                        var _this = this;
+                        var params = {
+                            currentPage: this.currentPage,
+                            pageSize: this.pageSize,
+                            questionType: this.formSearch.questionType,
+                            startDate: this.formSearch.startDate,
+                            endDate: this.formSearch.endDate
+                        };
+                        HZZ.api.get_dcdb_dbsx_tableData(params)
+                            .then(function(res) {
+                                if (HZZ.api.result === res.result) { 
+                                    _this.tableData = res.tableData;
+                                    _this.total = res.length;           
+                                }
+                            }, function(err) {
+                                $.error(err.responseText);
+                            });
+                    },
+                    handleClick: function(tab, event) { // tabs标签点击回调
+                        console.log(tab, event);
+                    },
+                    handleSizeChange: function(val) {   // 分页条数改变回调
+                        this.pageSize = val;
+                        this.getTableData();
+                    },
+                    handleCurrentChange: function(val) {    // 翻页回调
+                        this.currentPage = val;
+                        this.getTableData();    
+                    },
+                    search: function(val) { // 搜索
+                        this.getTableData();    
+                    },
+                    handleEdit: function(index, row) {  // 点击表格操作按钮弹出layer对话框
+                        console.log(index, row);
+                        var _this = this;
+                        this.rowData = row;
+                        this.$nextTick(function() {
+                            _this.layerIndex = top.layer.open({
+                                title: '<i class="layui-layer-titleDecoration"></i>' + row.fileNum,
+                                type: 1,
+                                //skin: 'demo-class',
+                                area: '600px', //宽
+                                //offset: ['100px', '50px'],
+                                content: $('#form-1')/*,
+                                btn: ['提交', '取消']*/
+                            });
+                        });
+                    },
+                    onSubmit1: function() {  // 提交督办反馈操作弹出表单
+                        this.close();
+                        console.log('submit!');
+                    },
+                    handleRemove(file, fileList) {
+                        console.log(file, fileList);
+                    },
+                    handlePreview(file) {
+                        console.log(file);
+                    },
+                    handleExceed(files, fileList) {
+                        this.$message.warning(`当前限制选择 3 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
+                    },
+                    beforeRemove(file, fileList) {
+                        return this.$confirm(`确定移除 ${ file.name }？`);
+                    },
+                    close: function() { // 关闭layer弹窗
+                        top.layer.close(this.layerIndex);
+                    }
+                },
+                created: function () {
+                    this.getTableData();
+                    this.getTypeData();
+                }
+            });
+        </script>
+    </body>
+</html>
