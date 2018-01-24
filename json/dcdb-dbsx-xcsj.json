@@ -1,0 +1,72 @@
+{
+    "result": 1,
+    "typeData": [{
+        "value": "杂物漂浮",
+        "label": "杂物漂浮"
+    }, {
+        "value": "护岸坍塌",
+        "label": "护岸坍塌"
+    }, {
+        "value": "违章设置",
+        "label": "违章设置"
+    }, {
+        "value": "污泥淤积",
+        "label": "污泥淤积"
+    }],
+    "tableData": [
+        {
+            "riverName": "南池江1",
+            "questionType": "杂物漂浮",
+            "problemDesc": "发现河面飘满油污，堆积物仍待清理",
+            "reporter": "张小龙",
+            "duty": "村级河长",
+            "reportTime": "2018-01-20",
+            "progress": "事件登记"
+        },
+        {
+            "riverName": "南池江2",
+            "questionType": "护岸坍塌",
+            "problemDesc": "发现河面飘满油污，堆积物仍待清理",
+            "reporter": "张小龙",
+            "duty": "村级河长",
+            "reportTime": "2018-01-21",
+            "progress": "调查核实"
+        },
+        {
+            "riverName": "南池江3",
+            "questionType": "违章设置",
+            "problemDesc": "发现河面飘满油污，堆积物仍待清理",
+            "reporter": "张小龙",
+            "duty": "村级河长",
+            "reportTime": "2018-01-22",
+            "progress": "派单处理"
+        },
+        {
+            "riverName": "南池江4",
+            "questionType": "污泥淤积",
+            "problemDesc": "发现河面飘满油污，堆积物仍待清理",
+            "reporter": "张小龙",
+            "duty": "村级河长",
+            "reportTime": "2018-01-23",
+            "progress": "结果反馈"
+        },
+        {
+            "riverName": "南池江5",
+            "questionType": "违章设置",
+            "problemDesc": "发现河面飘满油污，堆积物仍待清理",
+            "reporter": "张小龙",
+            "duty": "村级河长",
+            "reportTime": "2018-01-24",
+            "progress": "结果反馈"
+        },
+        {
+            "riverName": "南池江6",
+            "questionType": "护岸坍塌",
+            "problemDesc": "发现河面飘满油污，堆积物仍待清理",
+            "reporter": "张小龙",
+            "duty": "村级河长",
+            "reportTime": "2018-01-25",
+            "progress": "派单处理"
+        }
+    ]
+}

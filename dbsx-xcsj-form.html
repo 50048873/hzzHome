@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>巡查事件对话框</title>
+    <link rel="stylesheet" href="css/element-theme/element-theme-darkred.css">
+    <link rel="stylesheet" href="css/common/common.css">
+</head>
+
+<body>
+    <div id="info" v-cloak>
+        <div class="hzz-form-theme1" id="form">
+            <el-row :gutter="30">
+                <el-col :span="6">
+                    <el-input placeholder="输入关键字进行过滤" v-model="filterText">
+                    </el-input>
+                    <el-tree class="hzz-filter-tree" :data="treeData" empty-text="暂无数据" :props="defaultProps" node-key="id" :default-expanded-keys="[1]" :filter-node-method="filterNode" ref="tree2">
+                    </el-tree>
+                </el-col>
+                <el-col :span="18">
+                    <el-form ref="form" :model="rowData" label-width="5em">
+                        <el-form-item label="责任单位：">
+                            <el-input v-model="form.department"></el-input>
+                        </el-form-item>
+                        <el-form-item label="督办类型：">
+                            <el-radio-group v-model="form.resource">
+                                <el-radio :label="item.label" v-for="(item, index) in typeData" :key="index"></el-radio>
+                            </el-radio-group>
+                        </el-form-item>
+                        <el-row :gutter="20">
+                            <el-col :span="12">
+                                <el-form-item label="联系人：">
+                                    <el-input v-model="form.user" placeholder=""></el-input>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :span="12">
+                                <el-form-item label="联系电话：">
+                                    <el-input v-model="form.user" placeholder=""></el-input>
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
+                        <el-form-item label="督办内容：">
+                            <el-input v-model="form.department"></el-input>
+                        </el-form-item>
+                        <el-form-item label="督办要求：">
+                            <el-input type="textarea" v-model="rowData.condition" :rows="6"></el-input>
+                        </el-form-item>
+                        <div class="hzz-form-button">
+                            <el-button type="primary" @click="onSubmit">提交</el-button>
+                            <el-button @click="close">取消</el-button>
+                        </div>
+                    </el-form>
+                </el-col>
+            </el-row>
+        </div>
+    </div>
+    <script src="static/jquery-1.8.3/jquery-1.8.3.min.js"></script>
+    <script src="static/vue/vue-2.5.13.js"></script>
+    <script src="static/element-ui/lib/index.js"></script>
+    <script src="static/layer-v3.1.1/layer/layer.js"></script>
+    <script src="js/zh-CN.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/mixin.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/common.js"></script>
+    <script>
+    new Vue({
+        el: '#info',
+        mixins: [HZZ.mixin.dialog],
+        watch: {
+            filterText(val) {
+                this.$refs.tree2.filter(val);
+            }
+        },
+        data() {
+            return {
+                filterText: '',
+                typeData: [],
+                treeData: [],
+                defaultProps: {
+                    children: 'children',
+                    label: 'label'
+                },
+
+                form: {}
+            };
+        },
+        methods: {
+            filterNode(value, data) {
+                if (!value) return true;
+                return data.label.indexOf(value) !== -1;
+            },
+            onSubmit: function() { // 提交督办反馈操作弹出表单
+                this.close();
+                console.log('submit!');
+            },
+            getData: function() {   // 获取类型数据
+                var _this = this;
+                HZZ.api.get_dcdb_dbsx_xcsj_formData()
+                    .then(function(res) {
+                        if (HZZ.api.result === res.result) { 
+                            _this.typeData = res.typeData;  
+                            _this.treeData = res.treeData;
+                        }
+                    }, function(err) {
+                        $.error(err.responseText);
+                    });
+            },
+            getTableData: function() {  // 获取表格数据
+                var _this = this;
+                var params = {
+                    currentPage1: this.currentPage1,
+                    pageSize1: this.pageSize1,
+                    questionType: this.formSearch1.questionType,
+                    assignedTime: this.formSearch1.assignedTime,
+                    rectificationPeriod: this.formSearch1.rectificationPeriod
+                };
+                HZZ.api.get_dcdb_dbsx_dbfk_tableData(params)
+                    .then(function(res) {
+                        if (HZZ.api.result === res.result) { 
+                            _this.tableData1 = res.tableData;
+                            _this.total1 = res.length;           
+                        }
+                    }, function(err) {
+                        $.error(err.responseText);
+                    });
+            },
+            init: function() {
+              this.getData(); // 加载督办类型数据
+              var rowData = parent.HZZ.cache.getData('row'); // 调用者传入的缓存对象
+              if ($.isPlainObject(rowData)) {
+                  this.rowData = rowData;
+              }
+              console.log(this.rowData)
+              this.show({
+                  title: '交办派单',
+                  content: '#form',
+                  area: '60%'
+              });
+            }
+        },
+        created: function() {
+            this.init();
+        }
+    });
+    </script>
+</body>
+
+</html>

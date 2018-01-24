@@ -6,14 +6,13 @@ if (!HZZ) {
 HZZ.config = function(){
     var baseUrl = (function() { // 获取baseUrl
         var location = window.location;
-        //var contextPath = location.pathname.split("/");
-        //contextPath.pop();
-        //contextPath = contextPath.join('/');
-        if (location.origin.indexOf('50048873') > -1) { 
+        var contextPath = location.pathname.split("/");
+        contextPath.pop();
+        contextPath = contextPath.join('/');
+        /*if (location.origin.indexOf('50048873') > -1) { 
             return location.origin + '/hzzHome/';
-        }
-        
-        return location.origin + '/5ds/hzzHome/';
+        }*/
+        return location.origin + contextPath;
     })();
 
     return {
@@ -21,10 +20,7 @@ HZZ.config = function(){
             ON: 'ON'
         },
         URLs: {
-            baseUrl: baseUrl,
-            fileUrls: {
-                dbsxInfo: 'view/dcdb/dbsx/dbsxInfo.html'
-            }
+            baseUrl: baseUrl
         },
         colors: {
             COLOR_PRIMARY: '#25408f'
@@ -76,12 +72,12 @@ HZZ.util = {
         var baseUrl = HZZ.config.URLs.baseUrl;
         $('head title').after('<base href="' + baseUrl + '" />');
     },
-    loadHtml: function(href) {
+    loadHtml: function(href) {  // iframe加载html文件
         var topHZZ = top.HZZ;
         topHZZ.$iFrame = $('<iframe class="hzz-iframe" src="' + href + '"></iframe>');
         $(top.document).find('body').append(topHZZ.$iFrame);
     },
-    removeHtml: function() {
+    removeHtml: function() {    // 移动loadHtml加载的iframe
         var topHZZ = top.HZZ;
         topHZZ.$iFrame && topHZZ.$iFrame.remove();
     }

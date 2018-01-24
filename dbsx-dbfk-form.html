@@ -3,13 +3,13 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>待办事项</title>
-        <link rel="stylesheet" href="../../../css/element-theme/element-theme-darkred.css">
-        <link rel="stylesheet" href="../../../css/common/common.css">
+        <title>督办反馈对话框</title>
+        <link rel="stylesheet" href="css/element-theme/element-theme-darkred.css">
+        <link rel="stylesheet" href="css/common/common.css">
     </head>
     <body>
         <div id="info" v-cloak>
-            <div class="hzz-form-theme1" id="form-1">
+            <div class="hzz-form-theme1" id="form">
                 <h2>环城河河长制领导小组办公室文件</h2>
                 <h6>{{rowData.fileNum}}</h6>
                 <table>
@@ -42,7 +42,7 @@
                         </tr>
                     </tbody>
                 </table>
-                <el-form ref="form" :model="rowData" label-width="5em">
+                <el-form ref="form" :model="rowData" label-width="5em" style="padding: 15px 0;">
                   <el-form-item label="完成时间：">
                     <el-col :span="12">
                       <el-date-picker type="date" placeholder="选择日期" v-model="rowData.finishedTime" style="width: 100%;"></el-date-picker>
@@ -69,23 +69,25 @@
                     </el-upload>
                   </el-form-item>
                   <div class="hzz-form-button">
-                    <el-button type="primary" @click="onSubmit1">提交</el-button>
+                    <el-button type="primary" @click="onSubmit">提交</el-button>
                     <el-button @click="close">取消</el-button>
                   </div>
                 </el-form>
             </div>
         </div>
 
-        <script src="../../../static/jquery-1.8.3/jquery-1.8.3.min.js"></script>
-        <script src="../../../static/vue/vue-2.5.13.js"></script>
-        <script src="../../../static/element-ui/lib/index.js"></script>
-        <script src="../../../static/layer-v3.1.1/layer/layer.js"></script>
-        <script src="../../../js/config.js"></script>
-        <script src="../../../js/api.js"></script>
-        <script src="../../../js/common.js"></script>
+        <script src="static/jquery-1.8.3/jquery-1.8.3.min.js"></script>
+        <script src="static/vue/vue-2.5.13.js"></script>
+        <script src="static/element-ui/lib/index.js"></script>
+        <script src="static/layer-v3.1.1/layer/layer.js"></script>
+        <script src="js/config.js"></script>
+        <script src="js/mixin.js"></script>
+        <script src="js/api.js"></script>
+        <script src="js/common.js"></script>
         <script>
             new Vue({
                 el: '#info',
+                mixins: [HZZ.mixin.dialog],
                 data: function() {
                     return {
                         rowData: {              // 表格行数据
@@ -105,7 +107,7 @@
                     }
                 },
                 methods: {
-                    onSubmit1: function() {  // 提交督办反馈操作弹出表单
+                    onSubmit: function() {  // 提交督办反馈操作弹出表单
                         this.close();
                         console.log('submit!');
                     },
@@ -121,36 +123,20 @@
                     beforeRemove: function(file, fileList) {
                         return this.$confirm(`确定移除 ${ file.name }？`);
                     },
-                    close: function() { // 关闭layer弹窗
-                        var util = HZZ.util;
-                        layer.close(this.layerIndex);
-                        util.removeHtml();
-                    },
-                    show: function(row) {
-                        var _this = this;
-                        var util = HZZ.util;
-
-                        setTimeout(function() { 
-                            _this.layerIndex = layer.open({
-                                title: '<i class="layui-layer-titleDecoration"></i>' + row.fileNum,
-                                type: 1,
-                                area: '600px',
-                                content: $('#form-1'),
-                                cancel: function(index, layero){
-                                    layer.close(index);
-                                    util.removeHtml();
-                                }
-                            });
-                        }, 50);
+                    init: function() {
+                        var rowData = parent.HZZ.cache.getData('row');  // 调用者传入的缓存对象
+                        if ($.isPlainObject(rowData)) { 
+                            this.rowData = rowData;
+                        }
+                        this.show({
+                            title: this.rowData.fileNum,
+                            content: '#form',
+                            area: '600px'
+                        });
                     }
                 },
                 created: function () {
-                    var rowData = parent.HZZ.cache.getData('dbsxRow');  // 调用者传入的缓存对象
-                    if ($.isPlainObject(rowData)) { 
-                        this.rowData = rowData;
-                    }
-                    console.log(this.rowData)
-                    this.show(this.rowData);
+                    this.init();
                 }
             });
         </script>
