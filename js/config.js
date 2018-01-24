@@ -9,10 +9,7 @@ HZZ.config = function(){
         var contextPath = location.pathname.split("/");
         contextPath.pop();
         contextPath = contextPath.join('/');
-        /*if (location.origin.indexOf('50048873') > -1) { 
-            return location.origin + '/hzzHome/';
-        }*/
-        return location.origin + contextPath;
+        return location.origin + contextPath + '/';
     })();
 
     return {
