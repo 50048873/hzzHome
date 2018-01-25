@@ -29,15 +29,15 @@ HZZ.config = function(){
             },
             {
                 COLOR: '#a9dfff',
-                PERCENT: '20%'
+                PERCENT: '50%'
             },
             {
                 COLOR: '#70cbff',
-                PERCENT: '40%'
+                PERCENT: '60%'
             },
             {
                 COLOR: '#28adf7',
-                PERCENT: '60%'
+                PERCENT: '70%'
             },
             {
                 COLOR: '#0889d1',
@@ -45,6 +45,10 @@ HZZ.config = function(){
             },
             {
                 COLOR: '#0068a5',
+                PERCENT: '90%'
+            },
+            {
+                COLOR: 'white',
                 PERCENT: '100%'
             }
         ],

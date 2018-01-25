@@ -21,7 +21,7 @@ HZZ.mixin = {
                         colorGrade = HZZ.config.colorGrade;
                     _this.fqyszdblData.forEach(function(item, index) { 
                         var $path = $(svg).find('text:contains(' + item.name + ')').prev();
-                        switch (item.percent) {
+                        /*switch (item.percent) {
                             case colorGrade[0].PERCENT:
                                 $path.attr('fill', colorGrade[0].COLOR);
                                 break;
@@ -40,6 +40,20 @@ HZZ.mixin = {
                             case colorGrade[5].PERCENT:
                                 $path.attr('fill', colorGrade[5].COLOR);
                                 break;
+                        }*/
+                        var percent = parseInt(item.percent);
+                        if (percent < 50) {
+                            $path.attr('fill', colorGrade[0].COLOR);
+                        } else if (percent >= 50 && percent < 60) { 
+                            $path.attr('fill', colorGrade[1].COLOR);
+                        } else if (percent >= 60 && percent < 70) { 
+                            $path.attr('fill', colorGrade[2].COLOR);
+                        } else if (percent >= 70 && percent < 80) { 
+                            $path.attr('fill', colorGrade[3].COLOR);
+                        } else if (percent >= 80 && percent < 90) { 
+                            $path.attr('fill', colorGrade[4].COLOR);
+                        } else if (percent >= 90 && percent < 100) { 
+                            $path.attr('fill', colorGrade[5].COLOR);
                         }
                     });
                     _this.svgMap = svg;
