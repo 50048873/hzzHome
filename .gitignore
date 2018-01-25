@@ -12,6 +12,7 @@
 !/static/element-ui/lib/theme-chalk/fonts/
 
 /static/hzy
+/static/h-ui
 
 /static/Highcharts-6.0.4/*
 !/static/Highcharts-6.0.4/code/highcharts.js

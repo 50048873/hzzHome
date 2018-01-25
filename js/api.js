@@ -23,7 +23,9 @@ HZZ.api = function() {
         result: 1,
         getHomeData: function() { 
             return $.ajax({
-                url: 'json/homeData.json'
+                type: 'POST',
+                url: 'http://10.100.3.113:8081/HzzbsProject/main/queryMainpageData.do',
+                dataType: 'json'
             });
         },
         get_dcdb_dbsx_dbfk: function(params) {    // 督办反馈———列表
@@ -68,7 +70,7 @@ HZZ.api = function() {
                 startTime = params.startTime,
                 endTime = params.endTime;
             return $.ajax({
-                url: 'json/dcdb-dbsx-xcsj.json'
+                url: 'json/dcdb-dbsx-xhsj.json'
             }).then(function(res) {
                 console.log(res);
                 var tableData = res.tableData.slice((currentPage - 1) * pageSize, currentPage * pageSize);
@@ -99,7 +101,7 @@ HZZ.api = function() {
         },
         get_dcdb_dbsx_xcsj_formData: function() {    // 巡查事件———编辑对话框数据
             return $.ajax({
-                url: 'json/dcdb-dbsx-xcsj-info-data.json'
+                url: 'json/dcdb-dbsx-xhsj-info-data.json'
             });
         },
         get_dcdb_dbsx_zdxm: function() {    // 重点项目列表数据

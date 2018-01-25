@@ -25,8 +25,8 @@
     }],
     "tableData": [
         {
-            "riverName": "河道清淤",
-            "questionType": "河道清淤",
+            "projectName": "河道清淤",
+            "projectType": "河道清淤",
             "investor": "政府投资",
             "projectMoney": "50",
             "finishMoney": "50",

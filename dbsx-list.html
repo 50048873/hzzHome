@@ -101,7 +101,7 @@
                             :total="total1">
                         </el-pagination>
                     </el-tab-pane>
-                    <el-tab-pane label="巡查事件" name="2">
+                    <el-tab-pane label="巡河事件" name="2">
                         <el-form :inline="true" :model="formSearch2" class="demo-form-inline">
                             <el-form-item label="问题类型">
                                 <el-select v-model="formSearch2.questionType" placeholder="请选择" clearable>
@@ -164,7 +164,7 @@
                                     <el-button
                                         type="primary"
                                         size="mini"
-                                        @click="handleEdit2(scope.$index, scope.row)"
+                                        @click="handleDetail2(scope.$index, scope.row)"
                                         icon="el-icon-view">查看
                                     </el-button>
                                     <el-button
@@ -276,11 +276,11 @@
                         </el-pagination>
                     </el-tab-pane>
                     <el-tab-pane label="重点项目" name="4">
-                        <el-form :inline="true" :model="formSearch1" class="demo-form-inline">
+                        <el-form :inline="true" :model="formSearch4" class="demo-form-inline">
                             <el-form-item label="项目类型">
-                                <el-select v-model="formSearch1.questionType" placeholder="请选择" clearable>
+                                <el-select v-model="formSearch4.questionType" placeholder="请选择" clearable>
                                     <el-option
-                                        v-for="item in typeData1"
+                                        v-for="item in typeData4"
                                         :key="item.value"
                                         :label="item.label"
                                         :value="item.value">
@@ -288,9 +288,9 @@
                                 </el-select>
                             </el-form-item>
                             <el-form-item label="项目状态">
-                                <el-select v-model="formSearch1.questionType" placeholder="请选择" clearable>
+                                <el-select v-model="formSearch4.questionType" placeholder="请选择" clearable>
                                     <el-option
-                                        v-for="item in typeData1"
+                                        v-for="item in typeData4"
                                         :key="item.value"
                                         :label="item.label"
                                         :value="item.value">
@@ -298,33 +298,33 @@
                                 </el-select>
                             </el-form-item>
                             <el-form-item>
-                                <el-button type="primary" @click="search(1)">查询</el-button>
+                                <el-button type="primary" @click="search(4)">查询</el-button>
                             </el-form-item>
                         </el-form>
                         <el-table
-                            :data="tableData1"
+                            :data="tableData4"
                             border
                             style="width: 100%">
                             <el-table-column
-                                prop="fileNum"
+                                prop="projectName"
                                 label="项目名称"
                                 width="180">
                             </el-table-column>
                             <el-table-column
-                                prop="department"
+                                prop="projectType"
                                 label="项目类型"
                                 width="180">
                             </el-table-column>
                             <el-table-column
-                                prop="questionType"
+                                prop="investor"
                                 label="投资类型">
                             </el-table-column>
                             <el-table-column
-                                prop="content"
+                                prop="projectMoney"
                                 label="项目投资（万）">
                             </el-table-column>
                             <el-table-column
-                                prop="contacts"
+                                prop="finishMoney"
                                 label="完成投资（万）">
                             </el-table-column>
                             <el-table-column
@@ -335,11 +335,11 @@
                                 </template>
                             </el-table-column>
                             <el-table-column
-                                prop="rectificationPeriod"
+                                prop="status"
                                 label="项目状态">
                             </el-table-column>
                             <el-table-column
-                                prop="rectificationPeriod"
+                                prop="planFinishtime"
                                 label="计划完成时间">
                             </el-table-column>
                             <el-table-column
@@ -348,13 +348,13 @@
                                     <el-button
                                         type="primary"
                                         size="mini"
-                                        @click="handleEdit2(scope.$index, scope.row)"
+                                        @click="handleDetail4(scope.$index, scope.row)"
                                         icon="el-icon-view">查看
                                     </el-button>
                                     <el-button
                                         type="primary"
                                         size="mini"
-                                        @click="handleEdit1(scope.$index, scope.row)"
+                                        @click="handleEdit4(scope.$index, scope.row)"
                                         icon="el-icon-edit">编辑
                                     </el-button>
                                 </template>
@@ -362,14 +362,14 @@
                         </el-table>
                         <el-pagination
                             class="m-t-15"
-                            @size-change="handleSizeChange1"
-                            @current-change="handleCurrentChange1"
+                            @size-change="handleSizeChange4"
+                            @current-change="handleCurrentChange4"
                             background
-                            :current-page="currentPage1"
-                            :page-sizes="pageSizeSelection1"
-                            :page-size="pageSize1"
+                            :current-page="currentPage4"
+                            :page-sizes="pageSizeSelection4"
+                            :page-size="pageSize4"
                             layout="total, sizes, prev, pager, next, jumper"
-                            :total="total1">
+                            :total="total4">
                         </el-pagination>
                     </el-tab-pane>
             </el-tabs>
@@ -403,7 +403,7 @@
                         pageSize1: HZZ.config.pagination.PAGESIZE,   // 每页大小
                         total1: HZZ.config.pagination.TOTAL,    // 总记录条数
 
-                        /* 巡查事件 */
+                        /* 巡河事件 */
                         typeData2: [],       // 问题类型
                         formSearch2: {             // 表单
                             questionType: '',
@@ -415,7 +415,21 @@
                         currentPage2: HZZ.config.pagination.CURRENT_PAGE,    // 当前页
                         pageSizeSelection2: HZZ.config.pagination.PAGESIZE_SELECTION,    // 分页条数下拉框
                         pageSize2: HZZ.config.pagination.PAGESIZE,   // 每页大小
-                        total2: HZZ.config.pagination.TOTAL    // 总记录条数
+                        total2: HZZ.config.pagination.TOTAL,    // 总记录条数
+
+                        /* 重点项目 */
+                        typeData4: [],       // 问题类型
+                        formSearch4: {             // 表单
+                            questionType: '',
+                            startTime: '',
+                            endTime: ''
+                        },
+                        tableData4: [],      //表格
+                        // 分页
+                        currentPage4: HZZ.config.pagination.CURRENT_PAGE,    // 当前页
+                        pageSizeSelection4: HZZ.config.pagination.PAGESIZE_SELECTION,    // 分页条数下拉框
+                        pageSize4: HZZ.config.pagination.PAGESIZE,   // 每页大小
+                        total4: HZZ.config.pagination.TOTAL    // 总记录条数
                     }
                 },
                 methods: {
@@ -459,7 +473,7 @@
                         util.loadHtml(URLs.baseUrl + 'dbsx-dbfk-form.html');   // 通过iframe加载页面
                     },
 
-                    /* 巡查事件 */
+                    /* 巡河事件 */
                     getTableData2: function() {  // 获取表格数据
                         var _this = this;
                         var params = {
@@ -488,6 +502,16 @@
                         this.currentPage2 = val;
                         this.getTableData2();    
                     },
+                    handleDetail2: function(index, row) {  // 点击表格操作按钮弹出layer对话框（此方案体验好）
+                        var _this = this,
+                            cache = HZZ.cache,
+                            URLs = HZZ.config.URLs,
+                            util = HZZ.util;
+
+                        cache.row = row;    // 缓存行数据
+
+                        util.loadHtml(URLs.baseUrl + 'dbsx-xhsj-form.html');   // 通过iframe加载页面
+                    },
                     handleEdit2: function(index, row) {  // 点击表格操作按钮弹出layer对话框（此方案体验好）
                         var _this = this,
                             cache = HZZ.cache,
@@ -496,40 +520,39 @@
 
                         cache.row = row;    // 缓存行数据
 
-                        util.loadHtml(URLs.baseUrl + 'dbsx-xcsj-form.html');   // 通过iframe加载页面
+                        util.loadHtml(URLs.baseUrl + 'dbsx-xhsj-form.html');   // 通过iframe加载页面
                     },
 
                     /* 重点项目 */
-                    getTableData3: function() {  // 获取表格数据
+                    getTableData4: function() {  // 获取表格数据
                         var _this = this;
                         var params = {
-                            currentPage2: this.currentPage2,
-                            pageSize2: this.pageSize2,
-                            questionType: this.formSearch2.questionType,
-                            startTime: this.formSearch2.startTime,
-                            endTime: this.formSearch2.endTime
+                            currentPage4: this.currentPage4,
+                            pageSize4: this.pageSize4,
+                            questionType: this.formSearch4.questionType,
+                            statusType: this.formSearch4.statusData
                         };
                         HZZ.api.get_dcdb_dbsx_zdxm(params)
                             .then(function(res) {
                                 if (HZZ.api.result === res.result) { 
-                                    _this.tableData3 = res.tableData;
-                                    _this.typeData3 = res.typeData; 
-                                    _this.statusData = res.statusData;
-                                    _this.total3 = res.length;           
+                                    _this.tableData4 = res.tableData;
+                                    _this.typeData4 = res.typeData; 
+                                    _this.statusData4 = res.statusData;
+                                    _this.total4 = res.length;           
                                 }
                             }, function(err) {
                                 $.error(err.responseText);
                             });
                     },
-                    handleSizeChange2: function(val) {   // 分页条数改变回调
-                        this.pageSize2 = val;
-                        this.getTableData2();
+                    handleSizeChange4: function(val) {   // 分页条数改变回调
+                        this.pageSize4 = val;
+                        this.getTableData4();
                     },
-                    handleCurrentChange2: function(val) {    // 翻页回调
-                        this.currentPage2 = val;
-                        this.getTableData2();    
+                    handleCurrentChange4: function(val) {    // 翻页回调
+                        this.currentPage4 = val;
+                        this.getTableData4();    
                     },
-                    handleEdit2: function(index, row) {  // 点击表格操作按钮弹出layer对话框（此方案体验好）
+                    handleDetail4: function(index, row) {  // 查看详情
                         var _this = this,
                             cache = HZZ.cache,
                             URLs = HZZ.config.URLs,
@@ -537,7 +560,17 @@
 
                         cache.row = row;    // 缓存行数据
 
-                        util.loadHtml(URLs.baseUrl + 'dbsx-xcsj-form.html');   // 通过iframe加载页面
+                        util.loadHtml(URLs.baseUrl + 'dbsx-zdxm-detail.html');   // 通过iframe加载页面
+                    },
+                    handleEdit4: function(index, row) {  // 点击表格操作按钮弹出layer对话框（此方案体验好）
+                        var _this = this,
+                            cache = HZZ.cache,
+                            URLs = HZZ.config.URLs,
+                            util = HZZ.util;
+
+                        cache.row = row;    // 缓存行数据
+
+                        util.loadHtml(URLs.baseUrl + 'dbsx-xhsj-form.html');   // 通过iframe加载页面
                     },
 
                     /* tab列表公共方法 */
@@ -554,7 +587,7 @@
                                 this.getTableData2();
                                 break;
                             case '4': 
-                                this.getTableData1();
+                                this.getTableData4();
                                 break;
                         }
                     },
@@ -570,7 +603,7 @@
                                 this.getTableData2();
                                 break;
                             case 4: 
-                                this.getTableData1();
+                                this.getTableData4();
                                 break;
                         }  
                     }
