@@ -1,144 +1,211 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>督办反馈对话框</title>
-        <link rel="stylesheet" href="css/element-theme/element-theme-darkred.css">
-        <link rel="stylesheet" href="css/common/common.css">
-    </head>
-    <body>
-        <div id="info" v-cloak>
-            <div class="hzz-form-theme1" id="form">
-                <h2>环城河河长制领导小组办公室文件</h2>
-                <h6>{{rowData.fileNum}}</h6>
-                <table>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>督办反馈对话框</title>
+    <link rel="stylesheet" href="css/element-theme/element-theme-darkred.css">
+    <link rel="stylesheet" href="css/common/common.css">
+</head>
+
+<body>
+    <div id="info" v-cloak>
+        <div class="hzz-form-theme1" id="form">
+            <h2>环城河河长制领导小组办公室文件</h2>
+            <h6>{{rowData.fileNum}}</h6>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>责任单位：</td>
+                        <td>{{rowData.department}}</td>
+                        <td>交办类型：</td>
+                        <td>{{rowData.type}}</td>
+                    </tr>
+                    <tr>
+                        <td>交办内容：</td>
+                        <td colspan="3">{{rowData.content}}</td>
+                    </tr>
+                    <tr>
+                        <td>交办要求：</td>
+                        <td colspan="3">{{rowData.demand}}</td>
+                    </tr>
+                    <tr>
+                        <td>交办时间：</td>
+                        <td>{{rowData.assignedTime}}</td>
+                        <td>整改期限：</td>
+                        <td>{{rowData.rectificationPeriod}}</td>
+                    </tr>
+                    <tr>
+                        <td>联系人：</td>
+                        <td>{{rowData.contacts}}</td>
+                        <td>联系电话：</td>
+                        <td>{{rowData.telephone}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <el-form ref="form" :model="rowData" label-width="7em" style="padding: 15px 0;">
+                <el-row :gutter="20">
+                    <el-col :span="12">
+                        <el-form-item label="承办联系人：">
+                            <el-input v-model="rowData.user"></el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="12">
+                        <el-form-item label="联系电话：">
+                            <el-input v-model="rowData.user"></el-input>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
+                <el-form-item label="反馈意见：">
+                    <el-input type="textarea" v-model="rowData.feedback"></el-input>
+                </el-form-item>
+                <el-form-item label="整改情况：">
+                    <el-input type="textarea" v-model="rowData.condition"></el-input>
+                </el-form-item>
+                <el-form-item label="上传附件：">
+                    <el-upload class="upload-demo" action="https://jsonplaceholder.typicode.com/posts/" :on-preview="handlePreview" :on-remove="handleRemove" :before-remove="beforeRemove" multiple :limit="3" :on-exceed="handleExceed" :file-list="fileList">
+                        <el-button size="small" type="primary" icon="el-icon-upload">选择文件</el-button>
+                    </el-upload>
+                </el-form-item>
+                <el-row :gutter="20">
+                    <el-col :span="12">
+                        <el-form-item label="反馈时间：">
+                            <el-date-picker type="date" v-model="rowData.reportTime" style="width: 100%;"></el-date-picker>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="12">
+                        <el-form-item label="签发领导">
+                            <el-input v-model="rowData.leader"></el-input>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
+                <div class="hzz-form-button">
+                    <el-button type="primary" @click="onSubmit">提交</el-button>
+                    <el-button @click="close">取消</el-button>
+                </div>
+                <table style="margin-top: 15px;">
+                    <caption>历史记录</caption>
                     <tbody>
                         <tr>
-                            <td>责任单位：</td>
-                            <td>{{rowData.department}}</td>
-                            <td>交办类型：</td>
-                            <td>{{rowData.type}}</td>
-                        </tr>
-                        <tr>
-                            <td>交办内容：</td>
-                            <td colspan="3">{{rowData.content}}</td>
-                        </tr>
-                        <tr>
-                            <td>交办要求：</td>
-                            <td colspan="3">{{rowData.demand}}</td>
-                        </tr>
-                        <tr>
-                            <td>交办时间：</td>
-                            <td>{{rowData.assignedTime}}</td>
-                            <td>整改期限：</td>
-                            <td>{{rowData.rectificationPeriod}}</td>
-                        </tr>
-                        <tr>
-                            <td>联系人：</td>
-                            <td>{{rowData.contacts}}</td>
+                            <td>承办联系人：</td>
+                            <td>张三</td>
                             <td>联系电话：</td>
-                            <td>{{rowData.telephone}}</td>
+                            <td>13000000000</td>
+                        </tr>
+                        <tr>
+                            <td>反馈意见：</td>
+                            <td colspan="3">请抓紧办理</td>
+                        </tr>
+                        <tr>
+                            <td>整改情况：</td>
+                            <td colspan="3">责任落实不到位</td>
+                        </tr>
+                        <tr>
+                            <td>上传附件：</td>
+                            <td colspan="3">a.jpg, b.jpg</td>
+                        </tr>
+                        <tr>
+                            <td>反馈时间：</td>
+                            <td>2018-01-25</td>
+                            <td>签发领导：</td>
+                            <td>市领导</td>
+                        </tr>
+                    </tbody>
+                    <tbody>
+                        <tr>
+                            <td>承办联系人：</td>
+                            <td>张三</td>
+                            <td>联系电话：</td>
+                            <td>13000000000</td>
+                        </tr>
+                        <tr>
+                            <td>反馈意见：</td>
+                            <td colspan="3">请抓紧办理</td>
+                        </tr>
+                        <tr>
+                            <td>整改情况：</td>
+                            <td colspan="3">责任落实不到位</td>
+                        </tr>
+                        <tr>
+                            <td>上传附件：</td>
+                            <td colspan="3">a.jpg, b.jpg</td>
+                        </tr>
+                        <tr>
+                            <td>反馈时间：</td>
+                            <td>2018-01-25</td>
+                            <td>签发领导：</td>
+                            <td>市领导</td>
                         </tr>
                     </tbody>
                 </table>
-                <el-form ref="form" :model="rowData" label-width="5em" style="padding: 15px 0;">
-                  <el-form-item label="完成时间：">
-                    <el-col :span="12">
-                      <el-date-picker type="date" placeholder="选择日期" v-model="rowData.finishedTime" style="width: 100%;"></el-date-picker>
-                    </el-col>
-                  </el-form-item>
-                  <el-form-item label="反馈意见：">
-                    <el-input type="textarea" v-model="rowData.feedback"></el-input>
-                  </el-form-item>
-                  <el-form-item label="整改情况：">
-                    <el-input type="textarea" v-model="rowData.condition"></el-input>
-                  </el-form-item>
-                  <el-form-item label="上传附件：">
-                    <el-upload
-                      class="upload-demo"
-                      action="https://jsonplaceholder.typicode.com/posts/"
-                      :on-preview="handlePreview"
-                      :on-remove="handleRemove"
-                      :before-remove="beforeRemove"
-                      multiple
-                      :limit="3"
-                      :on-exceed="handleExceed"
-                      :file-list="fileList">
-                      <el-button size="small" type="primary" icon="el-icon-upload">选择文件</el-button>
-                    </el-upload>
-                  </el-form-item>
-                  <div class="hzz-form-button">
-                    <el-button type="primary" @click="onSubmit">提交</el-button>
-                    <el-button @click="close">取消</el-button>
-                  </div>
-                </el-form>
-            </div>
+            </el-form>
         </div>
-
-        <script src="static/jquery-1.8.3/jquery-1.8.3.min.js"></script>
-        <script src="static/vue/vue-2.5.13.js"></script>
-        <script src="static/element-ui/lib/index.js"></script>
-        <script src="static/layer-v3.1.1/layer/layer.js"></script>
-        <script src="js/config.js"></script>
-        <script src="js/mixin.js"></script>
-        <script src="js/api.js"></script>
-        <script src="js/common.js"></script>
-        <script>
-            new Vue({
-                el: '#info',
-                mixins: [HZZ.mixin.dialog],
-                data: function() {
-                    return {
-                        rowData: {              // 表格行数据
-                            fileNum: "",
-                            department: "",
-                            type: "",
-                            content: "",
-                            demand: "",
-                            contacts: "",
-                            assignedTime: "",
-                            rectificationPeriod: "",
-                            progress: "",
-                            telephone: ""
-                        },
-
-                        fileList: [],
-                    }
+    </div>
+    <script src="static/jquery-1.8.3/jquery-1.8.3.min.js"></script>
+    <script src="static/vue/vue-2.5.13.js"></script>
+    <script src="static/element-ui/lib/index.js"></script>
+    <script src="static/layer-v3.1.1/layer/layer.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/mixin.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/common.js"></script>
+    <script>
+    new Vue({
+        el: '#info',
+        mixins: [HZZ.mixin.dialog],
+        data: function() {
+            return {
+                rowData: { // 表格行数据
+                    fileNum: "",
+                    department: "",
+                    type: "",
+                    content: "",
+                    demand: "",
+                    contacts: "",
+                    assignedTime: "",
+                    rectificationPeriod: "",
+                    progress: "",
+                    telephone: ""
                 },
-                methods: {
-                    onSubmit: function() {  // 提交督办反馈操作弹出表单
-                        this.close();
-                        console.log('submit!');
-                    },
-                    handleRemove: function(file, fileList) {
-                        console.log(file, fileList);
-                    },
-                    handlePreview: function(file) {
-                        console.log(file);
-                    },
-                    handleExceed: function(files, fileList) {
-                        this.$message.warning(`当前限制选择 3 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
-                    },
-                    beforeRemove: function(file, fileList) {
-                        return this.$confirm(`确定移除 ${ file.name }？`);
-                    },
-                    init: function() {
-                        var rowData = parent.HZZ.cache.getData('row');  // 调用者传入的缓存对象
-                        if ($.isPlainObject(rowData)) { 
-                            this.rowData = rowData;
-                        }
-                        this.show({
-                            title: this.rowData.fileNum,
-                            content: '#form',
-                            area: '600px'
-                        });
-                    }
-                },
-                created: function () {
-                    this.init();
+
+                fileList: []
+            }
+        },
+        methods: {
+            onSubmit: function() { // 提交督办反馈操作弹出表单
+                this.close();
+                console.log('submit!');
+            },
+            handleRemove: function(file, fileList) {
+                console.log(file, fileList);
+            },
+            handlePreview: function(file) {
+                console.log(file);
+            },
+            handleExceed: function(files, fileList) {
+                this.$message.warning(`当前限制选择 3 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
+            },
+            beforeRemove: function(file, fileList) {
+                return this.$confirm(`确定移除 ${ file.name }？`);
+            },
+            init: function() {
+                var rowData = parent.HZZ.cache.getData('row'); // 调用者传入的缓存对象
+                if ($.isPlainObject(rowData)) {
+                    this.rowData = rowData;
                 }
-            });
-        </script>
-    </body>
+                this.show({
+                    title: this.rowData.fileNum,
+                    content: '#form',
+                    area: '600px'
+                });
+            }
+        },
+        created: function() {
+            this.init();
+        }
+    });
+    </script>
+</body>
+
 </html>

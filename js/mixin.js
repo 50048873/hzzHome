@@ -403,7 +403,8 @@ HZZ.mixin = {
                         title: '<i class="layui-layer-titleDecoration"></i>' + title,
                         type: 1,
                         area: obj.area,
-                        offset: '100px',
+                        //offset: '100px',
+                        maxHeight: 630,
                         content: $(obj.content),
                         cancel: function(index, layero){
                             layer.close(index);
