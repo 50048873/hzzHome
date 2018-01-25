@@ -1,0 +1,38 @@
+{
+    "result": 1,
+    "typeData": [{
+        "value": "杂物漂浮",
+        "label": "杂物漂浮"
+    }, {
+        "value": "护岸坍塌",
+        "label": "护岸坍塌"
+    }, {
+        "value": "违章设置",
+        "label": "违章设置"
+    }, {
+        "value": "污泥淤积",
+        "label": "污泥淤积"
+    }],
+    "statusData": [{
+        "value": "逾期未完成",
+        "label": "逾期未完成"
+    }, {
+        "value": "进行中",
+        "label": "进行中"
+    }, {
+        "value": "已发起督导",
+        "label": "已发起督导"
+    }],
+    "tableData": [
+        {
+            "riverName": "河道清淤",
+            "questionType": "河道清淤",
+            "investor": "政府投资",
+            "projectMoney": "50",
+            "finishMoney": "50",
+            "progress": "80%",
+            "status": "进行中",
+            "planFinishtime": "2018-01-20"
+        }
+    ]
+}

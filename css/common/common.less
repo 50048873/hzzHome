@@ -52,14 +52,6 @@
 	table {
 		width: 100%;
 		padding: 6px 0;
-		border-top: 1px solid @gray;
-		border-bottom: 1px solid @gray;
-		caption {
-			text-align: left;
-			line-height: 2;
-			background-color: #f5fbff;
-			color: #323232;
-		}
 		tbody {
 			tr {
 				td {
@@ -74,6 +66,30 @@
 						padding-left: 0.5em;
 					}
 				}
+			}
+		}
+	}
+	.hzz-table-desc {
+		border-top: 1px solid @gray;
+		border-bottom: 1px solid @gray;
+	}
+	.hzz-table-record {
+		position: relative;
+		border-top: 1px solid @gray;
+		caption {
+			text-align: left;
+			line-height: 2;
+			background-color: #f5fbff;
+			color: #323232;
+		}
+		tbody {
+			
+			&:after {
+				content: '';
+				position: absolute;
+				right: 0;
+				left: 0;
+				border-bottom: 1px solid @gray;
 			}
 		}
 	}

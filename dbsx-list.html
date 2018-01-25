@@ -73,6 +73,9 @@
                             <el-table-column
                                 prop="progress"
                                 label="进度">
+                                <template slot-scope="scope">
+                                    <el-progress :percentage="50" status="exception"></el-progress>
+                                </template>
                             </el-table-column>
                             <el-table-column
                                 label="操作">
@@ -162,7 +165,13 @@
                                         type="primary"
                                         size="mini"
                                         @click="handleEdit2(scope.$index, scope.row)"
-                                        icon="el-icon-edit">编辑
+                                        icon="el-icon-view">查看
+                                    </el-button>
+                                    <el-button
+                                        type="primary"
+                                        size="mini"
+                                        @click="handleEdit2(scope.$index, scope.row)"
+                                        icon="el-icon-edit">处理
                                     </el-button>
                                 </template>
                             </el-table-column>
@@ -179,8 +188,190 @@
                             :total="total2">
                         </el-pagination>
                     </el-tab-pane>
-                    <el-tab-pane label="公众投诉" name="3">公众投诉</el-tab-pane>
-                    <el-tab-pane label="重点项目" name="4">重点项目</el-tab-pane>
+                    <el-tab-pane label="公众投诉" name="3">
+                        <el-form :inline="true" :model="formSearch2" class="demo-form-inline">
+                            <el-form-item label="问题类型">
+                                <el-select v-model="formSearch2.questionType" placeholder="请选择" clearable>
+                                    <el-option
+                                        v-for="item in typeData2"
+                                        :key="item.value"
+                                        :label="item.label"
+                                        :value="item.value">
+                                    </el-option>
+                                </el-select>
+                            </el-form-item>
+                            <el-form-item label="举报时间">
+                                <el-col :span="11">
+                                    <el-date-picker type="date" placeholder="选择日期" v-model="formSearch2.startTime" style="width: 100%;"></el-date-picker>
+                                </el-col>
+                                <el-col class="text-c" :span="2">-</el-col>
+                                <el-col :span="11">
+                                    <el-date-picker type="date" placeholder="选择日期" v-model="formSearch2.endTime" style="width: 100%;"></el-date-picker>
+                                </el-col>
+                            </el-form-item>
+                            <el-form-item>
+                                <el-button type="primary" @click="search(2)">查询</el-button>
+                            </el-form-item>
+                        </el-form>
+                        <el-table
+                            :data="tableData2"
+                            border
+                            style="width: 100%">
+                            <el-table-column
+                                prop="riverName"
+                                label="河流名称">
+                            </el-table-column>
+                            <el-table-column
+                                prop="questionType"
+                                label="问题类型">
+                            </el-table-column>
+                            <el-table-column
+                                prop="problemDesc"
+                                label="问题描述">
+                            </el-table-column>
+                            <el-table-column
+                                prop="reporter"
+                                label="举报人">
+                            </el-table-column>
+                            <el-table-column
+                                prop="duty"
+                                label="联系电话">
+                            </el-table-column>
+                            <el-table-column
+                                prop="reportTime"
+                                label="举报时间">
+                            </el-table-column>
+                            <el-table-column
+                                prop="progress"
+                                label="事件进度">
+                            </el-table-column>
+                            <el-table-column
+                                label="操作">
+                                <template slot-scope="scope">
+                                    <el-button
+                                        type="primary"
+                                        size="mini"
+                                        @click="handleEdit2(scope.$index, scope.row)"
+                                        icon="el-icon-view">查看
+                                    </el-button>
+                                    <el-button
+                                        type="primary"
+                                        size="mini"
+                                        @click="handleEdit2(scope.$index, scope.row)"
+                                        icon="el-icon-edit">处理
+                                    </el-button>
+                                </template>
+                            </el-table-column>
+                        </el-table>
+                        <el-pagination
+                            class="m-t-15"
+                            @size-change="handleSizeChange2"
+                            @current-change="handleCurrentChange2"
+                            background
+                            :current-page="currentPage2"
+                            :page-sizes="pageSizeSelection2"
+                            :page-size="pageSize2"
+                            layout="total, sizes, prev, pager, next, jumper"
+                            :total="total2">
+                        </el-pagination>
+                    </el-tab-pane>
+                    <el-tab-pane label="重点项目" name="4">
+                        <el-form :inline="true" :model="formSearch1" class="demo-form-inline">
+                            <el-form-item label="项目类型">
+                                <el-select v-model="formSearch1.questionType" placeholder="请选择" clearable>
+                                    <el-option
+                                        v-for="item in typeData1"
+                                        :key="item.value"
+                                        :label="item.label"
+                                        :value="item.value">
+                                    </el-option>
+                                </el-select>
+                            </el-form-item>
+                            <el-form-item label="项目状态">
+                                <el-select v-model="formSearch1.questionType" placeholder="请选择" clearable>
+                                    <el-option
+                                        v-for="item in typeData1"
+                                        :key="item.value"
+                                        :label="item.label"
+                                        :value="item.value">
+                                    </el-option>
+                                </el-select>
+                            </el-form-item>
+                            <el-form-item>
+                                <el-button type="primary" @click="search(1)">查询</el-button>
+                            </el-form-item>
+                        </el-form>
+                        <el-table
+                            :data="tableData1"
+                            border
+                            style="width: 100%">
+                            <el-table-column
+                                prop="fileNum"
+                                label="项目名称"
+                                width="180">
+                            </el-table-column>
+                            <el-table-column
+                                prop="department"
+                                label="项目类型"
+                                width="180">
+                            </el-table-column>
+                            <el-table-column
+                                prop="questionType"
+                                label="投资类型">
+                            </el-table-column>
+                            <el-table-column
+                                prop="content"
+                                label="项目投资（万）">
+                            </el-table-column>
+                            <el-table-column
+                                prop="contacts"
+                                label="完成投资（万）">
+                            </el-table-column>
+                            <el-table-column
+                                prop="progress"
+                                label="形象进度">
+                                <template slot-scope="scope">
+                                    <el-progress :percentage="50" status="exception"></el-progress>
+                                </template>
+                            </el-table-column>
+                            <el-table-column
+                                prop="rectificationPeriod"
+                                label="项目状态">
+                            </el-table-column>
+                            <el-table-column
+                                prop="rectificationPeriod"
+                                label="计划完成时间">
+                            </el-table-column>
+                            <el-table-column
+                                label="操作">
+                                <template slot-scope="scope">
+                                    <el-button
+                                        type="primary"
+                                        size="mini"
+                                        @click="handleEdit2(scope.$index, scope.row)"
+                                        icon="el-icon-view">查看
+                                    </el-button>
+                                    <el-button
+                                        type="primary"
+                                        size="mini"
+                                        @click="handleEdit1(scope.$index, scope.row)"
+                                        icon="el-icon-edit">编辑
+                                    </el-button>
+                                </template>
+                            </el-table-column>
+                        </el-table>
+                        <el-pagination
+                            class="m-t-15"
+                            @size-change="handleSizeChange1"
+                            @current-change="handleCurrentChange1"
+                            background
+                            :current-page="currentPage1"
+                            :page-sizes="pageSizeSelection1"
+                            :page-size="pageSize1"
+                            layout="total, sizes, prev, pager, next, jumper"
+                            :total="total1">
+                        </el-pagination>
+                    </el-tab-pane>
             </el-tabs>
         </div>
 
@@ -228,18 +419,7 @@
                     }
                 },
                 methods: {
-                    /* 督办反馈开始 */
-                    getTypeData1: function() {   // 获取类型数据
-                        var _this = this;
-                        HZZ.api.get_dcdb_dbsx_dbfk_typeData()
-                            .then(function(res) {
-                                if (HZZ.api.result === res.result) { 
-                                    _this.typeData1 = res.typeData;  
-                                }
-                            }, function(err) {
-                                $.error(err.responseText);
-                            });
-                    },
+                    /* 督办反馈 */
                     getTableData1: function() {  // 获取表格数据
                         var _this = this;
                         var params = {
@@ -249,10 +429,11 @@
                             assignedTime: this.formSearch1.assignedTime,
                             rectificationPeriod: this.formSearch1.rectificationPeriod
                         };
-                        HZZ.api.get_dcdb_dbsx_dbfk_tableData(params)
+                        HZZ.api.get_dcdb_dbsx_dbfk(params)
                             .then(function(res) {
                                 if (HZZ.api.result === res.result) { 
                                     _this.tableData1 = res.tableData;
+                                    _this.typeData1 = res.typeData;  
                                     _this.total1 = res.length;           
                                 }
                             }, function(err) {
@@ -278,18 +459,7 @@
                         util.loadHtml(URLs.baseUrl + 'dbsx-dbfk-form.html');   // 通过iframe加载页面
                     },
 
-                    /* 巡查事件开始 */
-                    getTypeData2: function() {   // 获取类型数据
-                        var _this = this;
-                        HZZ.api.get_dcdb_dbsx_xcsj_typeData()
-                            .then(function(res) {
-                                if (HZZ.api.result === res.result) { 
-                                    _this.typeData2 = res.typeData;  
-                                }
-                            }, function(err) {
-                                $.error(err.responseText);
-                            });
-                    },
+                    /* 巡查事件 */
                     getTableData2: function() {  // 获取表格数据
                         var _this = this;
                         var params = {
@@ -299,11 +469,53 @@
                             startTime: this.formSearch2.startTime,
                             endTime: this.formSearch2.endTime
                         };
-                        HZZ.api.get_dcdb_dbsx_xcsj_tableData(params)
+                        HZZ.api.get_dcdb_dbsx_xcsj(params)
                             .then(function(res) {
                                 if (HZZ.api.result === res.result) { 
                                     _this.tableData2 = res.tableData;
+                                    _this.typeData2 = res.typeData;  
                                     _this.total2 = res.length;           
+                                }
+                            }, function(err) {
+                                $.error(err.responseText);
+                            });
+                    },
+                    handleSizeChange2: function(val) {   // 分页条数改变回调
+                        this.pageSize2 = val;
+                        this.getTableData2();
+                    },
+                    handleCurrentChange2: function(val) {    // 翻页回调
+                        this.currentPage2 = val;
+                        this.getTableData2();    
+                    },
+                    handleEdit2: function(index, row) {  // 点击表格操作按钮弹出layer对话框（此方案体验好）
+                        var _this = this,
+                            cache = HZZ.cache,
+                            URLs = HZZ.config.URLs,
+                            util = HZZ.util;
+
+                        cache.row = row;    // 缓存行数据
+
+                        util.loadHtml(URLs.baseUrl + 'dbsx-xcsj-form.html');   // 通过iframe加载页面
+                    },
+
+                    /* 重点项目 */
+                    getTableData3: function() {  // 获取表格数据
+                        var _this = this;
+                        var params = {
+                            currentPage2: this.currentPage2,
+                            pageSize2: this.pageSize2,
+                            questionType: this.formSearch2.questionType,
+                            startTime: this.formSearch2.startTime,
+                            endTime: this.formSearch2.endTime
+                        };
+                        HZZ.api.get_dcdb_dbsx_zdxm(params)
+                            .then(function(res) {
+                                if (HZZ.api.result === res.result) { 
+                                    _this.tableData3 = res.tableData;
+                                    _this.typeData3 = res.typeData; 
+                                    _this.statusData = res.statusData;
+                                    _this.total3 = res.length;           
                                 }
                             }, function(err) {
                                 $.error(err.responseText);
@@ -333,16 +545,16 @@
                         var name = tab.name;
                         switch (name) {
                             case '1': 
-                                this.load1();
+                                this.getTableData1();
                                 break;
                             case '2': 
-                                this.load2();
+                                this.getTableData2();
                                 break;
                             case '3': 
-                                this.load3();
+                                this.getTableData2();
                                 break;
                             case '4': 
-                                this.load4();
+                                this.getTableData1();
                                 break;
                         }
                     },
@@ -355,32 +567,16 @@
                                 this.getTableData2();
                                 break;
                             case 3: 
-                                this.getTable3Data();
+                                this.getTableData2();
                                 break;
                             case 4: 
-                                this.getTable4Data();
+                                this.getTableData1();
                                 break;
                         }  
-                    },
-                    load1: function() { // 初始化列表1数据
-                        this.getTableData1();
-                        this.getTypeData1();
-                    },
-                    load2: function() { // 初始化列表2数据
-                        this.getTableData2();
-                        this.getTypeData2();
-                    },
-                    load3: function() { // 初始化列表3数据
-                        this.getTable3Data();
-                        this.getType3Data();
-                    },
-                    load4: function() { // 初始化列表4数据
-                        this.getTable4Data();
-                        this.getType4Data();
-                    },
+                    }
                 },
                 created: function () {
-                    this.load1();
+                    this.getTableData1()
                 }
             });
         </script>

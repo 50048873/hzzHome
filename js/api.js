@@ -26,12 +26,7 @@ HZZ.api = function() {
                 url: 'json/homeData.json'
             });
         },
-        get_dcdb_dbsx_dbfk_typeData: function() {    // 督办反馈———问题类型
-            return $.ajax({
-                url: 'json/dcdb-dbsx-dbfk.json'
-            });
-        },
-        get_dcdb_dbsx_dbfk_tableData: function(params) {    // 督办反馈———列表
+        get_dcdb_dbsx_dbfk: function(params) {    // 督办反馈———列表
             var currentPage = params.currentPage1,
                 pageSize = params.pageSize1,
                 questionType = params.questionType,
@@ -59,18 +54,14 @@ HZZ.api = function() {
                 }
                 res = { 
                     result: 1,
+                    typeData: res.typeData,
                     tableData: tableData,
                     length: res.tableData.length
                 };
                 return res;
             });
         },
-        get_dcdb_dbsx_xcsj_typeData: function() {    // 巡查事件———问题类型
-            return $.ajax({
-                url: 'json/dcdb-dbsx-xcsj.json'
-            });
-        },
-        get_dcdb_dbsx_xcsj_tableData: function(params) {    // 巡查事件———列表
+        get_dcdb_dbsx_xcsj: function(params) {    // 巡查事件———列表
             var currentPage = params.currentPage2,
                 pageSize = params.pageSize2,
                 questionType = params.questionType,
@@ -79,6 +70,7 @@ HZZ.api = function() {
             return $.ajax({
                 url: 'json/dcdb-dbsx-xcsj.json'
             }).then(function(res) {
+                console.log(res);
                 var tableData = res.tableData.slice((currentPage - 1) * pageSize, currentPage * pageSize);
                 if (questionType) { 
                     tableData = tableData.filter(function(item) {
@@ -98,6 +90,7 @@ HZZ.api = function() {
                 }
                 res = { 
                     result: 1,
+                    typeData: res.typeData,
                     tableData: tableData,
                     length: res.tableData.length
                 };
@@ -107,6 +100,11 @@ HZZ.api = function() {
         get_dcdb_dbsx_xcsj_formData: function() {    // 巡查事件———编辑对话框数据
             return $.ajax({
                 url: 'json/dcdb-dbsx-xcsj-info-data.json'
+            });
+        },
+        get_dcdb_dbsx_zdxm: function() {    // 重点项目列表数据
+            return $.ajax({
+                url: 'json/dcdb-dbsx-zdxm.json'
             });
         }
     }
