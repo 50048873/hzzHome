@@ -20,29 +20,9 @@ HZZ.mixin = {
                     var svg = res.documentElement,
                         colorGrade = HZZ.config.colorGrade;
                     _this.fqyszdblData.forEach(function(item, index) { 
-                        var $path = $(svg).find('text:contains(' + item.name + ')').prev();
-                        /*switch (item.percent) {
-                            case colorGrade[0].PERCENT:
-                                $path.attr('fill', colorGrade[0].COLOR);
-                                break;
-                            case colorGrade[1].PERCENT:
-                                $path.attr('fill', colorGrade[1].COLOR);
-                                break;
-                            case colorGrade[2].PERCENT:
-                                $path.attr('fill', colorGrade[2].COLOR);
-                                break;
-                            case colorGrade[3].PERCENT:
-                                $path.attr('fill', colorGrade[3].COLOR);
-                                break;
-                            case colorGrade[4].PERCENT:
-                                $path.attr('fill', colorGrade[4].COLOR);
-                                break;
-                            case colorGrade[5].PERCENT:
-                                $path.attr('fill', colorGrade[5].COLOR);
-                                break;
-                        }*/
-                        var percent = parseInt(item.percent);
-                        if (percent < 50) {
+                        var $path = $(svg).find('text:contains(' + item.name + ')').prev(),
+                            percent = parseFloat(item.percent);
+                        if (percent >= 0 && percent < 50) {
                             $path.attr('fill', colorGrade[0].COLOR);
                         } else if (percent >= 50 && percent < 60) { 
                             $path.attr('fill', colorGrade[1].COLOR);
@@ -52,7 +32,7 @@ HZZ.mixin = {
                             $path.attr('fill', colorGrade[3].COLOR);
                         } else if (percent >= 80 && percent < 90) { 
                             $path.attr('fill', colorGrade[4].COLOR);
-                        } else if (percent >= 90 && percent < 100) { 
+                        } else if (percent >= 90 && percent <= 100) { 
                             $path.attr('fill', colorGrade[5].COLOR);
                         }
                     });

@@ -163,19 +163,19 @@
                     });
                 },
                 showRelative: function(event, color) {  // 当鼠标移入分区域水质达标率某个色块时，高亮对应地图块
-                    /*var $span = $(event.target);
+                    var $span = $(event.target);
                     var $svg = $(this.svgMap);
                     this.$checked = $svg.find('path[fill="' + color + '"]');
                     $svg.append(this.$checked.parent());
                     $span.addClass(HZZ.config.interactionCssClassname.ON);
-                    this.$checked.attr('class', HZZ.config.interactionCssClassname.ON);*/
+                    this.$checked.attr('class', HZZ.config.interactionCssClassname.ON);
                 },
                 hideRelative: function(event, color) {  // 当鼠标移出分区域水质达标率某个色块时，移除高亮
-                    /*var $span = $(event.target);
+                    var $span = $(event.target);
                     var $svg = $(this.svgMap);
                     $span.removeClass(HZZ.config.interactionCssClassname.ON);
                     this.$checked.removeAttr('class');
-                    this.$checked = null;*/
+                    this.$checked = null;
                 }
             },
             created: function() { 
