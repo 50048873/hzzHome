@@ -1,3 +1,5 @@
+'use strict';
+
 if (!HZZ) { 
     var HZZ = {};
 }

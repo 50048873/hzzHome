@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>首页</title>
     <link rel="stylesheet" href="static/bootstrap-3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/element-theme/element-theme-darkred.css">
     <link rel="stylesheet" href="css/common/common.css">
     <link rel="stylesheet" href="css/index/index.css">
 </head>
@@ -98,7 +97,7 @@
 
     <script src="static/jquery-1.8.3/jquery-1.8.3.min.js"></script>
     <script src="static/vue/vue-2.5.13.min.js"></script>
-    <script src="static/element-ui/lib/index.js"></script>
+    <script src="static/layer-v3.1.1/layer/layer.js"></script>
     <script src="static/Highcharts-6.0.4/code/highcharts.js"></script>
     <script src="js/config.js"></script>
     <script src="js/api.js"></script>
@@ -141,7 +140,8 @@
                                 _this.szdblbhqsData = res.szdblbhqs;
                                 _this.hzzkhqkData = res.hzzkhqk;
 
-                                _this.renderChart();                    
+                                _this.renderChart(); 
+                                _this.mapTooltip();                
                             }
                         }, function(err) {
                             $.error(err.responseText);
@@ -176,6 +176,17 @@
                     $span.removeClass(HZZ.config.interactionCssClassname.ON);
                     this.$checked.removeAttr('class');
                     this.$checked = null;
+                },
+                mapTooltip: function() {    // 地图mouseenter事件
+                    $('body').on('mouseenter', '#xx g', function(e) {
+                        var $this = $(this),
+                            name = $this.find('text').text(),
+                            percent = $this.find('path').attr('percent'),
+                            tips = '<p>' + name + '</p><p>水质达标率：' + percent + '</p>';
+                        layer.tips(tips, this, {
+                            tips: [1, '#7e56cc']
+                        });
+                    });
                 }
             },
             created: function() { 

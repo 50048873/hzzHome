@@ -23,23 +23,41 @@ HZZ.mixin = {
                         var $path = $(svg).find('text:contains(' + item.name + ')').prev(),
                             percent = parseFloat(item.percent);
                         if (percent >= 0 && percent < 50) {
-                            $path.attr('fill', colorGrade[0].COLOR);
+                            $path.attr({
+                                fill: colorGrade[0].COLOR,
+                                percent: item.percent
+                            });
                         } else if (percent >= 50 && percent < 60) { 
-                            $path.attr('fill', colorGrade[1].COLOR);
+                            $path.attr({
+                                fill: colorGrade[1].COLOR,
+                                percent: item.percent
+                            });
                         } else if (percent >= 60 && percent < 70) { 
-                            $path.attr('fill', colorGrade[2].COLOR);
+                            $path.attr({
+                                fill: colorGrade[2].COLOR,
+                                percent: item.percent
+                            });
                         } else if (percent >= 70 && percent < 80) { 
-                            $path.attr('fill', colorGrade[3].COLOR);
+                            $path.attr({
+                                fill: colorGrade[3].COLOR,
+                                percent: item.percent
+                            });
                         } else if (percent >= 80 && percent < 90) { 
-                            $path.attr('fill', colorGrade[4].COLOR);
+                            $path.attr({
+                                fill: colorGrade[4].COLOR,
+                                percent: item.percent
+                            });
                         } else if (percent >= 90 && percent <= 100) { 
-                            $path.attr('fill', colorGrade[5].COLOR);
+                            $path.attr({
+                                fill: colorGrade[5].COLOR,
+                                percent: item.percent
+                            });
                         }
                     });
                     _this.svgMap = svg;
                     $('#' + obj.id).html(svg);
                 }, function(err) {
-                    console.log(err)
+                    $.error(err.responseText);
                 });
             },
             xmjdtj: function(id) {
