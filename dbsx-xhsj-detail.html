@@ -4,82 +4,71 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>巡河事件——编辑</title>
+    <title>巡河事件——详情</title>
     <link rel="stylesheet" href="css/element-theme/element-theme-darkred.css">
     <link rel="stylesheet" href="css/common/common.css">
 </head>
 
 <body>
     <div id="info" v-cloak>
-        <div class="hzz-form-theme1" id="form">
-            <el-row :gutter="30">
-                <el-col :span="6">
-                    <el-input placeholder="输入关键字进行过滤" v-model="filterText">
-                    </el-input>
-                    <el-tree class="hzz-filter-tree" :data="treeData" empty-text="暂无数据" :props="defaultProps" node-key="id" :default-expanded-keys="[1]" :filter-node-method="filterNode" ref="tree2">
-                    </el-tree>
-                </el-col>
-                <el-col :span="18">
-                    <el-form ref="form" :model="rowData" label-width="6em">
-                        <el-form-item label="责任单位：">
-                            <el-input v-model="form.department"></el-input>
-                        </el-form-item>
-                        <el-form-item label="督办类型：">
-                            <el-radio-group v-model="form.resource">
-                                <el-radio :label="item.label" v-for="(item, index) in typeData" :key="index"></el-radio>
-                            </el-radio-group>
-                        </el-form-item>
-                        <el-form-item label="督办内容：">
-                            <el-input v-model="form.department"></el-input>
-                        </el-form-item>
-                        <el-form-item label="督办要求：">
-                            <el-input type="textarea" v-model="form.condition" :rows="6"></el-input>
-                        </el-form-item>
-                        <el-row :gutter="20">
-                            <el-col :span="12">
-                                <el-form-item label="督办时间：">
-                                    <el-date-picker type="date" v-model="form.assignedTime" style="width: 100%;"></el-date-picker>
-                                </el-form-item>
-                            </el-col>
-                            <el-col :span="12">
-                                <el-form-item label="完成期限">
-                                    <el-date-picker type="date" v-model="form.rectificationPeriod" style="width: 100%;"></el-date-picker>
-                                </el-form-item>
-                            </el-col>
-                        </el-row>
-                        <el-row :gutter="20">
-                            <el-col :span="12">
-                                <el-form-item label="联系人：">
-                                    <el-input v-model="form.user"></el-input>
-                                </el-form-item>
-                            </el-col>
-                            <el-col :span="12">
-                                <el-form-item label="联系电话：">
-                                    <el-input v-model="form.user"></el-input>
-                                </el-form-item>
-                            </el-col>
-                        </el-row>
-                        <el-form-item label="上传附件：">
-                          <el-upload
-                            class="upload-demo"
-                            action="https://jsonplaceholder.typicode.com/posts/"
-                            :on-preview="handlePreview"
-                            :on-remove="handleRemove"
-                            :before-remove="beforeRemove"
-                            multiple
-                            :limit="3"
-                            :on-exceed="handleExceed"
-                            :file-list="fileList">
-                            <el-button size="small" type="primary" icon="el-icon-upload">选择文件</el-button>
-                          </el-upload>
-                        </el-form-item>
-                        <div class="hzz-form-button">
-                            <el-button type="primary" @click="onSubmit">提交</el-button>
-                            <el-button @click="close">取消</el-button>
-                        </div>
-                    </el-form>
-                </el-col>
-            </el-row>
+        <div class="hzz-detail-theme1" id="form">
+            <h3>南十里长沟三支</h3>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>状态：</td>
+                        <td><span class="status p7465">调查核实中</span></td>
+                        <td>上报人：</td>
+                        <td>张三</td>
+                        <td>上报时间：</td>
+                        <td>2018-01-25 12:00</td>
+                    </tr>
+                    <tr>
+                        <td>所在河道：</td>
+                        <td>南十里长沟三支</td>
+                        <td>事件内容：</td>
+                        <td>垃圾太多</td>
+                        <td>事件类型：</td>
+                        <td>倾倒垃圾</td>
+                    </tr>
+                    <tr>
+                        <td>处理前照片：</td>
+                        <td colspan="5"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" class="photos">
+                            <img src="image/photo.jpg" alt="">
+                            <img src="image/photo.jpg" alt="">
+                            <img src="image/photo.jpg" alt="">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <h5>事件进度</h5>
+            <ul>
+                <li>
+                    <div class="circle p2925">1</div>
+                    <div class="content">
+                        <h6>垃圾太多</h6>
+                        <p>
+                            <span>处理人：李四</span>
+                            <span>电话：13000000000</span>
+                        </p>
+                        <p><time>2017-09-18 12:30</time></p>
+                    </div>
+                </li>
+                <li>
+                    <div class="circle p116">2</div>
+                    <div class="content">
+                        <h6>垃圾太多</h6>
+                        <p>
+                            <span>处理人：李四</span>
+                            <span>电话：13000000000</span>
+                        </p>
+                        <p><time>2017-09-18 12:30</time></p>
+                    </div>
+                </li>
+            </ul>
         </div>
     </div>
     <script src="static/jquery-1.8.3/jquery-1.8.3.min.js"></script>
@@ -174,9 +163,9 @@
               }
               console.log(this.rowData)
               this.show({
-                  title: '交办派单',
+                  title: '事件详情',
                   content: '#form',
-                  area: '70%'
+                  area: '930px'
               });
             }
         },
