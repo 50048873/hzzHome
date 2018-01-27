@@ -12,11 +12,11 @@
         <div id="list" v-cloak>
             <el-tabs v-model="activeName" @tab-click="handleClick">
                     <el-tab-pane label="督办反馈" name="1">
-                        <el-form :inline="true" :model="formSearch1" class="demo-form-inline">
+                        <el-form :inline="true" :model="list1.formSearch">
                             <el-form-item label="问题类型">
-                                <el-select v-model="formSearch1.questionType" placeholder="请选择" clearable>
+                                <el-select v-model="list1.formSearch.questionType" placeholder="请选择" clearable>
                                     <el-option
-                                        v-for="item in typeData1"
+                                        v-for="item in list1.questionTypeData"
                                         :key="item.value"
                                         :label="item.label"
                                         :value="item.value">
@@ -25,11 +25,11 @@
                             </el-form-item>
                             <el-form-item label="活动时间">
                                 <el-col :span="11">
-                                    <el-date-picker type="date" placeholder="选择日期" v-model="formSearch1.assignedTime" style="width: 100%;"></el-date-picker>
+                                    <el-date-picker type="date" placeholder="选择日期" v-model="list1.formSearch.startTime" style="width: 100%;"></el-date-picker>
                                 </el-col>
                                 <el-col class="text-c" :span="2">-</el-col>
                                 <el-col :span="11">
-                                    <el-date-picker type="date" placeholder="选择日期" v-model="formSearch1.rectificationPeriod" style="width: 100%;"></el-date-picker>
+                                    <el-date-picker type="date" placeholder="选择日期" v-model="list1.formSearch.endTime" style="width: 100%;"></el-date-picker>
                                 </el-col>
                             </el-form-item>
                             <el-form-item>
@@ -37,7 +37,7 @@
                             </el-form-item>
                         </el-form>
                         <el-table
-                            :data="tableData1"
+                            :data="list1.tableData"
                             border
                             style="width: 100%">
                             <el-table-column
@@ -83,7 +83,7 @@
                                     <el-button
                                         type="primary"
                                         size="mini"
-                                        @click="handleEdit1(scope.$index, scope.row)"
+                                        @click="handleEdit(scope.$index, scope.row, 1)"
                                         icon="el-icon-edit">编辑
                                     </el-button>
                                 </template>
@@ -91,22 +91,22 @@
                         </el-table>
                         <el-pagination
                             class="m-t-15"
-                            @size-change="handleSizeChange1"
-                            @current-change="handleCurrentChange1"
+                            @size-change="handleSizeChange($event, 1)"
+                            @current-change="handleCurrentChange($event, 1)"
                             background
-                            :current-page="currentPage1"
-                            :page-sizes="pageSizeSelection1"
-                            :page-size="pageSize1"
+                            :current-page="list1.currentPage"
+                            :page-sizes="list1.pageSizeSelection"
+                            :page-size="list1.pageSize"
                             layout="total, sizes, prev, pager, next, jumper"
-                            :total="total1">
+                            :total="list1.total">
                         </el-pagination>
                     </el-tab-pane>
                     <el-tab-pane label="巡河事件" name="2">
-                        <el-form :inline="true" :model="formSearch2" class="demo-form-inline">
+                        <el-form :inline="true" :model="list2.formSearch">
                             <el-form-item label="问题类型">
-                                <el-select v-model="formSearch2.questionType" placeholder="请选择" clearable>
+                                <el-select v-model="list2.formSearch.questionType" placeholder="请选择" clearable>
                                     <el-option
-                                        v-for="item in typeData2"
+                                        v-for="item in list2.questionTypeData"
                                         :key="item.value"
                                         :label="item.label"
                                         :value="item.value">
@@ -115,11 +115,11 @@
                             </el-form-item>
                             <el-form-item label="上报时间">
                                 <el-col :span="11">
-                                    <el-date-picker type="date" placeholder="选择日期" v-model="formSearch2.startTime" style="width: 100%;"></el-date-picker>
+                                    <el-date-picker type="date" placeholder="选择日期" v-model="list2.formSearch.startTime" style="width: 100%;"></el-date-picker>
                                 </el-col>
                                 <el-col class="text-c" :span="2">-</el-col>
                                 <el-col :span="11">
-                                    <el-date-picker type="date" placeholder="选择日期" v-model="formSearch2.endTime" style="width: 100%;"></el-date-picker>
+                                    <el-date-picker type="date" placeholder="选择日期" v-model="list2.formSearch.endTime" style="width: 100%;"></el-date-picker>
                                 </el-col>
                             </el-form-item>
                             <el-form-item>
@@ -127,7 +127,7 @@
                             </el-form-item>
                         </el-form>
                         <el-table
-                            :data="tableData2"
+                            :data="list2.tableData"
                             border
                             style="width: 100%">
                             <el-table-column
@@ -164,13 +164,13 @@
                                     <el-button
                                         type="primary"
                                         size="mini"
-                                        @click="handleDetail2(scope.$index, scope.row)"
+                                        @click="handleDetail(scope.$index, scope.row, 2)"
                                         icon="el-icon-view">查看
                                     </el-button>
                                     <el-button
                                         type="primary"
                                         size="mini"
-                                        @click="handleEdit2(scope.$index, scope.row)"
+                                        @click="handleEdit(scope.$index, scope.row, 2)"
                                         icon="el-icon-edit">处理
                                     </el-button>
                                 </template>
@@ -178,22 +178,22 @@
                         </el-table>
                         <el-pagination
                             class="m-t-15"
-                            @size-change="handleSizeChange2"
-                            @current-change="handleCurrentChange2"
+                            @size-change="handleSizeChange($event, 2)"
+                            @current-change="handleCurrentChange($event, 2)"
                             background
-                            :current-page="currentPage2"
-                            :page-sizes="pageSizeSelection2"
-                            :page-size="pageSize2"
+                            :current-page="list2.currentPage"
+                            :page-sizes="list2.pageSizeSelection"
+                            :page-size="list2.pageSize"
                             layout="total, sizes, prev, pager, next, jumper"
-                            :total="total2">
+                            :total="list2.total">
                         </el-pagination>
                     </el-tab-pane>
                     <el-tab-pane label="公众投诉" name="3">
-                        <el-form :inline="true" :model="formSearch2" class="demo-form-inline">
+                        <el-form :inline="true" :model="list3.formSearch">
                             <el-form-item label="问题类型">
-                                <el-select v-model="formSearch2.questionType" placeholder="请选择" clearable>
+                                <el-select v-model="list3.formSearch.questionType" placeholder="请选择" clearable>
                                     <el-option
-                                        v-for="item in typeData2"
+                                        v-for="item in list3.questionTypeData"
                                         :key="item.value"
                                         :label="item.label"
                                         :value="item.value">
@@ -202,11 +202,11 @@
                             </el-form-item>
                             <el-form-item label="举报时间">
                                 <el-col :span="11">
-                                    <el-date-picker type="date" placeholder="选择日期" v-model="formSearch2.startTime" style="width: 100%;"></el-date-picker>
+                                    <el-date-picker type="date" placeholder="选择日期" v-model="list3.formSearch.startTime" style="width: 100%;"></el-date-picker>
                                 </el-col>
                                 <el-col class="text-c" :span="2">-</el-col>
                                 <el-col :span="11">
-                                    <el-date-picker type="date" placeholder="选择日期" v-model="formSearch2.endTime" style="width: 100%;"></el-date-picker>
+                                    <el-date-picker type="date" placeholder="选择日期" v-model="list3.formSearch.endTime" style="width: 100%;"></el-date-picker>
                                 </el-col>
                             </el-form-item>
                             <el-form-item>
@@ -214,7 +214,7 @@
                             </el-form-item>
                         </el-form>
                         <el-table
-                            :data="tableData2"
+                            :data="list3.tableData"
                             border
                             style="width: 100%">
                             <el-table-column
@@ -251,13 +251,13 @@
                                     <el-button
                                         type="primary"
                                         size="mini"
-                                        @click="handleEdit2(scope.$index, scope.row)"
+                                        @click="handleDetail(scope.$index, scope.row, 3)"
                                         icon="el-icon-view">查看
                                     </el-button>
                                     <el-button
                                         type="primary"
                                         size="mini"
-                                        @click="handleEdit2(scope.$index, scope.row)"
+                                        @click="handleEdit(scope.$index, scope.row, 3)"
                                         icon="el-icon-edit">处理
                                     </el-button>
                                 </template>
@@ -265,22 +265,22 @@
                         </el-table>
                         <el-pagination
                             class="m-t-15"
-                            @size-change="handleSizeChange2"
-                            @current-change="handleCurrentChange2"
+                            @size-change="handleSizeChange($event, 3)"
+                            @current-change="handleCurrentChange($event, 3)"
                             background
-                            :current-page="currentPage2"
-                            :page-sizes="pageSizeSelection2"
-                            :page-size="pageSize2"
+                            :current-page="list3.currentPage"
+                            :page-sizes="list3.pageSizeSelection"
+                            :page-size="list3.pageSize"
                             layout="total, sizes, prev, pager, next, jumper"
-                            :total="total2">
+                            :total="list3.total">
                         </el-pagination>
                     </el-tab-pane>
                     <el-tab-pane label="重点项目" name="4">
-                        <el-form :inline="true" :model="formSearch4" class="demo-form-inline">
+                        <el-form :inline="true" :model="list4.formSearch">
                             <el-form-item label="项目类型">
-                                <el-select v-model="formSearch4.questionType" placeholder="请选择" clearable>
+                                <el-select v-model="list4.formSearch.questionType" placeholder="请选择" clearable>
                                     <el-option
-                                        v-for="item in typeData4"
+                                        v-for="item in list4.questionTypeData"
                                         :key="item.value"
                                         :label="item.label"
                                         :value="item.value">
@@ -288,9 +288,9 @@
                                 </el-select>
                             </el-form-item>
                             <el-form-item label="项目状态">
-                                <el-select v-model="formSearch4.questionType" placeholder="请选择" clearable>
+                                <el-select v-model="list4.formSearch.questionType" placeholder="请选择" clearable>
                                     <el-option
-                                        v-for="item in typeData4"
+                                        v-for="item in list4.questionTypeData"
                                         :key="item.value"
                                         :label="item.label"
                                         :value="item.value">
@@ -302,7 +302,7 @@
                             </el-form-item>
                         </el-form>
                         <el-table
-                            :data="tableData4"
+                            :data="list4.tableData"
                             border
                             style="width: 100%">
                             <el-table-column
@@ -348,13 +348,13 @@
                                     <el-button
                                         type="primary"
                                         size="mini"
-                                        @click="handleDetail4(scope.$index, scope.row)"
+                                        @click="handleDetail(scope.$index, scope.row, 4)"
                                         icon="el-icon-view">查看
                                     </el-button>
                                     <el-button
                                         type="primary"
                                         size="mini"
-                                        @click="handleEdit4(scope.$index, scope.row)"
+                                        @click="handleEdit(scope.$index, scope.row, 4)"
                                         icon="el-icon-edit">编辑
                                     </el-button>
                                 </template>
@@ -362,14 +362,14 @@
                         </el-table>
                         <el-pagination
                             class="m-t-15"
-                            @size-change="handleSizeChange4"
-                            @current-change="handleCurrentChange4"
+                            @size-change="handleSizeChange($event, 4)"
+                            @current-change="handleCurrentChange($event, 4)"
                             background
-                            :current-page="currentPage4"
-                            :page-sizes="pageSizeSelection4"
-                            :page-size="pageSize4"
+                            :current-page="list4.currentPage"
+                            :page-sizes="list4.pageSizeSelection"
+                            :page-size="list4.pageSize"
                             layout="total, sizes, prev, pager, next, jumper"
-                            :total="total4">
+                            :total="list4.total">
                         </el-pagination>
                     </el-tab-pane>
             </el-tabs>
@@ -387,190 +387,157 @@
                 el: '#list',
                 data: function() {
                     return {
-                        activeName: '1',    // tabs标签高亮
+                        activeName: '1',                                                    // tabs标签高亮
 
                         /* 督办反馈 */
-                        typeData1: [],       // 问题类型
-                        formSearch1: {             // 表单
-                            questionType: '',   // 问题类型
-                            assignedTime: '',   // 交办时间
-                            rectificationPeriod: '' // 整改期限
+                        list1: {
+                            questionTypeData: [],                                           // 问题类型下拉框数据
+                            formSearch: {                                                   // 表单
+                                questionType: '',                                           // 问题类型
+                                startTime: '',                                              // 交办时间
+                                endTime: ''                                                 // 整改期限
+                            },
+                            tableData: [],                                                  //表格
+                            /*分页*/
+                            currentPage: HZZ.config.pagination.CURRENT_PAGE,                // 当前页
+                            pageSizeSelection: HZZ.config.pagination.PAGESIZE_SELECTION,    // 分页条数下拉框
+                            pageSize: HZZ.config.pagination.PAGESIZE,                       // 每页大小
+                            total: HZZ.config.pagination.TOTAL                              // 总记录条数
                         },
-                        tableData1: [],      //表格
-                        // 分页
-                        currentPage1: HZZ.config.pagination.CURRENT_PAGE,    // 当前页
-                        pageSizeSelection1: HZZ.config.pagination.PAGESIZE_SELECTION,    // 分页条数下拉框
-                        pageSize1: HZZ.config.pagination.PAGESIZE,   // 每页大小
-                        total1: HZZ.config.pagination.TOTAL,    // 总记录条数
 
                         /* 巡河事件 */
-                        typeData2: [],       // 问题类型
-                        formSearch2: {             // 表单
-                            questionType: '',
-                            startTime: '',
-                            endTime: ''
+                        list2: {
+                            questionTypeData: [],
+                            formSearch: {
+                                questionType: '',
+                                startTime: '',
+                                endTime: ''
+                            },
+                            tableData: [],
+                            currentPage: HZZ.config.pagination.CURRENT_PAGE,
+                            pageSizeSelection: HZZ.config.pagination.PAGESIZE_SELECTION,
+                            pageSize: HZZ.config.pagination.PAGESIZE,
+                            total: HZZ.config.pagination.TOTAL
                         },
-                        tableData2: [],      //表格
-                        // 分页
-                        currentPage2: HZZ.config.pagination.CURRENT_PAGE,    // 当前页
-                        pageSizeSelection2: HZZ.config.pagination.PAGESIZE_SELECTION,    // 分页条数下拉框
-                        pageSize2: HZZ.config.pagination.PAGESIZE,   // 每页大小
-                        total2: HZZ.config.pagination.TOTAL,    // 总记录条数
+
+                        /* 公众投诉 */
+                        list3: {
+                            questionTypeData: [],
+                            formSearch: {
+                                questionType: '',
+                                startTime: '',
+                                endTime: ''
+                            },
+                            tableData: [],
+                            currentPage: HZZ.config.pagination.CURRENT_PAGE,
+                            pageSizeSelection: HZZ.config.pagination.PAGESIZE_SELECTION,
+                            pageSize: HZZ.config.pagination.PAGESIZE,
+                            total: HZZ.config.pagination.TOTAL
+                        },
 
                         /* 重点项目 */
-                        typeData4: [],       // 问题类型
-                        formSearch4: {             // 表单
-                            questionType: '',
-                            startTime: '',
-                            endTime: ''
-                        },
-                        tableData4: [],      //表格
-                        // 分页
-                        currentPage4: HZZ.config.pagination.CURRENT_PAGE,    // 当前页
-                        pageSizeSelection4: HZZ.config.pagination.PAGESIZE_SELECTION,    // 分页条数下拉框
-                        pageSize4: HZZ.config.pagination.PAGESIZE,   // 每页大小
-                        total4: HZZ.config.pagination.TOTAL    // 总记录条数
+                        list4: {
+                            questionTypeData: [],
+                            formSearch: {
+                                questionType: '',
+                                startTime: '',
+                                endTime: ''
+                            },
+                            tableData: [],
+                            currentPage: HZZ.config.pagination.CURRENT_PAGE,
+                            pageSizeSelection: HZZ.config.pagination.PAGESIZE_SELECTION,
+                            pageSize: HZZ.config.pagination.PAGESIZE,
+                            total: HZZ.config.pagination.TOTAL
+                        }
                     }
                 },
                 methods: {
                     /* 督办反馈 */
-                    getTableData1: function() {  // 获取表格数据
+                    getTableData1: function() {
                         var _this = this;
                         var params = {
-                            currentPage1: this.currentPage1,
-                            pageSize1: this.pageSize1,
-                            questionType: this.formSearch1.questionType,
-                            assignedTime: this.formSearch1.assignedTime,
-                            rectificationPeriod: this.formSearch1.rectificationPeriod
+                            currentPage: this.list1.currentPage,
+                            pageSize: this.list1.pageSize,
+                            questionType: this.list1.formSearch.questionType,
+                            startTime: this.list1.formSearch.startTime,
+                            endTime: this.list1.formSearch.endTime
                         };
                         HZZ.api.get_dcdb_dbsx_dbfk(params)
                             .then(function(res) {
                                 if (HZZ.api.result === res.result) { 
-                                    _this.tableData1 = res.tableData;
-                                    _this.typeData1 = res.typeData;  
-                                    _this.total1 = res.length;           
+                                    _this.list1.tableData = res.tableData;
+                                    _this.list1.questionTypeData = res.questionTypeData;  
+                                    _this.list1.total = res.length;           
                                 }
                             }, function(err) {
                                 $.error(err.responseText);
                             });
                     },
-                    handleSizeChange1: function(val) {   // 分页条数改变回调
-                        this.pageSize1 = val;
-                        this.getTableData1();
-                    },
-                    handleCurrentChange1: function(val) {    // 翻页回调
-                        this.currentPage1 = val;
-                        this.getTableData1();    
-                    },
-                    handleEdit1: function(index, row) {  // 点击表格操作按钮弹出layer对话框（此方案体验好）
-                        var _this = this,
-                            cache = HZZ.cache,
-                            URLs = HZZ.config.URLs,
-                            util = HZZ.util;
-
-                        cache.row = row;    // 缓存行数据
-
-                        util.loadHtml(URLs.baseUrl + 'dbsx-dbfk-form.html');   // 通过iframe加载页面
-                    },
 
                     /* 巡河事件 */
-                    getTableData2: function() {  // 获取表格数据
+                    getTableData2: function() {
                         var _this = this;
                         var params = {
-                            currentPage2: this.currentPage2,
-                            pageSize2: this.pageSize2,
-                            questionType: this.formSearch2.questionType,
-                            startTime: this.formSearch2.startTime,
-                            endTime: this.formSearch2.endTime
+                            currentPage: this.list2.currentPage,
+                            pageSize: this.list2.pageSize,
+                            questionType: this.list2.formSearch.questionType,
+                            startTime: this.list2.formSearch.startTime,
+                            endTime: this.list2.formSearch.endTime
                         };
                         HZZ.api.get_dcdb_dbsx_xcsj(params)
                             .then(function(res) {
                                 if (HZZ.api.result === res.result) { 
-                                    _this.tableData2 = res.tableData;
-                                    _this.typeData2 = res.typeData;  
-                                    _this.total2 = res.length;           
+                                    _this.list2.tableData = res.tableData;
+                                    _this.list2.questionTypeData = res.questionTypeData;  
+                                    _this.list2.total = res.length;           
                                 }
                             }, function(err) {
                                 $.error(err.responseText);
                             });
                     },
-                    handleSizeChange2: function(val) {   // 分页条数改变回调
-                        this.pageSize2 = val;
-                        this.getTableData2();
-                    },
-                    handleCurrentChange2: function(val) {    // 翻页回调
-                        this.currentPage2 = val;
-                        this.getTableData2();    
-                    },
-                    handleDetail2: function(index, row) {  // 点击表格操作按钮弹出layer对话框（此方案体验好）
-                        var _this = this,
-                            cache = HZZ.cache,
-                            URLs = HZZ.config.URLs,
-                            util = HZZ.util;
 
-                        cache.row = row;    // 缓存行数据
-
-                        util.loadHtml(URLs.baseUrl + 'dbsx-xhsj-detail.html');   // 通过iframe加载页面
-                    },
-                    handleEdit2: function(index, row) {  // 点击表格操作按钮弹出layer对话框（此方案体验好）
-                        var _this = this,
-                            cache = HZZ.cache,
-                            URLs = HZZ.config.URLs,
-                            util = HZZ.util;
-
-                        cache.row = row;    // 缓存行数据
-
-                        util.loadHtml(URLs.baseUrl + 'dbsx-xhsj-form.html');   // 通过iframe加载页面
+                    /* 公众投诉 */
+                    getTableData3: function() {
+                        var _this = this;
+                        var params = {
+                            currentPage: this.list3.currentPage,
+                            pageSize: this.list3.pageSize,
+                            questionType: this.list3.formSearch.questionType,
+                            startTime: this.list3.formSearch.startTime,
+                            endTime: this.list3.formSearch.endTime
+                        };
+                        HZZ.api.get_dcdb_dbsx_xcsj(params)
+                            .then(function(res) {
+                                if (HZZ.api.result === res.result) { 
+                                    _this.list3.tableData = res.tableData;
+                                    _this.list3.questionTypeData = res.questionTypeData;  
+                                    _this.list3.total = res.length;           
+                                }
+                            }, function(err) {
+                                $.error(err.responseText);
+                            });
                     },
 
                     /* 重点项目 */
-                    getTableData4: function() {  // 获取表格数据
+                    getTableData4: function() {
                         var _this = this;
                         var params = {
-                            currentPage4: this.currentPage4,
-                            pageSize4: this.pageSize4,
-                            questionType: this.formSearch4.questionType,
-                            statusType: this.formSearch4.statusData
+                            currentPage: this.list4.currentPage,
+                            pageSize: this.list4.pageSize,
+                            questionType: this.list4.formSearch.questionType,
+                            statusType: this.list4.formSearch.statusData
                         };
                         HZZ.api.get_dcdb_dbsx_zdxm(params)
                             .then(function(res) {
                                 if (HZZ.api.result === res.result) { 
-                                    _this.tableData4 = res.tableData;
-                                    _this.typeData4 = res.typeData; 
-                                    _this.statusData4 = res.statusData;
-                                    _this.total4 = res.length;           
+                                    _this.list4.tableData = res.tableData;
+                                    _this.list4.questionTypeData = res.questionTypeData; 
+                                    _this.list4.statusData = res.statusData;
+                                    _this.list4.total = res.length;           
                                 }
                             }, function(err) {
                                 $.error(err.responseText);
                             });
-                    },
-                    handleSizeChange4: function(val) {   // 分页条数改变回调
-                        this.pageSize4 = val;
-                        this.getTableData4();
-                    },
-                    handleCurrentChange4: function(val) {    // 翻页回调
-                        this.currentPage4 = val;
-                        this.getTableData4();    
-                    },
-                    handleDetail4: function(index, row) {  // 查看详情
-                        var _this = this,
-                            cache = HZZ.cache,
-                            URLs = HZZ.config.URLs,
-                            util = HZZ.util;
-
-                        cache.row = row;    // 缓存行数据
-
-                        util.loadHtml(URLs.baseUrl + 'dbsx-zdxm-detail.html');   // 通过iframe加载页面
-                    },
-                    handleEdit4: function(index, row) {  // 点击表格操作按钮弹出layer对话框（此方案体验好）
-                        var _this = this,
-                            cache = HZZ.cache,
-                            URLs = HZZ.config.URLs,
-                            util = HZZ.util;
-
-                        cache.row = row;    // 缓存行数据
-
-                        util.loadHtml(URLs.baseUrl + 'dbsx-xhsj-form.html');   // 通过iframe加载页面
                     },
 
                     /* tab列表公共方法 */
@@ -584,7 +551,7 @@
                                 this.getTableData2();
                                 break;
                             case '3': 
-                                this.getTableData2();
+                                this.getTableData3();
                                 break;
                             case '4': 
                                 this.getTableData4();
@@ -600,12 +567,95 @@
                                 this.getTableData2();
                                 break;
                             case 3: 
-                                this.getTableData2();
+                                this.getTableData3();
                                 break;
                             case 4: 
                                 this.getTableData4();
                                 break;
                         }  
+                    },
+                    handleSizeChange: function(val,name) {   // 分页条数
+                        switch (name) {
+                            case 1: 
+                                this.list1.pageSize = val;
+                                this.getTableData1();
+                                break;
+                            case 2: 
+                                this.list2.pageSize = val;
+                                this.getTableData2();
+                                break;
+                            case 3: 
+                                this.list3.pageSize = val;
+                                this.getTableData3();
+                                break;
+                            case 4: 
+                                this.list4.pageSize = val;
+                                this.getTableData4();
+                                break;
+                        }
+                    },
+                    handleCurrentChange: function(val, name) {    // 翻页  
+                        switch (name) {
+                            case 1: 
+                                this.list1.currentPage = val;
+                                this.getTableData1();
+                                break;
+                            case 2: 
+                                this.list2.currentPage = val;
+                                this.getTableData2();
+                                break;
+                            case 3: 
+                                this.list3.currentPage = val;
+                                this.getTableData3();
+                                break;
+                            case 4: 
+                                this.list4.currentPage = val;
+                                this.getTableData4();
+                                break;
+                        }
+                    },
+                    handleDetail: function(index, row, name) {  // 查看
+                        var _this = this,
+                            cache = HZZ.cache,
+                            URLs = HZZ.config.URLs,
+                            util = HZZ.util;
+
+                        cache.row = row;    // 缓存行数据
+
+                        switch (name) {
+                            case 2: 
+                                util.loadHtml(URLs.baseUrl + 'dbsx-xhsj-detail.html');   // 通过iframe加载页面
+                                break;
+                            case 3: 
+                                util.loadHtml(URLs.baseUrl + 'dbsx-xhsj-detail.html');   // 通过iframe加载页面
+                                break;
+                            case 4: 
+                                util.loadHtml(URLs.baseUrl + 'dbsx-zdxm-detail.html');   // 通过iframe加载页面
+                                break;
+                        }
+                    },
+                    handleEdit: function(index, row, name) {  // 编辑
+                        var _this = this,
+                            cache = HZZ.cache,
+                            URLs = HZZ.config.URLs,
+                            util = HZZ.util;
+
+                        cache.row = row;
+
+                        switch (name) {
+                            case 1: 
+                                util.loadHtml(URLs.baseUrl + 'dbsx-dbfk-form.html');
+                                break;
+                            case 2: 
+                                util.loadHtml(URLs.baseUrl + 'dbsx-xhsj-form.html');
+                                break;
+                            case 3: 
+                                util.loadHtml(URLs.baseUrl + 'dbsx-xhsj-form.html');
+                                break;
+                            case 4: 
+                                util.loadHtml(URLs.baseUrl + 'dbsx-xhsj-form.html');
+                                break;
+                        }
                     }
                 },
                 created: function () {

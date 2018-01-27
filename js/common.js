@@ -1,3 +1,5 @@
+'use strict';
+
 if (HZZ && HZZ.util) {
     // 全局配置layer主题
     HZZ.util.loadLayerHZZTheme();

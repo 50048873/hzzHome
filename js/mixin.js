@@ -1,3 +1,5 @@
+'use strict';
+
 if (!HZZ) { 
     var HZZ = {};
 }
@@ -54,7 +56,7 @@ HZZ.mixin = {
                             });
                         }
                     });
-                    _this.svgMap = svg;
+                    _this.$svgMap = $(svg);
                     $('#' + obj.id).html(svg);
                 }, function(err) {
                     $.error(err.responseText);

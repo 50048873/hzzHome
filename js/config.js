@@ -90,7 +90,7 @@ HZZ.util = {
 HZZ.cache = {
     getData: function(key) {
         if (arguments.length === 1) { 
-            return data = this[key];
+            return this[key];
         }
         return this;
     }

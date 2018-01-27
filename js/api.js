@@ -1,21 +1,8 @@
+'use strict';
+
 if (!HZZ) { 
     var HZZ = {};
 }
-
-/*HZZ.apiErrorMessage = function(err) {
-    switch (err.status) {
-        case 404:
-            this.$message({
-                type: "error",
-                showClose: true,
-                duration: 0,
-                dangerouslyUseHTMLString: true,
-                message: err.responseText + '<h1>请联系开发人员</h1>',
-                customClass: 'apiErrorMessage'
-            });
-            break;
-    }
-};*/
 
 // 年度任务
 HZZ.api = function() {
@@ -30,11 +17,11 @@ HZZ.api = function() {
             });
         },
         get_dcdb_dbsx_dbfk: function(params) {    // 督办反馈———列表
-            var currentPage = params.currentPage1,
-                pageSize = params.pageSize1,
+            var currentPage = params.currentPage,
+                pageSize = params.pageSize,
                 questionType = params.questionType,
-                assignedTime = params.assignedTime,
-                rectificationPeriod = params.rectificationPeriod;
+                startTime = params.startTime,
+                endTime = params.endTime;
             return $.ajax({
                 url: 'json/dcdb-dbsx-dbfk.json'
             }).then(function(res) {
@@ -44,20 +31,20 @@ HZZ.api = function() {
                         return item.questionType === questionType
                     });
                 }
-                if (assignedTime) { 
+                if (startTime) { 
                     tableData = tableData.filter(function(item) {
-                        return new Date(item.assignedTime) >= assignedTime;
+                        return new Date(item.assignedTime) >= startTime;
                     });
                 }
 
-                if (rectificationPeriod) { 
+                if (endTime) { 
                     tableData = tableData.filter(function(item) {
-                        return new Date(item.rectificationPeriod) <= rectificationPeriod;
+                        return new Date(item.rectificationPeriod) <= endTime;
                     });
                 }
                 res = { 
                     result: 1,
-                    typeData: res.typeData,
+                    questionTypeData: res.questionTypeData,
                     tableData: tableData,
                     length: res.tableData.length
                 };
@@ -65,15 +52,14 @@ HZZ.api = function() {
             });
         },
         get_dcdb_dbsx_xcsj: function(params) {    // 巡查事件———列表
-            var currentPage = params.currentPage2,
-                pageSize = params.pageSize2,
+            var currentPage = params.currentPage,
+                pageSize = params.pageSize,
                 questionType = params.questionType,
                 startTime = params.startTime,
                 endTime = params.endTime;
             return $.ajax({
                 url: 'json/dcdb-dbsx-xhsj.json'
             }).then(function(res) {
-                console.log(res);
                 var tableData = res.tableData.slice((currentPage - 1) * pageSize, currentPage * pageSize);
                 if (questionType) { 
                     tableData = tableData.filter(function(item) {
@@ -93,7 +79,7 @@ HZZ.api = function() {
                 }
                 res = { 
                     result: 1,
-                    typeData: res.typeData,
+                    questionTypeData: res.questionTypeData,
                     tableData: tableData,
                     length: res.tableData.length
                 };
