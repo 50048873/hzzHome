@@ -10,7 +10,7 @@ HZZ.api = function() {
         result: 1,
         getHomeData: function() { 
             return $.ajax({
-                type: 'POST',
+                //type: 'POST',
                 //url: 'http://10.100.3.113:8081/HzzbsProject/main/queryMainpageData.do',
                 url: 'json/homeData.json',
                 dataType: 'json'
