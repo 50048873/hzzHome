@@ -1,0 +1,21 @@
+{
+  "name": "hzzhome",
+  "version": "1.0.0",
+  "description": "hzz",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/50048873/hzzHome.git"
+  },
+  "author": "50048873",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/50048873/hzzHome/issues"
+  },
+  "homepage": "https://github.com/50048873/hzzHome#readme",
+  "dependencies": {
+    "jquery": "^3.3.1"
+  }
+}

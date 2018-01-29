@@ -1,18 +1,22 @@
-﻿/material
+﻿/node_modules
+/material
 
 /备份
 
 /设计稿
 
 /颜色集
+*.zip
+*.rar
 
 /static/element-ui/*
 !/static/element-ui/lib/index.js
 !/static/element-ui/lib/theme-chalk/index.css
 !/static/element-ui/lib/theme-chalk/fonts/
 
-/static/hzy
-/static/h-ui
+/static/hui/node_modules
+/static/hui/备份
+/static/webpack-simple
 
 /static/Highcharts-6.0.4/*
 !/static/Highcharts-6.0.4/code/highcharts.js
