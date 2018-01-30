@@ -25,9 +25,9 @@
                 </tr>
                 <tr>
                     <td colspan="6" class="photos">
-                        <img src="image/photo.jpg" alt="">
-                        <img src="image/photo.jpg" alt="">
-                        <img src="image/photo.jpg" alt="">
+                        <img src="static/image/photo.jpg" alt="">
+                        <img src="static/image/photo.jpg" alt="">
+                        <img src="static/image/photo.jpg" alt="">
                     </td>
                 </tr>
             </tbody>
@@ -60,7 +60,71 @@
     </div>
 </template>
 <script>
-  export default {
-    name: 'HDetail1'
-  };
+	import $ from 'jquery'
+
+	export default {
+	    name: 'HDetail1',
+	    mixins: [HZZ.mixin.dialog],
+	    watch: {
+	        filterText(val) {
+	            this.$refs.tree2.filter(val);
+	        }
+	    },
+	    data() {
+	        return {
+	            filterText: '',
+	            typeData: [],
+	            treeData: [],
+	            defaultProps: {
+	                children: 'children',
+	                label: 'label'
+	            },
+
+	            form: {},
+	            fileList: []
+	        };
+	    },
+	    methods: {
+	        filterNode(value, data) {
+	            if (!value) return true;
+	            return data.label.indexOf(value) !== -1;
+	        },
+	        onSubmit: function() { // 提交督办反馈操作弹出表单
+	            this.close();
+	            console.log('submit!');
+	        },
+	        handleRemove: function(file, fileList) {
+	            console.log(file, fileList);
+	        },
+	        handlePreview: function(file) {
+	            console.log(file);
+	        },
+	        handleExceed: function(files, fileList) {
+	            this.$message.warning(`当前限制选择 3 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
+	        },
+	        beforeRemove: function(file, fileList) {
+	            return this.$confirm(`确定移除 ${ file.name }？`);
+	        },
+	        init: function() {
+	          var rowData = parent.HZZ.cache.getData('row'); // 调用者传入的缓存对象
+	          if ($.isPlainObject(rowData)) {
+	              this.rowData = rowData;
+	          }
+	          this.show({
+	              title: '事件详情',
+	              content: '#form',
+	              area: '930px'
+	          });
+	        }
+	    },
+	    created: function() {
+	        this.init();
+	    }
+	};
 </script>
+
+<style scoped>
+	.hzz-detail-theme1 {
+	    display: block;
+	}
+</style>

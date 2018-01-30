@@ -1,66 +1,60 @@
 <template>
-  <div class="hzz-detail-theme1" id="form">
-        <h3>南十里长沟三支</h3>
-        <table>
-            <tbody>
-                <tr>
-                    <td>状态：</td>
-                    <td><span class="status p7465">调查核实中</span></td>
-                    <td>上报人：</td>
-                    <td>张三</td>
-                    <td>上报时间：</td>
-                    <td>2018-01-25 12:00</td>
-                </tr>
-                <tr>
-                    <td>所在河道：</td>
-                    <td>南十里长沟三支</td>
-                    <td>事件内容：</td>
-                    <td>垃圾太多</td>
-                    <td>事件类型：</td>
-                    <td>倾倒垃圾</td>
-                </tr>
-                <tr>
-                    <td>处理前照片：</td>
-                    <td colspan="5"></td>
-                </tr>
-                <tr>
-                    <td colspan="6" class="photos">
-                        <img src="image/photo.jpg" alt="">
-                        <img src="image/photo.jpg" alt="">
-                        <img src="image/photo.jpg" alt="">
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <h5>事件进度</h5>
-        <ul>
-            <li>
-                <div class="circle p2925">1</div>
-                <div class="content">
-                    <h6>垃圾太多</h6>
-                    <p>
-                        <span>处理人：李四</span>
-                        <span>电话：13000000000</span>
-                    </p>
-                    <p><time>2017-09-18 12:30</time></p>
-                </div>
-            </li>
-            <li>
-                <div class="circle p116">2</div>
-                <div class="content">
-                    <h6>垃圾太多</h6>
-                    <p>
-                        <span>处理人：李四</span>
-                        <span>电话：13000000000</span>
-                    </p>
-                    <p><time>2017-09-18 12:30</time></p>
-                </div>
-            </li>
-        </ul>
-    </div>
+  <div id="app">
+    <img src="./assets/logo.png">
+    <h1>{{ msg }}</h1>
+    <h2>Essential Links</h2>
+    <ul>
+      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
+      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
+      <li><a href="https://chat.vuejs.org" target="_blank">Community Chat</a></li>
+      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
+    </ul>
+    <h2>Ecosystem</h2>
+    <ul>
+      <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
+      <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
+      <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
+      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
+    </ul>
+  </div>
 </template>
+
 <script>
-  export default {
-    name: 'HDetail1'
-  };
+export default {
+  name: 'app',
+  data () {
+    return {
+      msg: 'Welcome to Your Vue.js App'
+    }
+  }
+}
 </script>
+
+<style>
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+
+h1, h2 {
+  font-weight: normal;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+a {
+  color: #42b983;
+}
+</style>

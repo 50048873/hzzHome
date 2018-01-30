@@ -22,6 +22,12 @@ module.exports = {
           commonjs2: "vue",
           amd: "vue",
           root: "Vue"
+      },
+      "jquery": {
+          commonjs: "jquery",
+          commonjs2: "jquery",
+          amd: "jquery",
+          root: "$"
       }
   },
   module: {
