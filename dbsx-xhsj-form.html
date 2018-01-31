@@ -140,7 +140,7 @@
                 HZZ.api.get_dcdb_dbsx_xcsj_formData()
                     .then(function(res) {
                         if (HZZ.api.result === res.result) { 
-                            _this.typeData = res.typeData;  
+                            _this.typeData = res.questionTypeData;  
                             _this.treeData = res.treeData;
                         }
                     }, function(err) {
@@ -172,6 +172,7 @@
               if ($.isPlainObject(rowData)) {
                   this.rowData = rowData;
               }
+              console.log(rowData)
               this.show({
                   title: '交办派单',
                   content: '#form',

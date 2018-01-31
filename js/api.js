@@ -87,7 +87,7 @@ HZZ.api = function() {
         },
         get_dcdb_dbsx_xcsj_formData: function() {    // 巡查事件———编辑对话框数据
             return $.ajax({
-                url: 'json/dcdb-dbsx-xhsj-info-data.json'
+                url: 'json/dcdb-dbsx-xhsj-form.json'
             });
         },
         get_dcdb_dbsx_zdxm: function() {    // 重点项目列表数据

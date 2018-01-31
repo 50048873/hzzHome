@@ -12,24 +12,24 @@
 <body>
     <div id="info" v-cloak>
         <div class="hzz-detail-theme1" id="form">
-            <h3>南十里长沟三支</h3>
+            <h3>{{rowData.riverName}}</h3>
             <table>
                 <tbody>
                     <tr>
                         <td>状态：</td>
                         <td><span class="status p7465">调查核实中</span></td>
                         <td>上报人：</td>
-                        <td>张三</td>
+                        <td>{{rowData.reporter}}</td>
                         <td>上报时间：</td>
-                        <td>2018-01-25 12:00</td>
+                        <td>{{rowData.reportTime}}</td>
                     </tr>
                     <tr>
                         <td>所在河道：</td>
-                        <td>南十里长沟三支</td>
+                        <td>{{rowData.riverName}}</td>
                         <td>事件内容：</td>
-                        <td>垃圾太多</td>
+                        <td>{{rowData.problemDesc}}</td>
                         <td>事件类型：</td>
-                        <td>倾倒垃圾</td>
+                        <td>{{rowData.questionType}}</td>
                     </tr>
                     <tr>
                         <td>处理前照片：</td>
@@ -91,16 +91,9 @@
         },
         data() {
             return {
-                filterText: '',
-                typeData: [],
-                treeData: [],
-                defaultProps: {
-                    children: 'children',
-                    label: 'label'
-                },
+                rowData: { // 表格行数据
 
-                form: {},
-                fileList: []
+                }
             };
         },
         methods: {
@@ -129,6 +122,7 @@
               if ($.isPlainObject(rowData)) {
                   this.rowData = rowData;
               }
+              console.log(this.rowData)
               this.show({
                   title: '事件详情',
                   content: '#form',
