@@ -24,7 +24,11 @@
             "telephone": "13000000000",
             "finishedTime": "2018-01-25",
             "feedback": "请抓紧办理",
-            "condition": "责任落实不到位"
+            "condition": "责任落实不到位",
+            "undertaker": "张大伟",
+            "undertakerTel": "13000000001",
+            "feedbackTime": "2018-01-26",
+            "signLeader": "李局长"
         },
         {
             "fileNum": "环城河交办[2018]2号",

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>督办反馈对话框</title>
+    <title>督办反馈——编辑</title>
     <link rel="stylesheet" href="css/element-theme/element-theme-darkred.css">
     <link rel="stylesheet" href="css/common/common.css">
 </head>
@@ -20,7 +20,7 @@
                         <td>责任单位：</td>
                         <td>{{rowData.department}}</td>
                         <td>交办类型：</td>
-                        <td>{{rowData.type}}</td>
+                        <td>{{rowData.questionType}}</td>
                     </tr>
                     <tr>
                         <td>交办内容：</td>
@@ -48,12 +48,12 @@
                 <el-row :gutter="20">
                     <el-col :span="12">
                         <el-form-item label="承办联系人：">
-                            <el-input v-model="rowData.user"></el-input>
+                            <el-input v-model="rowData.undertaker"></el-input>
                         </el-form-item>
                     </el-col>
                     <el-col :span="12">
                         <el-form-item label="联系电话：">
-                            <el-input v-model="rowData.user"></el-input>
+                            <el-input v-model="rowData.undertakerTel"></el-input>
                         </el-form-item>
                     </el-col>
                 </el-row>
@@ -74,12 +74,12 @@
                 <el-row :gutter="20">
                     <el-col :span="12">
                         <el-form-item label="反馈时间：">
-                            <el-date-picker type="date" v-model="rowData.reportTime" style="width: 100%;"></el-date-picker>
+                            <el-date-picker type="date" v-model="rowData.feedbackTime" style="width: 100%;"></el-date-picker>
                         </el-form-item>
                     </el-col>
                     <el-col :span="12">
                         <el-form-item label="签发领导">
-                            <el-input v-model="rowData.leader"></el-input>
+                            <el-input v-model="rowData.signLeader"></el-input>
                         </el-form-item>
                     </el-col>
                 </el-row>
@@ -162,14 +162,21 @@
                 rowData: { // 表格行数据
                     fileNum: "",
                     department: "",
-                    type: "",
+                    questionType: "",
                     content: "",
                     demand: "",
                     contacts: "",
                     assignedTime: "",
                     rectificationPeriod: "",
                     progress: "",
-                    telephone: ""
+                    telephone: "",
+                    finishedTime: "2018-01-25",
+                    feedback: "请抓紧办理",
+                    condition: "责任落实不到位",
+                    undertaker: "张大伟",
+                    undertakerTel: "13000000001",
+                    feedbackTime: "2018-01-26",
+                    signLeader: "李局长"
                 },
 
                 fileList: []
@@ -187,10 +194,11 @@
                 console.log(file);
             },
             handleExceed: function(files, fileList) {
-                this.$message.warning(`当前限制选择 3 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
+                console.log(files, fileList);
             },
             beforeRemove: function(file, fileList) {
-                return this.$confirm(`确定移除 ${ file.name }？`);
+                var promise = this.$confirm(`确定移除 ${ file.name }？`);
+                return promise;
             },
             init: function() {
                 var rowData = parent.HZZ.cache.getData('row'); // 调用者传入的缓存对象

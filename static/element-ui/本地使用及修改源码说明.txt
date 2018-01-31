@@ -1,0 +1,11 @@
+一、下载一个master分支（https://github.com/ElemeFE/element/tree/master）
+二、
+1.进入下载的分支目录，
+2.npm install（注意，最好是翻墙安装，否则很可能npm run dist报错）
+3.npm run dev
+4.然后访问http://localhost:8085，可以看到示例。跟官网http://element.eleme.io/#/zh-CN基本是一样的。
+5.修改packages文件夹下的.vue文件，会实时更新看到效果
+6.我们可以参照这个模式扩展自己的组件
+7.npm run dist（运行此命令生成lib包，通过link标签引入lib/theme-chalk/index.css，script标签引入element/lib/index.js）
+
+详情参见：http://blog.csdn.net/liusaint1992/article/details/78238096

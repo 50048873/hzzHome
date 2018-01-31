@@ -124,39 +124,7 @@
             beforeRemove: function(file, fileList) {
                 return this.$confirm(`确定移除 ${ file.name }？`);
             },
-            getData: function() {   // 获取类型数据
-                var _this = this;
-                HZZ.api.get_dcdb_dbsx_xcsj_formData()
-                    .then(function(res) {
-                        if (HZZ.api.result === res.result) { 
-                            _this.typeData = res.typeData;  
-                            _this.treeData = res.treeData;
-                        }
-                    }, function(err) {
-                        $.error(err.responseText);
-                    });
-            },
-            getTableData: function() {  // 获取表格数据
-                var _this = this;
-                var params = {
-                    currentPage1: this.currentPage1,
-                    pageSize1: this.pageSize1,
-                    questionType: this.formSearch1.questionType,
-                    assignedTime: this.formSearch1.assignedTime,
-                    rectificationPeriod: this.formSearch1.rectificationPeriod
-                };
-                HZZ.api.get_dcdb_dbsx_dbfk_tableData(params)
-                    .then(function(res) {
-                        if (HZZ.api.result === res.result) { 
-                            _this.tableData1 = res.tableData;
-                            _this.total1 = res.length;           
-                        }
-                    }, function(err) {
-                        $.error(err.responseText);
-                    });
-            },
             init: function() {
-              this.getData(); // 加载督办类型数据
               var rowData = parent.HZZ.cache.getData('row'); // 调用者传入的缓存对象
               if ($.isPlainObject(rowData)) {
                   this.rowData = rowData;

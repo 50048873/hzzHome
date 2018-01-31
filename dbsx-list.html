@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>待办事项</title>
-        <link rel="stylesheet" href="css/element-theme/element-theme-darkred.css">
+        <link rel="stylesheet" href="css/element-theme/theme-chalk/index.css">
         <link rel="stylesheet" href="css/common/common.css">
         <link rel="stylesheet" href="css/dcdb-dbsx/dcdb-dbsx.css">
     </head>
@@ -623,14 +623,16 @@
                         cache.row = row;    // 缓存行数据
 
                         switch (name) {
+                            case 1: 
+                                break;
                             case 2: 
                                 util.loadHtml(URLs.baseUrl + 'dbsx-xhsj-detail.html');   // 通过iframe加载页面
                                 break;
                             case 3: 
-                                util.loadHtml(URLs.baseUrl + 'dbsx-xhsj-detail.html');   // 通过iframe加载页面
+                                util.loadHtml(URLs.baseUrl + 'dbsx-xhsj-detail.html'); 
                                 break;
                             case 4: 
-                                util.loadHtml(URLs.baseUrl + 'dbsx-zdxm-detail.html');   // 通过iframe加载页面
+                                util.loadHtml(URLs.baseUrl + 'dbsx-zdxm-detail.html'); 
                                 break;
                         }
                     },

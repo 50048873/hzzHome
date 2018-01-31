@@ -419,6 +419,7 @@ HZZ.mixin = {
                         area: obj.area,
                         //offset: '100px',
                         //maxHeight: 630,
+                        zIndex: 10,
                         content: $(obj.content),
                         cancel: function(index, layero){
                             layer.close(index);

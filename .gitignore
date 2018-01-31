@@ -12,6 +12,7 @@
 /static/element-ui/*
 !/static/element-ui/lib/index.js
 !/static/element-ui/lib/theme-chalk/index.css
+!/static/element-ui/本地使用及修改源码说明.txt
 !/static/element-ui/lib/theme-chalk/fonts/
 
 /static/hui/node_modules
