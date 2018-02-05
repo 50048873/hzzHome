@@ -81,7 +81,7 @@ HZZ.mixin = {
                         style: { "color": "#424242", "fontSize": "12px" }
                     },
                     tooltip: {
-                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                        pointFormat: '<span style="color:{point.color}"></span>'
                     },
                     plotOptions: {
                         pie: {
@@ -211,12 +211,18 @@ HZZ.mixin = {
                             useHTML: true
                     },
                     tooltip: {
-                        valueSuffix: ' millions'
+                        valueSuffix: '%'
                     },
                     plotOptions: {
                         bar: {
                             dataLabels: {
                                 enabled: true
+                            }
+                        },
+                        series: {
+                            dataLabels: {
+                                enabled: true,
+                                format: '{point.y}%'
                             }
                         }
                     },
@@ -257,12 +263,18 @@ HZZ.mixin = {
                         lineWidth: 1
                     },
                     tooltip: {
-                        valueSuffix: ' millions'
+                        valueSuffix: '%'
                     },
                     plotOptions: {
                         bar: {
                             dataLabels: {
                                 enabled: true
+                            }
+                        },
+                        series: {
+                            dataLabels: {
+                                enabled: true,
+                                format: '{point.y}%'
                             }
                         }
                     },
@@ -338,7 +350,11 @@ HZZ.mixin = {
                                 }
                             }
                         }]
-                    }
+                    },
+                    tooltip: {
+                        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                        pointFormat: '<b>{point.y:.2f}%</b>'
+                    },
                 });
             },
             hzzkhqk: function(id) {
@@ -389,7 +405,7 @@ HZZ.mixin = {
                     },
                     tooltip: {
                         headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+                        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b><br/>'
                     },
 
                     series: _this.hzzkhqkData.series
