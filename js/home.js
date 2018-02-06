@@ -89,7 +89,8 @@ new Vue({
             });
         },
         getPercent: function(percent) {
-            return percent.indexOf('%') > -1 ? percent : percent + '%'
+            percent = parseFloat(percent);
+            return percent ? percent + '%' : '0%'
         }
     },
     created: function() { 
