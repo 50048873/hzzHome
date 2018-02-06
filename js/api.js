@@ -4,7 +4,7 @@ if (!HZZ) {
     var HZZ = {};
 }
 
-// 年度任务
+// 接口
 HZZ.api = function() {
     return {
         result: 1,

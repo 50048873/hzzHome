@@ -133,7 +133,7 @@ HZZ.mixin = {
                         style: { "color": "#42", "fontSize": "12px" }
                     },
                     tooltip: {
-                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                        pointFormat: '<span style="color:{point.color}"></span>'
                     },
                     plotOptions: {
                         pie: {
