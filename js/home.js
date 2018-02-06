@@ -87,6 +87,9 @@ new Vue({
                     time: 1000
                 });
             });
+        },
+        getPercent: function(percent) {
+            return percent.indexOf('%') > -1 ? percent : percent + '%'
         }
     },
     created: function() { 

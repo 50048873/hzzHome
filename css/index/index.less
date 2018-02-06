@@ -12,6 +12,10 @@
     height: 570px;
 } 
 
+.zyrw {
+    overflow-y: auto;
+}
+
 .row-1-2 {
     position: relative;
     &:after {
@@ -61,6 +65,10 @@
 
     .progress-text-desc, .progress-text-percent {
         font-size: 16px;
+        //text-shadow: 0 1px black, 1px 0 black, -1px 0 black, 0 -1px black;
+        //text-shadow: 0 0 2px black;
+        //color: #333\0;
+        color: black;
     }
 
     .progress-text-desc {
@@ -77,8 +85,6 @@
         position: absolute;
         top: -1px;
         right: 5px;
-        text-shadow: 0 1px black, 1px 0 black, -1px 0 black, 0 -1px black;
-        color: #333\0;
     }
 }
 
@@ -97,7 +103,7 @@
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        color: white;
+        color: black;
         font-size: 14px;
     }
 }
