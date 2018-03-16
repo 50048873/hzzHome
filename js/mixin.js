@@ -65,6 +65,24 @@ HZZ.mixin = {
             xmjdtj: function(id) {
                 var _this = this;
                 var chart = null;
+                var dataLabels = {};
+                if (HZZ.util.isIE11()) {
+                    dataLabels = {
+                        enabled: true,
+                        useHTML: false,
+                        distance: 20,
+                        color: HZZ.config.colors.COLOR_PRIMARY
+                    }
+                } else {
+                    dataLabels = {
+                        enabled: true,
+                        crop: false,
+                        overflow: 'none',
+                        useHTML: true,
+                        distance: 20,
+                        color: HZZ.config.colors.COLOR_PRIMARY
+                    }
+                }
                 Highcharts.setOptions({
                     colors: ['#39b7e7', '#0970b9', '#737474', '#b5b5b5']
                 });
@@ -87,19 +105,7 @@ HZZ.mixin = {
                         pie: {
                             size: 130,
                             innerSize: '60%',
-                            dataLabels: {
-                                enabled: true,
-                                crop: false,
-                                overflow: 'none',
-                                useHTML: true,
-                                distance: 20,
-                                color: HZZ.config.colors.COLOR_PRIMARY
-                                /*
-                                formatter: function() {
-                                    //this 为当前的点（扇区）对象，可以通过  console.log(this) 来查看详细信息
-                                    return this.y + '%';
-                                }*/
-                            },
+                            dataLabels: dataLabels
                         },
                         series: {
                             cursor: 'pointer',
@@ -111,10 +117,9 @@ HZZ.mixin = {
                                             title: '项目进度统计',
                                             type: 1,
                                             skin: 'layui-layer-home', 
-                                            area: ['420px', '240px'], 
-                                            anim: 2,
+                                            anim: 0,
                                             shadeClose: true, 
-                                            content: this.name.replace('circleDesc circleDesc-dp', '')
+                                            content: $(this.name).removeAttr('class').get(0).innerHTML
                                         });
                                     }
                                 }
@@ -136,6 +141,24 @@ HZZ.mixin = {
             gztstj: function(id) {
                 var chart = null;
                 var _this = this;
+                var dataLabels = {};
+                if (HZZ.util.isIE11()) {
+                    dataLabels = {
+                        enabled: true,
+                        useHTML: false,
+                        distance: 20,
+                        color: HZZ.config.colors.COLOR_PRIMARY
+                    }
+                } else {
+                    dataLabels = {
+                        enabled: true,
+                        crop: false,
+                        overflow: 'none',
+                        useHTML: true,
+                        distance: 20,
+                        color: HZZ.config.colors.COLOR_PRIMARY
+                    }
+                }
                 Highcharts.setOptions({
                     colors: ['#39b7e7', '#0970b9', '#737474', '#b5b5b5']
                 });
@@ -158,20 +181,25 @@ HZZ.mixin = {
                         pie: {
                             size: 130,
                             innerSize: '60%',
-                            dataLabels: {
-                                enabled: true,
-                                crop: false,
-                                overflow: 'none',
-                                distance: 5,
-                                useHTML: true,
-                                color: HZZ.config.colors.COLOR_PRIMARY
-                                //connectorPadding: 1,
-                                /*
-                                formatter: function() {
-                                    //this 为当前的点（扇区）对象，可以通过  console.log(this) 来查看详细信息
-                                    return this.y + '%';
-                                }*/
-                            },
+                            dataLabels: dataLabels
+                        },
+                        series: {
+                            cursor: 'pointer',
+                            point: {
+                                events: {
+                                    click: function (e) {
+                                        console.log('公众投诉统计－>数据：', _this.xmjdtjData, this.name)
+                                        layer.open({
+                                            title: '公众投诉统计',
+                                            type: 1,
+                                            skin: 'layui-layer-home', 
+                                            anim: 0,
+                                            shadeClose: true, 
+                                            content: $(this.name).removeAttr('class').get(0).innerHTML
+                                        });
+                                    }
+                                }
+                            }
                         }
                     },
                     series: _this.gztstjData.series
@@ -238,10 +266,28 @@ HZZ.mixin = {
                                 enabled: true
                             }
                         },
-                        series: {
+                        /*series: {
                             dataLabels: {
                                 enabled: true,
                                 format: '{point.y}%'
+                            }
+                        },*/
+                        series: {
+                            cursor: 'pointer',
+                            point: {
+                                events: {
+                                    click: function (e) {
+                                        console.log('巡河完成率－>数据：', _this.xmjdtjData, this)
+                                        layer.open({
+                                            title: '巡河完成率',
+                                            type: 1,
+                                            skin: 'layui-layer-home', 
+                                            anim: 0,
+                                            shadeClose: true, 
+                                            content: this.category + '：' + this.y + '%'
+                                        });
+                                    }
+                                }
                             }
                         }
                     },
@@ -290,10 +336,28 @@ HZZ.mixin = {
                                 enabled: true
                             }
                         },
-                        series: {
+                        /*series: {
                             dataLabels: {
                                 enabled: true,
                                 format: '{point.y}%'
+                            }
+                        },*/
+                        series: {
+                            cursor: 'pointer',
+                            point: {
+                                events: {
+                                    click: function (e) {
+                                        console.log('事件处理率－>数据：', _this.xmjdtjData, this)
+                                        layer.open({
+                                            title: '事件处理率',
+                                            type: 1,
+                                            skin: 'layui-layer-home', 
+                                            anim: 0,
+                                            shadeClose: true, 
+                                            content: this.category + '：' + this.y + '%'
+                                        });
+                                    }
+                                }
                             }
                         }
                     },
@@ -352,11 +416,29 @@ HZZ.mixin = {
                         reversed: true
                     },
                     plotOptions: {
-                        series: {
+                        /*series: {
                             label: {
                                 connectorAllowed: false
                             },
                             pointStart: 1
+                        },*/
+                        series: {
+                            cursor: 'pointer',
+                            point: {
+                                events: {
+                                    click: function (e) {
+                                        console.log('水质达标率变化趋势－>数据：', _this.szdblbhqsData, this)
+                                        layer.open({
+                                            title: '水质达标率变化趋势',
+                                            type: 1,
+                                            skin: 'layui-layer-home', 
+                                            anim: 0,
+                                            shadeClose: true, 
+                                            content: this.series.name + '：' + this.y + '%'
+                                        });
+                                    }
+                                }
+                            }
                         }
                     },
                     series: _this.szdblbhqsData.series,
@@ -417,12 +499,29 @@ HZZ.mixin = {
                         enabled: false
                     },
                     plotOptions: {
-                        series: {
+                        /*series: {
                             borderWidth: 0,
                             dataLabels: {
                                 enabled: true,
-                                format: '{point.y}分'/*,
-                                inside: true*/
+                                format: '{point.y}分'
+                            }
+                        },*/
+                        series: {
+                            cursor: 'pointer',
+                            point: {
+                                events: {
+                                    click: function (e) {
+                                        console.log('河长制考核情况－>数据：', _this.szdblbhqsData, this)
+                                        layer.open({
+                                            title: '河长制考核情况',
+                                            type: 1,
+                                            skin: 'layui-layer-home', 
+                                            anim: 0,
+                                            shadeClose: true, 
+                                            content: this.name + '：' + this.y + '%'
+                                        });
+                                    }
+                                }
                             }
                         }
                     },

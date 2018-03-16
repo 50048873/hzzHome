@@ -93,8 +93,7 @@ new Vue({
                         title: name,
                         type: 1,
                         skin: 'layui-layer-home', //样式类名
-                        area: ['420px', '240px'], //宽高
-                        anim: 2,
+                        anim: 0,
                         shadeClose: true, //开启遮罩关闭
                         content: '<div><p>' + percent + '</p><p>' + _this.fqyszdblData.date + '</p></div>'
                     });
@@ -104,6 +103,17 @@ new Vue({
         getPercent: function(percent) {
             percent = parseFloat(percent);
             return percent ? percent + '%' : '0%'
+        },
+        showJgryzcDialog: function(item) {
+            console.log('机构人员组成—>数据：', this.jgryzcData, item)
+            layer.open({
+                title: item.name,
+                type: 1,
+                skin: 'layui-layer-home', //样式类名
+                anim: 0,
+                shadeClose: true, //开启遮罩关闭
+                content: '<p>' + item.count + '人</p>'
+            });
         }
     },
     created: function() { 
