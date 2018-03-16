@@ -21,7 +21,7 @@ HZZ.mixin = {
                 }).then(function(res) {
                     var svg = res.documentElement,
                         colorGrade = HZZ.config.colorGrade;
-                    _this.fqyszdblData.forEach(function(item, index) { 
+                    _this.fqyszdblData.data.forEach(function(item, index) { 
                         var $path = $(svg).find('text:contains(' + item.name + ')').prev(),
                             percent = parseFloat(item.percent);
                         if (percent >= 0 && percent < 50) {
@@ -100,6 +100,25 @@ HZZ.mixin = {
                                     return this.y + '%';
                                 }*/
                             },
+                        },
+                        series: {
+                            cursor: 'pointer',
+                            point: {
+                                events: {
+                                    click: function (e) {
+                                        console.log('项目进度统计－>数据：', _this.xmjdtjData, this.name)
+                                        layer.open({
+                                            title: '项目进度统计',
+                                            type: 1,
+                                            skin: 'layui-layer-home', 
+                                            area: ['420px', '240px'], 
+                                            anim: 2,
+                                            shadeClose: true, 
+                                            content: this.name.replace('circleDesc circleDesc-dp', '')
+                                        });
+                                    }
+                                }
+                            }
                         }
                     },
                     series: _this.xmjdtjData.series
@@ -307,11 +326,15 @@ HZZ.mixin = {
                     },
                     yAxis: {
                         title: {
-                            text: null
+                            text: null,
+                            
                         },
                         labels: {   // 坐标轴标签（即坐标轴旁的文字）
                             style: {
                                 color: HZZ.config.colors.COLOR_PRIMARY
+                            },
+                            formatter: function (){   
+                                return this.value + '%' ;   
                             }
                         },
                         max: 100,

@@ -8,7 +8,7 @@ new Vue({
             categoriesData: [],         // 街道分类
             yearTaskData: [],           // 年度任务
             totalTaskData: [],          // 到2020年度任务
-            fqyszdblData: [],           // 分区域水质达标率
+            fqyszdblData: {},           // 分区域水质达标率
             xmjdtjData: [],             // 项目进度统计
             gztstjData: [],             // 公众投诉统计
             xhwclData: [],              // 巡河完成率
@@ -38,7 +38,7 @@ new Vue({
                         _this.hzzkhqkData = res.hzzkhqk;
 
                         _this.renderChart(); 
-                        _this.mapTooltip();                
+                        _this.mapTooltip();              
                     }
                 }, function(err) {
                     $.error(err.responseText);
@@ -76,16 +76,29 @@ new Vue({
         },
         mapTooltip: function() {    // 地图mouseenter事件
             var _this = this;
-            $('body').on('mouseenter', '#xx g', function(e) {
+            $('body').on('mouseenter click', '#xx g', function(e) {
                 var $this = $(this),
                     name = $this.find('text').text(),
-                    percent = $this.find('path').attr('percent'),
-                    tips = '<p>' + name + '</p><p>水质达标率：' + percent + '</p>';
-                _this.$svgMap.append(this);
-                layer.tips(tips, this, {
-                    tips: [1, '#7e56cc'],
-                    time: 1000
-                });
+                    percent = $this.find('path').attr('percent');
+                if (e.type === 'mouseenter') {
+                    var tips = '<p>' + name + '</p><p>水质达标率：' + percent + '</p>';
+                    _this.$svgMap.append(this);
+                    layer.tips(tips, this, {
+                        tips: [1, '#7e56cc'],
+                        time: 1000
+                    });
+                } else if (e.type === 'click') {
+                    console.log('分区域水质达标率—>数据：', _this.fqyszdblData, _this.fqyszdblData.date)
+                    layer.open({
+                        title: name,
+                        type: 1,
+                        skin: 'layui-layer-home', //样式类名
+                        area: ['420px', '240px'], //宽高
+                        anim: 2,
+                        shadeClose: true, //开启遮罩关闭
+                        content: '<div><p>' + percent + '</p><p>' + _this.fqyszdblData.date + '</p></div>'
+                    });
+                }
             });
         },
         getPercent: function(percent) {
