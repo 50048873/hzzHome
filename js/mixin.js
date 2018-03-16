@@ -66,7 +66,7 @@ HZZ.mixin = {
                 var _this = this;
                 var chart = null;
                 var dataLabels = {};
-                if (HZZ.util.isIE11()) {
+                if (HZZ.util.isGeIE10()) {
                     dataLabels = {
                         enabled: true,
                         useHTML: false,
@@ -142,7 +142,7 @@ HZZ.mixin = {
                 var chart = null;
                 var _this = this;
                 var dataLabels = {};
-                if (HZZ.util.isIE11()) {
+                if (HZZ.util.isGeIE10()) {
                     dataLabels = {
                         enabled: true,
                         useHTML: false,

@@ -84,8 +84,8 @@ HZZ.util = {
         var topHZZ = top.HZZ;
         topHZZ.$iFrame && topHZZ.$iFrame.remove();
     },
-    isIE11: function() {
-        return window.navigator.userAgent.indexOf('rv:11.0') > 1 ? true : false;
+    isGeIE10: function() {
+        return window.navigator.userAgent.indexOf('rv:11.0') > 1 || window.navigator.userAgent.indexOf('MSIE 10') > 1 ? true : false;
     }
 };
 
