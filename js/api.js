@@ -11,7 +11,7 @@ HZZ.api = function() {
         getHomeData: function() { 
             return $.ajax({
                 //url: 'http://10.100.3.113:8081/HzzbsProject/main/queryMainpageData.do',
-                url: 'json/homeData.json',
+                url: 'json/homeData2.json',
                 dataType: 'json'
             });
         },

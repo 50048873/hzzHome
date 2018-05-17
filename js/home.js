@@ -49,7 +49,7 @@ new Vue({
             this.$nextTick(function() { 
                 _this.fqyszdbl({                // 分区域水质达标率
                     id: 'fqyszdbl',
-                    url: 'svg/xx.svg'
+                    url: 'svg/sc.svg'
                 });
                 _this.xmjdtj('xmjdtj');         // 项目进度统计
                 _this.gztstj('gztstj');         // 公众投诉统计
@@ -76,7 +76,7 @@ new Vue({
         },
         mapTooltip: function() {    // 地图mouseenter事件
             var _this = this;
-            $('body').on('mouseenter click', '#xx g', function(e) {
+            $('body').on('mouseenter click', '#sc g', function(e) {
                 var $this = $(this),
                     name = $this.find('text').text(),
                     percent = $this.find('path').attr('percent');

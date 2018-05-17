@@ -1,0 +1,263 @@
+{
+	"result": 1,
+	"categories": ["龙潭街道", "栖霞街道", "燕子矶街道", "马群街道", "迈皋桥街道", "八卦洲街道", "仙林街道", "西岗街道", "尧化街道"],
+	"yearTask": [
+		{
+			"name": "建立镇级以上河长制体系",
+			"percent": "80%"
+		},
+		{
+			"name": "全区全面推行河长制",
+			"percent": "90%"
+		},
+		{
+			"name": "所有一级干流树立河长制工作牌",
+			"percent": "100%"
+		},
+		{
+			"name": "河长制民众微信公众号的建立",
+			"percent": "100%"
+		}
+	],
+
+	"totalTask": [
+		{
+			"name": "建成区全面消除劣V类水体"
+		},
+		{
+			"name": "地表水体达到或优于III类达到75%"
+		},
+		{
+			"name": "饮用水源地达到或优于II类达到100%"
+		},
+		{
+			"name": "年用水量控制在5.8亿立方米"
+		}
+	],
+
+	"fqyszdbl": {
+	    "date": "2018年3月17日",
+	    "data": [
+	      {
+	          "name": "自贡市",
+	          "percent": "0.0%"
+	      },
+	      {
+	          "name": "攀枝花市",
+	          "percent": "100.0%"
+	      },
+	      {
+	          "name": "泸州市",
+	          "percent": "33.0%"
+	      },
+	      {
+	          "name": "德阳市",
+	          "percent": "0.0%"
+	      },
+	      {
+	          "name": "绵阳市",
+	          "percent": "0.0%"
+	      },
+	      {
+	          "name": "广元市",
+	          "percent": "0.0%"
+	      },
+	      {
+	          "name": "遂宁市",
+	          "percent": "100.0%"
+	      },
+	      {
+	          "name": "内江市",
+	          "percent": "75.0%"
+	      },
+	      {
+	          "name": "资阳市",
+	          "percent": "100.0%"
+	      },
+	      {
+	          "name": "乐山市",
+	          "percent": "100.0%"
+	      },
+	      {
+	          "name": "眉山市",
+	          "percent": "100.0%"
+	      },
+	      {
+	          "name": "南充市",
+	          "percent": "100.0%"
+	      },
+	      {
+	          "name": "宜宾市",
+	          "percent": "100.0%"
+	      },
+	      {
+	          "name": "广安市",
+	          "percent": "100.0%"
+	      },
+	      {
+	          "name": "达州市",
+	          "percent": "100.0%"
+	      },
+	      {
+	          "name": "巴中市",
+	          "percent": "100.0%"
+	      },
+	      {
+	          "name": "雅安市",
+	          "percent": "100.0%"
+	      },
+	      {
+	          "name": "甘孜藏族自治州",
+	          "percent": "100.0%"
+	      },
+	      {
+	          "name": "阿坝藏族羌族自治州",
+	          "percent": "100.0%"
+	      },
+	      {
+	          "name": "凉山彝族自治州",
+	          "percent": "100.0%"
+	      },
+	      {
+	          "name": "成都市",
+	          "percent": "100.0%"
+	      }
+	    ]
+	 },
+
+	"xmjdtj": {
+		"text": "总计471条",
+		"series": [{
+	        "data": [
+        		{
+                    "name": "<div><b>完工</b><b>（38条）</b></div>",
+                    "y": 8
+                },
+                {
+                    "name": "<div class='circleDesc circleDesc-kg'><b>开工</b><b>（27条）</b></div>",
+                    "y": 52
+                },
+                {
+                    "name": "<div class='circleDesc circleDesc-dj'><b>待建</b><b>（21条）</b></div>",
+                    "y": 10
+                },
+                {
+                    "name": "<div class='circleDesc circleDesc-dp'><b>待批</b><b>（14条）</b></div>",
+                    "y": 30
+                }
+	        ]
+	    }]
+	},
+
+	"gztstj": {
+		"text": "总计145起",
+		"series": [{
+	        "data": [
+        		{
+                    "name": "<div class='circleDesc circleDesc-shlj'><b>生活垃圾</b><b>（88起）</b></div>",
+                    "y": 40
+                },
+                {	
+                	"name": "<div class='circleDesc circleDesc-wspf'><b>污水排放</b><b>（57起）</b></div>",
+                    "y": 60
+                }
+	        ]
+	    }]
+	},
+
+	"xhwcl": {
+		"series": [{
+	        "name": "巡河完成率",
+	        "data": [79, 55, 65, 39, 22, 18, 30, 78, 38]
+	    }]
+	},
+
+	"sjcll": {
+		"series": [{
+	        "name": "事件处理率",
+	        "data": [79, 55, 65, 39, 22, 18, 30, 78, 38]
+	    }]
+	},
+
+	"jgryzc": [
+		{
+			"name": "区级河长",
+			"count": 24
+		},
+		{
+			"name": "街道河长",
+			"count": 77
+		},
+		{
+			"name": "社区河长",
+			"count": 229
+		},
+		{
+			"name": "巡查员",
+			"count": 192
+		},
+		{
+			"name": "监督员",
+			"count": 148
+		}
+	],
+
+	"szdblbhqs": {
+		"series": [{
+	        "name": "省级",
+	        "data": [43, 52, 57, 69, 97, 11, 13, 15, 97, 11, 13, 15]
+	    }, {
+	        "name": "市级",
+	        "data": [24, 24, 29, 29, 32, 30, 38, 40, 32, 30, 38, 40]
+	    }, {
+	        "name": "县级",
+	        "data": [11, 17, 16, 19, 20, 24, 32, 39, 20, 24, 32, 39]
+	    }, {
+	        "name": "乡镇以下",
+	        "data": [50, 36, 79, 12, 15, 22, 34, 34, 15, 22, 34, 34]
+	    }]
+	},
+
+	"hzzkhqk": {
+		"series": [{
+	        "name": "河长制考核情况",
+	        "data": [{
+	            "name": "龙潭",
+	            "y": 82,
+	            "color":"#29abe1"
+	        }, {
+	            "name": "栖霞",
+	            "y": 98,
+	            "color":"#29abe1"
+	        }, {
+	            "name": "燕子矶",
+	            "y": 78,
+	            "color":"#29abe1"
+	        }, {
+	            "name": "马群",
+	            "y": 96,
+	            "color":"#29abe1"
+	        }, {
+	            "name": "迈皋桥",
+	            "y": 93,
+	            "color":"#29abe1"
+	        }, {
+	            "name": "八卦洲",
+	            "y": 89,
+	            "color":"#29abe1"
+	        }, {
+	            "name": "仙林",
+	            "y": 97,
+	            "color":"#29abe1"
+	        }, {
+	            "name": "西岗",
+	            "y": 66,
+	            "color":"#29abe1"
+	        }, {
+	            "name": "尧化",
+	            "y": 79,
+	            "color":"#29abe1"
+	        }]
+	    }]
+	}
+}
